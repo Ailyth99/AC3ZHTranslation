@@ -11,70 +11,101 @@ TYPE_4BPP = 0x08
 
 class Frame(wx.Frame):
     def __init__(self):
-        wx.Frame.__init__(self, None, -1, 'Pypstim V0.5 by Lilith', style=wx.SYSTEM_MENU | wx.CAPTION | wx.CLOSE_BOX)
+        wx.Frame.__init__(self, None, -1, 'Pypstim V0.5 by Lilith', style=wx.SYSTEM_MENU | wx.CAPTION | wx.CLOSE_BOX | wx.RESIZE_BORDER)
         self.panel = wx.Panel(self)
         self.sizer = wx.BoxSizer(wx.HORIZONTAL)
         
         # Left side: TIM image and information
-        self.left_panel = wx.Panel(self.panel)
-        self.left_sizer = wx.BoxSizer(wx.VERTICAL)
-        
-        self.image_panel = wx.Panel(self.left_panel, size=(330, 250))
-        self.image_panel.Bind(wx.EVT_PAINT, self.on_paint)
-        self.left_sizer.Add(self.image_panel, 0, wx.ALL | wx.EXPAND, 5)
-        
-        self.info_text = wx.TextCtrl(self.left_panel, style=wx.TE_MULTILINE | wx.TE_READONLY, size=(330, 280))
-        self.left_sizer.Add(self.info_text, 0, wx.ALL | wx.EXPAND, 5)
-        
-        self.header_replace_button = wx.Button(self.left_panel, label="Header Replace")
-        self.header_replace_button.Bind(wx.EVT_BUTTON, self.on_header_replace)
-        self.left_sizer.Add(self.header_replace_button, 0, wx.ALL | wx.EXPAND, 5)
-        
-        self.left_panel.SetSizer(self.left_sizer)
+        self.left_panel = self.create_left_panel()
         self.sizer.Add(self.left_panel, 0, wx.ALL | wx.EXPAND, 5)
         
         # Right side: File picker, CLUT choice, export button, CLUT display, and Layer Merge
-        self.right_panel = wx.Panel(self.panel)
-        self.right_sizer = wx.BoxSizer(wx.VERTICAL)
-        
-        self.file_picker = wx.FilePickerCtrl(self.right_panel, message="Select a TIM file")
-        self.file_picker.Bind(wx.EVT_FILEPICKER_CHANGED, self.on_file_selected)
-        self.right_sizer.Add(self.file_picker, 0, wx.ALL | wx.EXPAND, 5)
-        
-        self.clut_choice = wx.Choice(self.right_panel, choices=[], size=(150, -1))
-        self.clut_choice.Bind(wx.EVT_CHOICE, self.on_clut_selected)
-        self.right_sizer.Add(self.clut_choice, 0, wx.ALL | wx.EXPAND, 5)
-        
-        self.export_button = wx.Button(self.right_panel, label="Export TIM with this CLUT")
-        self.export_button.Bind(wx.EVT_BUTTON, self.on_export_tim)
-        self.right_sizer.Add(self.export_button, 0, wx.ALL | wx.EXPAND, 5)
-        
-        self.clut_panel = wx.Panel(self.right_panel, size=(320, 240))
-        self.clut_panel.Bind(wx.EVT_PAINT, self.on_clut_paint)
-        self.clut_panel.Bind(wx.EVT_RIGHT_DOWN, self.on_clut_right_click)
-        self.right_sizer.Add(self.clut_panel, 0, wx.ALL | wx.EXPAND, 5)
-        
-        # Layer Merge section
-        self.right_sizer.Add(wx.StaticText(self.right_panel, label="Layer Merge"), 0, wx.ALL, 5)
-        
-        self.layer1_picker = wx.FilePickerCtrl(self.right_panel, message="Select first TIM layer")
-        self.right_sizer.Add(self.layer1_picker, 0, wx.ALL | wx.EXPAND, 5)
-        
-        self.layer2_picker = wx.FilePickerCtrl(self.right_panel, message="Select second TIM layer")
-        self.right_sizer.Add(self.layer2_picker, 0, wx.ALL | wx.EXPAND, 5)
-        
-        self.merge_button = wx.Button(self.right_panel, label="Merge Layers")
-        self.merge_button.Bind(wx.EVT_BUTTON, self.on_merge_layers)
-        self.right_sizer.Add(self.merge_button, 0, wx.ALL | wx.EXPAND, 5)
-        
-        self.right_panel.SetSizer(self.right_sizer)
+        self.right_panel = self.create_right_panel()
         self.sizer.Add(self.right_panel, 1, wx.ALL | wx.EXPAND, 5)
         
         self.panel.SetSizer(self.sizer)
-        self.SetSize((700, 630))  # 宽  高
-        self.Layout()  
+        
+        # Set the size of the frame
+        self.SetSize((700, 660))  # 宽  高
+        
+        # Set minimum and maximum size to enforce the size
+        self.SetMinSize((700, 600))
+        self.SetMaxSize((700, 700))
+        
+        # Ensure the layout is updated
+        self.Layout()
         
         self.bitmap = None
+
+    def create_left_panel(self):
+        left_panel = wx.Panel(self.panel)
+        left_sizer = wx.BoxSizer(wx.VERTICAL)
+        
+        self.image_panel = wx.Panel(left_panel, size=(330, 250))
+        self.image_panel.Bind(wx.EVT_PAINT, self.on_paint)
+        left_sizer.Add(self.image_panel, 0, wx.ALL | wx.EXPAND, 5)
+        
+        self.info_text = wx.TextCtrl(left_panel, style=wx.TE_MULTILINE | wx.TE_READONLY, size=(330, 245))
+        left_sizer.Add(self.info_text, 0, wx.ALL | wx.EXPAND, 5)
+        
+        self.header_replace_button = wx.Button(left_panel, label="Header Replace")
+        self.header_replace_button.Bind(wx.EVT_BUTTON, self.on_header_replace)
+        left_sizer.Add(self.header_replace_button, 0, wx.ALL | wx.EXPAND, 5)
+        
+        left_panel.SetSizer(left_sizer)
+        return left_panel
+
+    def create_right_panel(self):
+        right_panel = wx.Panel(self.panel)
+        right_sizer = wx.BoxSizer(wx.VERTICAL)
+        
+        self.file_picker = wx.FilePickerCtrl(right_panel, message="Select a TIM file")
+        self.file_picker.Bind(wx.EVT_FILEPICKER_CHANGED, self.on_file_selected)
+        right_sizer.Add(self.file_picker, 0, wx.ALL | wx.EXPAND, 5)
+        
+        self.clut_choice = wx.Choice(right_panel, choices=[], size=(150, -1))
+        self.clut_choice.Bind(wx.EVT_CHOICE, self.on_clut_selected)
+        right_sizer.Add(self.clut_choice, 0, wx.ALL | wx.EXPAND, 5)
+        
+        self.export_button = wx.Button(right_panel, label="Export TIM with this CLUT")
+        self.export_button.Bind(wx.EVT_BUTTON, self.on_export_tim)
+        right_sizer.Add(self.export_button, 0, wx.ALL | wx.EXPAND, 5)
+        
+        self.clut_panel = wx.Panel(right_panel, size=(320, 240))
+        self.clut_panel.Bind(wx.EVT_PAINT, self.on_clut_paint)
+        self.clut_panel.Bind(wx.EVT_RIGHT_DOWN, self.on_clut_right_click)
+        right_sizer.Add(self.clut_panel, 0, wx.ALL | wx.EXPAND, 5)
+        
+        # Layer Merge section
+        right_sizer.Add(wx.StaticText(right_panel, label="Layer Merge"), 0, wx.ALL, 5)
+        
+        self.layer1_picker = wx.FilePickerCtrl(right_panel, message="Select first TIM layer")
+        right_sizer.Add(self.layer1_picker, 0, wx.ALL | wx.EXPAND, 5)
+        
+        self.layer2_picker = wx.FilePickerCtrl(right_panel, message="Select second TIM layer")
+        right_sizer.Add(self.layer2_picker, 0, wx.ALL | wx.EXPAND, 5)
+        
+        self.merge_button = wx.Button(right_panel, label="Merge Layers")
+        self.merge_button.Bind(wx.EVT_BUTTON, self.on_merge_layers)
+        right_sizer.Add(self.merge_button, 0, wx.ALL | wx.EXPAND, 5)
+        
+        # Tools section
+        right_sizer.Add(wx.StaticText(right_panel, label="Tools"), 0, wx.ALL, 5)
+        
+        tools_sizer = wx.BoxSizer(wx.HORIZONTAL)
+        
+        self.ulz_compress_button = wx.Button(right_panel, label="ULZ Compress")
+        self.ulz_compress_button.Bind(wx.EVT_BUTTON, self.on_ulz_compress)
+        tools_sizer.Add(self.ulz_compress_button, 1, wx.ALL | wx.EXPAND, 5)
+        
+        self.ulz_decompress_button = wx.Button(right_panel, label="ULZ Decompress")
+        self.ulz_decompress_button.Bind(wx.EVT_BUTTON, self.on_ulz_decompress)
+        tools_sizer.Add(self.ulz_decompress_button, 1, wx.ALL | wx.EXPAND, 5)
+        
+        right_sizer.Add(tools_sizer, 0, wx.ALL | wx.EXPAND, 5)
+        
+        right_panel.SetSizer(right_sizer)
+        return right_panel
 
     def on_file_selected(self, event):
         filepath = self.file_picker.GetPath()
@@ -175,6 +206,14 @@ class Frame(wx.Frame):
         dialog = HeaderReplaceDialog(self)
         dialog.ShowModal()
 
+    def on_ulz_compress(self, event):
+        dialog = ULZCompressDialog(self)
+        dialog.ShowModal()
+
+    def on_ulz_decompress(self, event):
+        dialog = ULZDecompressDialog(self)
+        dialog.ShowModal()
+
 class HeaderReplaceDialog(wx.Dialog):
     def __init__(self, parent):
         super().__init__(parent, title="Header Replace")
@@ -270,6 +309,68 @@ class HeaderReplaceDialog(wx.Dialog):
         if tim_type in [TYPE_4BPP, TYPE_8BPP]:
             fmemory[0x0C:0x0E] = palette_org_x.to_bytes(2, 'little')
             fmemory[0x0E:0x10] = palette_org_y.to_bytes(2, 'little')
+
+class ULZCompressDialog(wx.Dialog):
+    def __init__(self, parent):
+        super().__init__(parent, title="ULZ Compress")
+        panel = wx.Panel(self)
+        
+        wx.StaticText(panel, label="Select File to Compress:")
+        self.file_picker = wx.FilePickerCtrl(panel, message="Select a file")
+        
+        wx.StaticText(panel, label="ULZ Type:")
+        self.ulz_type_choice = wx.Choice(panel, choices=["1", "2", "3"])
+        
+        wx.StaticText(panel, label="Compression Level:")
+        self.level_choice = wx.Choice(panel, choices=["1", "2", "3", "4", "5"])
+        
+        self.compress_button = wx.Button(panel, label="Compress")
+        self.compress_button.Bind(wx.EVT_BUTTON, self.on_compress)
+        
+        sizer = wx.BoxSizer(wx.VERTICAL)
+        sizer.Add(wx.StaticText(panel, label="Select File to Compress:"), 0, wx.ALL, 5)
+        sizer.Add(self.file_picker, 0, wx.ALL | wx.EXPAND, 5)
+        sizer.Add(wx.StaticText(panel, label="ULZ Type:"), 0, wx.ALL, 5)
+        sizer.Add(self.ulz_type_choice, 0, wx.ALL | wx.EXPAND, 5)
+        sizer.Add(wx.StaticText(panel, label="Compression Level:"), 0, wx.ALL, 5)
+        sizer.Add(self.level_choice, 0, wx.ALL | wx.EXPAND, 5)
+        sizer.Add(self.compress_button, 0, wx.ALL | wx.EXPAND, 5)
+        panel.SetSizer(sizer)
+        
+        dialog_sizer = wx.BoxSizer(wx.VERTICAL)
+        dialog_sizer.Add(panel, 1, wx.EXPAND)
+        self.SetSizer(dialog_sizer)
+        self.Fit()
+
+    def on_compress(self, event):
+        # Placeholder for compression logic
+        wx.MessageBox("Compression logic not implemented yet", "Info", wx.OK | wx.ICON_INFORMATION)
+
+class ULZDecompressDialog(wx.Dialog):
+    def __init__(self, parent):
+        super().__init__(parent, title="ULZ Decompress")
+        panel = wx.Panel(self)
+        
+        wx.StaticText(panel, label="Select File to Decompress:")
+        self.file_picker = wx.FilePickerCtrl(panel, message="Select a file")
+        
+        self.decompress_button = wx.Button(panel, label="Decompress")
+        self.decompress_button.Bind(wx.EVT_BUTTON, self.on_decompress)
+        
+        sizer = wx.BoxSizer(wx.VERTICAL)
+        sizer.Add(wx.StaticText(panel, label="Select File to Decompress:"), 0, wx.ALL, 5)
+        sizer.Add(self.file_picker, 0, wx.ALL | wx.EXPAND, 5)
+        sizer.Add(self.decompress_button, 0, wx.ALL | wx.EXPAND, 5)
+        panel.SetSizer(sizer)
+        
+        dialog_sizer = wx.BoxSizer(wx.VERTICAL)
+        dialog_sizer.Add(panel, 1, wx.EXPAND)
+        self.SetSizer(dialog_sizer)
+        self.Fit()
+
+    def on_decompress(self, event):
+        # Placeholder for decompression logic
+        wx.MessageBox("Decompression logic not implemented yet", "Info", wx.OK | wx.ICON_INFORMATION)
 
 def open_and_read_file(filename):
     with open(filename, "rb") as f:
