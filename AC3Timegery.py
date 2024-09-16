@@ -1,7 +1,7 @@
 import wx
 import struct
-from array import array
 import os
+from ulz_compress import compress_file, decompress_file
 
 MAGIC = 0x10
 TYPE_24BPP = 0x03
@@ -11,28 +11,22 @@ TYPE_4BPP = 0x08
 
 class Frame(wx.Frame):
     def __init__(self):
-        wx.Frame.__init__(self, None, -1, 'Pypstim V0.5 by Lilith', style=wx.SYSTEM_MENU | wx.CAPTION | wx.CLOSE_BOX | wx.RESIZE_BORDER)
+        wx.Frame.__init__(self, None, -1, 'AC3TIMagery V0.9 by Lilith', style=wx.SYSTEM_MENU | wx.CAPTION | wx.CLOSE_BOX | wx.RESIZE_BORDER)
         self.panel = wx.Panel(self)
         self.sizer = wx.BoxSizer(wx.HORIZONTAL)
         
-        # Left side: TIM image and information
         self.left_panel = self.create_left_panel()
         self.sizer.Add(self.left_panel, 0, wx.ALL | wx.EXPAND, 5)
         
-        # Right side: File picker, CLUT choice, export button, CLUT display, and Layer Merge
         self.right_panel = self.create_right_panel()
         self.sizer.Add(self.right_panel, 1, wx.ALL | wx.EXPAND, 5)
         
         self.panel.SetSizer(self.sizer)
         
-        # Set the size of the frame
-        self.SetSize((700, 660))  # 宽  高
-        
-        # Set minimum and maximum size to enforce the size
-        self.SetMinSize((700, 600))
+        self.SetSize((645, 660))
+        self.SetMinSize((645, 660))
         self.SetMaxSize((700, 700))
         
-        # Ensure the layout is updated
         self.Layout()
         
         self.bitmap = None
@@ -76,7 +70,6 @@ class Frame(wx.Frame):
         self.clut_panel.Bind(wx.EVT_RIGHT_DOWN, self.on_clut_right_click)
         right_sizer.Add(self.clut_panel, 0, wx.ALL | wx.EXPAND, 5)
         
-        # Layer Merge section
         right_sizer.Add(wx.StaticText(right_panel, label="Layer Merge"), 0, wx.ALL, 5)
         
         self.layer1_picker = wx.FilePickerCtrl(right_panel, message="Select first TIM layer")
@@ -89,7 +82,6 @@ class Frame(wx.Frame):
         self.merge_button.Bind(wx.EVT_BUTTON, self.on_merge_layers)
         right_sizer.Add(self.merge_button, 0, wx.ALL | wx.EXPAND, 5)
         
-        # Tools section
         right_sizer.Add(wx.StaticText(right_panel, label="Tools"), 0, wx.ALL, 5)
         
         tools_sizer = wx.BoxSizer(wx.HORIZONTAL)
@@ -115,8 +107,8 @@ class Frame(wx.Frame):
         self.image_panel.SetSize((imgwidth, imgheight))
         self.image_width = imgwidth
         self.image_height = imgheight
-        self.all_pixels = pixels  # Store all CLUTs' pixel data
-        self.cluts = cluts  # Store CLUTs
+        self.all_pixels = pixels
+        self.cluts = cluts
         self.clut_choice.Set([f"CLUT {i+1}" for i in range(len(cluts))])
         self.clut_choice.SetSelection(0)
         self.selected_clut = 0
@@ -136,7 +128,7 @@ class Frame(wx.Frame):
         if hasattr(self, 'cluts') and self.cluts:
             dc = wx.PaintDC(self.clut_panel)
             clut = self.cluts[self.selected_clut]
-            rows = (len(clut) + 15) // 16  # Calculate number of rows needed
+            rows = (len(clut) + 15) // 16
             for i, color in enumerate(clut):
                 x = (i % 16) * 16
                 y = (i // 16) * 16
@@ -163,16 +155,10 @@ class Frame(wx.Frame):
         if self.bitmap:
             dc = wx.PaintDC(self.image_panel)
             dc.Clear()
-            
-            # Get the size of the image panel and the bitmap
             panel_width, panel_height = self.image_panel.GetSize()
             bitmap_width, bitmap_height = self.bitmap.GetSize()
-            
-            # Calculate the position to center the bitmap
             x = (panel_width - bitmap_width) // 2
             y = (panel_height - bitmap_height) // 2
-            
-            # Draw the bitmap at the calculated position
             dc.DrawBitmap(self.bitmap, x, y)
 
     def on_export_tim(self, event):
@@ -207,12 +193,40 @@ class Frame(wx.Frame):
         dialog.ShowModal()
 
     def on_ulz_compress(self, event):
-        dialog = ULZCompressDialog(self)
-        dialog.ShowModal()
+        with wx.FileDialog(self, "Select file to compress", wildcard="All files (*.*)|*.*",
+                           style=wx.FD_OPEN | wx.FD_FILE_MUST_EXIST) as fileDialog:
+            if fileDialog.ShowModal() == wx.ID_CANCEL:
+                return
+
+            input_path = fileDialog.GetPath()
+            output_path = input_path + ".ulz"
+
+            try:
+                compress_file(input_path, output_file=output_path, level=1)
+                wx.MessageBox(f"File compressed successfully: {output_path}", "Success", wx.OK | wx.ICON_INFORMATION)
+            except Exception as e:
+                wx.MessageBox(f"Error compressing file: {str(e)}", "Error", wx.OK | wx.ICON_ERROR)
 
     def on_ulz_decompress(self, event):
-        dialog = ULZDecompressDialog(self)
-        dialog.ShowModal()
+        with wx.FileDialog(self, "Select ULZ file to decompress", wildcard="ULZ files (*.ulz)|*.ulz",
+                           style=wx.FD_OPEN | wx.FD_FILE_MUST_EXIST) as fileDialog:
+            if fileDialog.ShowModal() == wx.ID_CANCEL:
+                return
+
+            input_path = fileDialog.GetPath()
+            output_path = input_path.replace(".ulz", "")
+
+            try:
+                data = decompress_file(input_path)
+                if data[:4] == b'\x10\x00\x00\x00':
+                    output_path += ".tim"
+                else:
+                    output_path += ".dat"
+                with open(output_path, "wb") as f:
+                    f.write(data)
+                wx.MessageBox(f"File decompressed successfully: {output_path}", "Success", wx.OK | wx.ICON_INFORMATION)
+            except Exception as e:
+                wx.MessageBox(f"Error decompressing file: {str(e)}", "Error", wx.OK | wx.ICON_ERROR)
 
 class HeaderReplaceDialog(wx.Dialog):
     def __init__(self, parent):
@@ -250,16 +264,13 @@ class HeaderReplaceDialog(wx.Dialog):
         original_memory = open_and_read_file(original_path)
         modified_memory = open_and_read_file(modified_path)
         
-        # Get original TIM coordinates
         _, _, _, _, original_cluts = process_file(original_memory, original_path)
         original_image_org_x, original_image_org_y = self.get_image_vram_coordinates(original_memory)
         original_palette_org_x, original_palette_org_y = self.get_palette_vram_coordinates(original_memory)
         
-        # Replace VRAM coordinates in modified TIM
         self.set_image_vram_coordinates(modified_memory, original_image_org_x, original_image_org_y)
         self.set_palette_vram_coordinates(modified_memory, original_palette_org_x, original_palette_org_y)
         
-        # Save modified TIM
         output_path = os.path.join(os.path.dirname(modified_path), "header_replaced.tim")
         with open(output_path, "wb") as f:
             f.write(modified_memory)
@@ -310,68 +321,6 @@ class HeaderReplaceDialog(wx.Dialog):
             fmemory[0x0C:0x0E] = palette_org_x.to_bytes(2, 'little')
             fmemory[0x0E:0x10] = palette_org_y.to_bytes(2, 'little')
 
-class ULZCompressDialog(wx.Dialog):
-    def __init__(self, parent):
-        super().__init__(parent, title="ULZ Compress")
-        panel = wx.Panel(self)
-        
-        wx.StaticText(panel, label="Select File to Compress:")
-        self.file_picker = wx.FilePickerCtrl(panel, message="Select a file")
-        
-        wx.StaticText(panel, label="ULZ Type:")
-        self.ulz_type_choice = wx.Choice(panel, choices=["1", "2", "3"])
-        
-        wx.StaticText(panel, label="Compression Level:")
-        self.level_choice = wx.Choice(panel, choices=["1", "2", "3", "4", "5"])
-        
-        self.compress_button = wx.Button(panel, label="Compress")
-        self.compress_button.Bind(wx.EVT_BUTTON, self.on_compress)
-        
-        sizer = wx.BoxSizer(wx.VERTICAL)
-        sizer.Add(wx.StaticText(panel, label="Select File to Compress:"), 0, wx.ALL, 5)
-        sizer.Add(self.file_picker, 0, wx.ALL | wx.EXPAND, 5)
-        sizer.Add(wx.StaticText(panel, label="ULZ Type:"), 0, wx.ALL, 5)
-        sizer.Add(self.ulz_type_choice, 0, wx.ALL | wx.EXPAND, 5)
-        sizer.Add(wx.StaticText(panel, label="Compression Level:"), 0, wx.ALL, 5)
-        sizer.Add(self.level_choice, 0, wx.ALL | wx.EXPAND, 5)
-        sizer.Add(self.compress_button, 0, wx.ALL | wx.EXPAND, 5)
-        panel.SetSizer(sizer)
-        
-        dialog_sizer = wx.BoxSizer(wx.VERTICAL)
-        dialog_sizer.Add(panel, 1, wx.EXPAND)
-        self.SetSizer(dialog_sizer)
-        self.Fit()
-
-    def on_compress(self, event):
-        # Placeholder for compression logic
-        wx.MessageBox("Compression logic not implemented yet", "Info", wx.OK | wx.ICON_INFORMATION)
-
-class ULZDecompressDialog(wx.Dialog):
-    def __init__(self, parent):
-        super().__init__(parent, title="ULZ Decompress")
-        panel = wx.Panel(self)
-        
-        wx.StaticText(panel, label="Select File to Decompress:")
-        self.file_picker = wx.FilePickerCtrl(panel, message="Select a file")
-        
-        self.decompress_button = wx.Button(panel, label="Decompress")
-        self.decompress_button.Bind(wx.EVT_BUTTON, self.on_decompress)
-        
-        sizer = wx.BoxSizer(wx.VERTICAL)
-        sizer.Add(wx.StaticText(panel, label="Select File to Decompress:"), 0, wx.ALL, 5)
-        sizer.Add(self.file_picker, 0, wx.ALL | wx.EXPAND, 5)
-        sizer.Add(self.decompress_button, 0, wx.ALL | wx.EXPAND, 5)
-        panel.SetSizer(sizer)
-        
-        dialog_sizer = wx.BoxSizer(wx.VERTICAL)
-        dialog_sizer.Add(panel, 1, wx.EXPAND)
-        self.SetSizer(dialog_sizer)
-        self.Fit()
-
-    def on_decompress(self, event):
-        # Placeholder for decompression logic
-        wx.MessageBox("Decompression logic not implemented yet", "Info", wx.OK | wx.ICON_INFORMATION)
-
 def open_and_read_file(filename):
     with open(filename, "rb") as f:
         return bytearray(f.read())
@@ -388,7 +337,7 @@ def unpack2bytes_le(data):
 def process_file(fmemory, filepath):
     magic = unpack4bytes(fmemory[0:4])
     tim_type = unpack4bytes(fmemory[4:8])
-    print(f"Debug: Magic number: 0x{magic:08X}, TIM type: 0x{tim_type:08X}")  # Debug information
+    print(f"Debug: Magic number: 0x{magic:08X}, TIM type: 0x{tim_type:08X}")
 
     if magic != MAGIC:
         return [], 0, 0, "File is not a .tim image file", []
@@ -406,14 +355,11 @@ def process_file(fmemory, filepath):
         header_info += f"Palette Org Y:\t{palette_org_y} (0x{palette_org_y:04X})\n"
         header_info += f"CLUT Count:\t{clut_count} (0x{clut_count:04X})\n"
         
-        # Calculate CLUT data size
         clut_size = 16 if tim_type == TYPE_4BPP else 256
-        total_clut_size = clut_count * clut_size * 2  # 2 bytes per color
+        total_clut_size = clut_count * clut_size * 2
         
-        # Calculate image data start position
         image_data_start = 0x14 + total_clut_size
         
-        # Get image VRAM coordinates
         image_org_x = unpack2bytes_le(fmemory[image_data_start + 0x04:image_data_start + 0x06])
         image_org_y = unpack2bytes_le(fmemory[image_data_start + 0x06:image_data_start + 0x08])
     elif tim_type in [TYPE_16BPP, TYPE_24BPP]:
@@ -428,11 +374,11 @@ def process_file(fmemory, filepath):
 
     if tim_type == TYPE_24BPP:
         pixels, width, height = process_24bpp(fmemory)
-        cluts = [[]]  # Empty CLUT for consistency
+        cluts = [[]]
         header_info += f"BitMode:\t24BPP\n"
     elif tim_type == TYPE_16BPP:
         pixels, width, height = process_16bpp(fmemory)
-        cluts = [[]]  # Empty CLUT for consistency
+        cluts = [[]]
         header_info += f"BitMode:\t16BPP\n"
     elif tim_type == TYPE_8BPP:
         pixels, width, height, clut_info, cluts = process_8bpp(fmemory)
@@ -445,7 +391,7 @@ def process_file(fmemory, filepath):
 
     header_info += f"Width:\t{width}\n"
     header_info += f"Height:\t{height}\n"
-    print(f"Debug: Header info: {header_info}")  # Debug information
+    print(f"Debug: Header info: {header_info}")
 
     return pixels, width, height, header_info, cluts
 
@@ -461,7 +407,7 @@ def process_24bpp(fmemory):
         pixels[x] = (color_data[y], color_data[y+1], color_data[y+2])
         x += 1
         y += 3
-    return [pixels], image_width, image_height  # Return a list of pixels for consistency
+    return [pixels], image_width, image_height
 
 def process_16bpp(fmemory):
     offset = 8
@@ -474,14 +420,13 @@ def process_16bpp(fmemory):
     while x * 2 < data_size:
         pixels[x] = getpixeldata(color_data, x)
         x += 1
-    # Ensure no None values in pixels
     pixels = [(0, 0, 0) if p is None else p for p in pixels]
-    return [pixels], image_width, image_height  # Return a list of pixels for consistency
+    return [pixels], image_width, image_height
 
 def getpixeldata(datatable, position):
     value = datatable[position*2:position*2 + 2]
     if len(value) < 2:
-        return (0, 0, 0)  # Return a default color if data is insufficient
+        return (0, 0, 0)
     color = unpack2bytes(value)
     mask = 0b011111
     red = color & mask
@@ -541,26 +486,21 @@ def create_bitmap(pixels, width, height):
 def export_tim(fmemory, selected_clut, new_filepath):
     tim_type = unpack4bytes(fmemory[4:8])
     if tim_type not in [TYPE_4BPP, TYPE_8BPP]:
-        return  # Only support 4BPP and 8BPP for now
+        return
 
-    # Update CLUT count to 1
     fmemory[18:20] = (1).to_bytes(2, 'little')
 
-    # Extract the selected CLUT data
     end_of_clut = unpack4bytes(fmemory[8:12]) + 8
     clut_size = unpack2bytes(fmemory[16:18])
     clut_memory = fmemory[20:end_of_clut]
     selected_clut_data = clut_memory[selected_clut * clut_size * 2:(selected_clut + 1) * clut_size * 2]
 
-    # Update the CLUT memory to only include the selected CLUT
     fmemory[20:20 + clut_size * 2] = selected_clut_data
 
-    # Write the new TIM file
     with open(new_filepath, "wb") as f:
         f.write(bytearray(fmemory[:end_of_clut + 12 + len(fmemory[end_of_clut + 12:])]))
 
 def merge_tim_layers(layer1, layer2):
-    # Check if both layers are the same type
     if layer1[:8] != layer2[:8]:
         print("Debug: Layers are not the same type")
         return None
@@ -574,32 +514,26 @@ def merge_tim_layers(layer1, layer2):
     end_of_clut2 = unpack4bytes(layer2[8:12]) + 8
     clut_size = unpack2bytes(layer1[16:18])
     
-    # Check if image data is the same (ignoring CLUT data)
     if layer1[end_of_clut1:] != layer2[end_of_clut2:]:
         print("Debug: Image data is not the same")
         return None
     
-    # Merge CLUT data
     merged_clut = layer1[20:end_of_clut1] + layer2[20:end_of_clut2]
     print(f"Debug: Merged CLUT size: {len(merged_clut)}")
     
-    # Update CLUT count
     new_clut_count = unpack2bytes(layer1[18:20]) + unpack2bytes(layer2[18:20])
     print(f"Debug: New CLUT count: {new_clut_count}")
     
-    # Create merged TIM
     merged_tim = bytearray(layer1[:8])
     
-    # Update total CLUT size
     new_clut_size = len(merged_clut) + 12
     merged_tim += new_clut_size.to_bytes(4, 'little')
     
-    merged_tim += bytearray(layer1[12:16])  # Palette Org X and Y
+    merged_tim += bytearray(layer1[12:16])
     merged_tim += clut_size.to_bytes(2, 'little')
     merged_tim += new_clut_count.to_bytes(2, 'little')
     merged_tim += merged_clut
     
-    # Add image data
     merged_tim += bytearray(layer1[end_of_clut1:])
     
     print(f"Debug: Merged TIM size: {len(merged_tim)}")
