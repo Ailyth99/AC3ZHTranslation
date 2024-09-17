@@ -1,7 +1,8 @@
 import wx
 import struct
-import os
+import os,pathlib
 from ulz_compress import compress_file, decompress_file
+import bin_tool
 
 MAGIC = 0x10
 TYPE_24BPP = 0x03
@@ -11,7 +12,7 @@ TYPE_4BPP = 0x08
 
 class Frame(wx.Frame):
     def __init__(self):
-        wx.Frame.__init__(self, None, -1, 'AC3TIMagery V1.0 by Lilith', style=wx.SYSTEM_MENU | wx.CAPTION | wx.CLOSE_BOX | wx.RESIZE_BORDER)
+        wx.Frame.__init__(self, None, -1, 'AC3TIMagery V1.1 by Lilith', style=wx.SYSTEM_MENU | wx.CAPTION | wx.CLOSE_BOX | wx.RESIZE_BORDER)
         self.panel = wx.Panel(self)
         self.sizer = wx.BoxSizer(wx.HORIZONTAL)
         
@@ -23,7 +24,7 @@ class Frame(wx.Frame):
         
         self.panel.SetSizer(self.sizer)
         
-        self.SetSize((645, 660))
+        self.SetSize((645, 680))
         self.SetMinSize((645, 660))
         self.SetMaxSize((700, 700))
         
@@ -42,7 +43,7 @@ class Frame(wx.Frame):
         self.info_text = wx.TextCtrl(left_panel, style=wx.TE_MULTILINE | wx.TE_READONLY, size=(330, 250))
         left_sizer.Add(self.info_text, 0, wx.ALL | wx.EXPAND, 5)
         
-        self.header_replace_button = wx.Button(left_panel, label="Replace Header")
+        self.header_replace_button = wx.Button(left_panel, label="Replace VRAM X/Y")
         self.header_replace_button.Bind(wx.EVT_BUTTON, self.on_header_replace)
         left_sizer.Add(self.header_replace_button, 0, wx.ALL | wx.EXPAND, 5)
         
@@ -69,7 +70,7 @@ class Frame(wx.Frame):
         self.clut_panel.SetBackgroundColour(wx.Colour(211, 211, 211))  # 设置背景色为浅灰色
         self.clut_panel.Bind(wx.EVT_PAINT, self.on_clut_paint)
         self.clut_panel.Bind(wx.EVT_RIGHT_DOWN, self.on_clut_right_click)
-        self.clut_panel.Bind(wx.EVT_LEFT_DOWN, self.on_clut_click)  # 在这里绑定事件
+        self.clut_panel.Bind(wx.EVT_LEFT_DOWN, self.on_clut_click)
         right_sizer.Add(self.clut_panel, 0, wx.ALL | wx.EXPAND, 5)
         
         right_sizer.Add(wx.StaticText(right_panel, label="Merge Layers"), 0, wx.ALL, 5)
@@ -88,15 +89,28 @@ class Frame(wx.Frame):
         
         tools_sizer = wx.BoxSizer(wx.HORIZONTAL)
         
-        self.ulz_compress_button = wx.Button(right_panel, label="Compress with ULZ")
+        self.ulz_compress_button = wx.Button(right_panel, label="ULZ Compressor")
         self.ulz_compress_button.Bind(wx.EVT_BUTTON, self.on_ulz_compress)
         tools_sizer.Add(self.ulz_compress_button, 1, wx.ALL | wx.EXPAND, 5)
         
-        self.ulz_decompress_button = wx.Button(right_panel, label="Decompress ULZ")
+        self.ulz_decompress_button = wx.Button(right_panel, label="ULZ Decompressor")
         self.ulz_decompress_button.Bind(wx.EVT_BUTTON, self.on_ulz_decompress)
         tools_sizer.Add(self.ulz_decompress_button, 1, wx.ALL | wx.EXPAND, 5)
         
         right_sizer.Add(tools_sizer, 0, wx.ALL | wx.EXPAND, 5)
+        
+        # Add new buttons for bin file processing
+        bin_tools_sizer = wx.BoxSizer(wx.HORIZONTAL)
+        
+        self.bin_split_button = wx.Button(right_panel, label="Extract BIN/DAT")
+        self.bin_split_button.Bind(wx.EVT_BUTTON, self.on_split_bin)
+        bin_tools_sizer.Add(self.bin_split_button, 1, wx.ALL | wx.EXPAND, 5)
+        
+        self.bin_merge_button = wx.Button(right_panel, label="Repack BIN/DAT")
+        self.bin_merge_button.Bind(wx.EVT_BUTTON, self.on_merge_bin)
+        bin_tools_sizer.Add(self.bin_merge_button, 1, wx.ALL | wx.EXPAND, 5)
+        
+        right_sizer.Add(bin_tools_sizer, 0, wx.ALL | wx.EXPAND, 5)
         
         right_panel.SetSizer(right_sizer)
         return right_panel
@@ -242,6 +256,35 @@ class Frame(wx.Frame):
                 wx.MessageBox(f"File decompressed successfully: {output_path}", "Success", wx.OK | wx.ICON_INFORMATION)
             except Exception as e:
                 wx.MessageBox(f"Error decompressing file: {str(e)}", "Error", wx.OK | wx.ICON_ERROR)
+
+    def on_split_bin(self, event):
+        with wx.FileDialog(self, "Select BIN or DAT file", wildcard="BIN files (*.bin;*.dat)|*.bin;*.dat", style=wx.FD_OPEN | wx.FD_FILE_MUST_EXIST) as fileDialog:
+            if fileDialog.ShowModal() == wx.ID_CANCEL:
+                return
+
+            bin_path = pathlib.Path(fileDialog.GetPath())
+            try:
+                bin_tool.split_file(bin_path)
+                wx.MessageBox(f"BIN file split successfully into {bin_path.stem} folder", "Success", wx.OK | wx.ICON_INFORMATION)
+            except Exception as e:
+                wx.MessageBox(f"Failed to split BIN file: {e}", "Error", wx.OK | wx.ICON_ERROR)
+
+    def on_merge_bin(self, event):
+        with wx.FileDialog(self, "Select filelist.txt", wildcard="Text files (*.txt)|*.txt", style=wx.FD_OPEN | wx.FD_FILE_MUST_EXIST) as fileDialog:
+            if fileDialog.ShowModal() == wx.ID_CANCEL:
+                return
+
+            list_path = pathlib.Path(fileDialog.GetPath())
+            with wx.FileDialog(self, "Save merged BIN file", wildcard="BIN files (*.bin)|*.bin", style=wx.FD_SAVE | wx.FD_OVERWRITE_PROMPT) as saveDialog:
+                if saveDialog.ShowModal() == wx.ID_CANCEL:
+                    return
+
+                dest_path = pathlib.Path(saveDialog.GetPath())
+                try:
+                    bin_tool.merge_files_from_list(list_path, dest_path)
+                    wx.MessageBox(f"BIN file merged successfully to {dest_path}", "Success", wx.OK | wx.ICON_INFORMATION)
+                except Exception as e:
+                    wx.MessageBox(f"Failed to merge BIN file: {e}", "Error", wx.OK | wx.ICON_ERROR)
 
 class HeaderReplaceDialog(wx.Dialog):
     def __init__(self, parent):
