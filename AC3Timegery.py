@@ -11,7 +11,7 @@ TYPE_4BPP = 0x08
 
 class Frame(wx.Frame):
     def __init__(self):
-        wx.Frame.__init__(self, None, -1, 'AC3TIMagery V0.9 by Lilith', style=wx.SYSTEM_MENU | wx.CAPTION | wx.CLOSE_BOX | wx.RESIZE_BORDER)
+        wx.Frame.__init__(self, None, -1, 'AC3TIMagery V0.95 by Lilith', style=wx.SYSTEM_MENU | wx.CAPTION | wx.CLOSE_BOX | wx.RESIZE_BORDER)
         self.panel = wx.Panel(self)
         self.sizer = wx.BoxSizer(wx.HORIZONTAL)
         
@@ -39,7 +39,7 @@ class Frame(wx.Frame):
         self.image_panel.Bind(wx.EVT_PAINT, self.on_paint)
         left_sizer.Add(self.image_panel, 0, wx.ALL | wx.EXPAND, 5)
         
-        self.info_text = wx.TextCtrl(left_panel, style=wx.TE_MULTILINE | wx.TE_READONLY, size=(330, 245))
+        self.info_text = wx.TextCtrl(left_panel, style=wx.TE_MULTILINE | wx.TE_READONLY, size=(330, 250))
         left_sizer.Add(self.info_text, 0, wx.ALL | wx.EXPAND, 5)
         
         self.header_replace_button = wx.Button(left_panel, label="Header Replace")
@@ -488,6 +488,7 @@ def export_tim(fmemory, selected_clut, new_filepath):
     if tim_type not in [TYPE_4BPP, TYPE_8BPP]:
         return
 
+    # Set the CLUT count to 1
     fmemory[18:20] = (1).to_bytes(2, 'little')
 
     end_of_clut = unpack4bytes(fmemory[8:12]) + 8
@@ -495,10 +496,21 @@ def export_tim(fmemory, selected_clut, new_filepath):
     clut_memory = fmemory[20:end_of_clut]
     selected_clut_data = clut_memory[selected_clut * clut_size * 2:(selected_clut + 1) * clut_size * 2]
 
-    fmemory[20:20 + clut_size * 2] = selected_clut_data
+    # Create a new memory buffer for the single CLUT TIM
+    new_fmemory = bytearray(fmemory[:20])
+    new_fmemory += selected_clut_data
+
+    # Adjust the image data start offset
+    image_data_start = 0x14 + clut_size * 2
+    new_fmemory += fmemory[end_of_clut:image_data_start]
+    new_fmemory += fmemory[end_of_clut:]
+
+    # Update the CLUT size in the header
+    new_clut_size = len(selected_clut_data) + 12
+    new_fmemory[8:12] = new_clut_size.to_bytes(4, 'little')
 
     with open(new_filepath, "wb") as f:
-        f.write(bytearray(fmemory[:end_of_clut + 12 + len(fmemory[end_of_clut + 12:])]))
+        f.write(new_fmemory)
 
 def merge_tim_layers(layer1, layer2):
     if layer1[:8] != layer2[:8]:
@@ -534,6 +546,11 @@ def merge_tim_layers(layer1, layer2):
     merged_tim += new_clut_count.to_bytes(2, 'little')
     merged_tim += merged_clut
     
+    # Adjust the image data start offset
+    image_data_start = 0x14 + new_clut_count * clut_size * 2
+    print(f"Debug: Image data start offset: {image_data_start}")
+    
+    # Add image data from layer1
     merged_tim += bytearray(layer1[end_of_clut1:])
     
     print(f"Debug: Merged TIM size: {len(merged_tim)}")
