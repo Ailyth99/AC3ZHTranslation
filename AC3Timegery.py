@@ -10,9 +10,22 @@ TYPE_16BPP = 0x02
 TYPE_8BPP = 0x09
 TYPE_4BPP = 0x08
 
+class TIMFileDropTarget(wx.FileDropTarget):
+    def __init__(self, window):
+        wx.FileDropTarget.__init__(self)
+        self.window = window
+
+    def OnDropFiles(self, x, y, filenames):
+        if len(filenames) > 0:
+            file_path = filenames[0]
+            if file_path.lower().endswith('.tim'):
+                wx.CallAfter(self.window.handle_dropped_file, file_path)
+                return True
+        return False
+
 class Frame(wx.Frame):
     def __init__(self):
-        wx.Frame.__init__(self, None, -1, 'AC3TIMagery V1.1 by Lilith', style=wx.SYSTEM_MENU | wx.CAPTION | wx.CLOSE_BOX | wx.RESIZE_BORDER)
+        wx.Frame.__init__(self, None, -1, 'AC3TIMagery V1.2 by Lilith', style=wx.SYSTEM_MENU | wx.CAPTION | wx.CLOSE_BOX | wx.RESIZE_BORDER)
         self.panel = wx.Panel(self)
         self.sizer = wx.BoxSizer(wx.HORIZONTAL)
         
@@ -31,6 +44,11 @@ class Frame(wx.Frame):
         self.Layout()
         
         self.bitmap = None
+        self.SetDropTarget(TIMFileDropTarget(self))
+    
+    def handle_dropped_file(self, file_path):
+        self.file_picker.SetPath(file_path)
+        self.on_file_selected(None)
 
     def create_left_panel(self):
         left_panel = wx.Panel(self.panel)
@@ -40,12 +58,16 @@ class Frame(wx.Frame):
         self.image_panel.Bind(wx.EVT_PAINT, self.on_paint)
         left_sizer.Add(self.image_panel, 0, wx.ALL | wx.EXPAND, 5)
         
-        self.info_text = wx.TextCtrl(left_panel, style=wx.TE_MULTILINE | wx.TE_READONLY, size=(330, 250))
+        self.info_text = wx.TextCtrl(left_panel, style=wx.TE_MULTILINE | wx.TE_READONLY, size=(330, 230))
         left_sizer.Add(self.info_text, 0, wx.ALL | wx.EXPAND, 5)
         
         self.header_replace_button = wx.Button(left_panel, label="Replace VRAM X/Y")
         self.header_replace_button.Bind(wx.EVT_BUTTON, self.on_header_replace)
         left_sizer.Add(self.header_replace_button, 0, wx.ALL | wx.EXPAND, 5)
+        
+        self.edit_vram_button = wx.Button(left_panel, label="Edit VRAM X/Y")
+        self.edit_vram_button.Bind(wx.EVT_BUTTON, self.on_edit_vram)
+        left_sizer.Add(self.edit_vram_button, 0, wx.ALL | wx.EXPAND, 5)
         
         left_panel.SetSizer(left_sizer)
         return left_panel
@@ -87,30 +109,31 @@ class Frame(wx.Frame):
         
         right_sizer.Add(wx.StaticText(right_panel, label="Tools"), 0, wx.ALL, 5)
         
-        tools_sizer = wx.BoxSizer(wx.HORIZONTAL)
+        tools_sizer = wx.BoxSizer(wx.VERTICAL)
         
+        ulz_tools_sizer = wx.BoxSizer(wx.HORIZONTAL)
         self.ulz_compress_button = wx.Button(right_panel, label="ULZ Compressor")
         self.ulz_compress_button.Bind(wx.EVT_BUTTON, self.on_ulz_compress)
-        tools_sizer.Add(self.ulz_compress_button, 1, wx.ALL | wx.EXPAND, 5)
+        ulz_tools_sizer.Add(self.ulz_compress_button, 1, wx.RIGHT, 5)
         
         self.ulz_decompress_button = wx.Button(right_panel, label="ULZ Decompressor")
         self.ulz_decompress_button.Bind(wx.EVT_BUTTON, self.on_ulz_decompress)
-        tools_sizer.Add(self.ulz_decompress_button, 1, wx.ALL | wx.EXPAND, 5)
+        ulz_tools_sizer.Add(self.ulz_decompress_button, 1)
         
-        right_sizer.Add(tools_sizer, 0, wx.ALL | wx.EXPAND, 5)
+        tools_sizer.Add(ulz_tools_sizer, 0, wx.EXPAND | wx.BOTTOM, 5)
         
-        # Add new buttons for bin file processing
         bin_tools_sizer = wx.BoxSizer(wx.HORIZONTAL)
-        
         self.bin_split_button = wx.Button(right_panel, label="Extract BIN/DAT")
         self.bin_split_button.Bind(wx.EVT_BUTTON, self.on_split_bin)
-        bin_tools_sizer.Add(self.bin_split_button, 1, wx.ALL | wx.EXPAND, 5)
+        bin_tools_sizer.Add(self.bin_split_button, 1, wx.RIGHT, 5)
         
         self.bin_merge_button = wx.Button(right_panel, label="Repack BIN/DAT")
         self.bin_merge_button.Bind(wx.EVT_BUTTON, self.on_merge_bin)
-        bin_tools_sizer.Add(self.bin_merge_button, 1, wx.ALL | wx.EXPAND, 5)
+        bin_tools_sizer.Add(self.bin_merge_button, 1)
         
-        right_sizer.Add(bin_tools_sizer, 0, wx.ALL | wx.EXPAND, 5)
+        tools_sizer.Add(bin_tools_sizer, 0, wx.EXPAND)
+        
+        right_sizer.Add(tools_sizer, 0, wx.ALL | wx.EXPAND, 5)
         
         right_panel.SetSizer(right_sizer)
         return right_panel
@@ -219,6 +242,10 @@ class Frame(wx.Frame):
 
     def on_header_replace(self, event):
         dialog = HeaderReplaceDialog(self)
+        dialog.ShowModal()
+
+    def on_edit_vram(self, event):
+        dialog = EditVRAMDialog(self)
         dialog.ShowModal()
 
     def on_ulz_compress(self, event):
@@ -378,6 +405,133 @@ class HeaderReplaceDialog(wx.Dialog):
         if tim_type in [TYPE_4BPP, TYPE_8BPP]:
             fmemory[0x0C:0x0E] = palette_org_x.to_bytes(2, 'little')
             fmemory[0x0E:0x10] = palette_org_y.to_bytes(2, 'little')
+
+class EditVRAMDialog(wx.Dialog):
+    def __init__(self, parent):
+        super().__init__(parent, title="Edit VRAM Coordinates")
+        panel = wx.Panel(self)
+        
+        self.file_picker = wx.FilePickerCtrl(panel, message="Select TIM file")
+        self.file_picker.Bind(wx.EVT_FILEPICKER_CHANGED, self.on_file_selected)
+        
+        self.vram_info = wx.StaticText(panel, label="Input New VRAM Coordinates")
+        self.vram_palette_x = wx.StaticText(panel, label="VRAM Palette X:")
+        self.vram_palette_x_value = wx.StaticText(panel, label="", size=(100, -1))
+        self.vram_palette_x_input = wx.TextCtrl(panel, size=(100, -1))
+        
+        self.vram_palette_y = wx.StaticText(panel, label="VRAM Palette Y:")
+        self.vram_palette_y_value = wx.StaticText(panel, label="", size=(100, -1))
+        self.vram_palette_y_input = wx.TextCtrl(panel, size=(100, -1))
+        
+        self.vram_image_x = wx.StaticText(panel, label="VRAM Image X:")
+        self.vram_image_x_value = wx.StaticText(panel, label="", size=(100, -1))
+        self.vram_image_x_input = wx.TextCtrl(panel, size=(100, -1))
+        
+        self.vram_image_y = wx.StaticText(panel, label="VRAM Image Y:")
+        self.vram_image_y_value = wx.StaticText(panel, label="", size=(100, -1))
+        self.vram_image_y_input = wx.TextCtrl(panel, size=(100, -1))
+        
+        self.write_button = wx.Button(panel, label="Write")
+        self.write_button.Bind(wx.EVT_BUTTON, self.on_write_vram)
+        
+        sizer = wx.GridBagSizer(5, 5)
+        sizer.Add(self.file_picker, pos=(0, 0), span=(1, 3), flag=wx.EXPAND | wx.ALL, border=5)
+        sizer.Add(self.vram_info, pos=(1, 0), span=(1, 3), flag=wx.ALL, border=5)
+        
+        sizer.Add(self.vram_palette_x, pos=(2, 0), flag=wx.ALL | wx.ALIGN_CENTER_VERTICAL, border=5)
+        sizer.Add(self.vram_palette_x_value, pos=(2, 1), flag=wx.ALL | wx.ALIGN_CENTER_VERTICAL, border=5)
+        sizer.Add(self.vram_palette_x_input, pos=(2, 2), flag=wx.ALL | wx.ALIGN_CENTER_VERTICAL, border=5)
+        
+        sizer.Add(self.vram_palette_y, pos=(3, 0), flag=wx.ALL | wx.ALIGN_CENTER_VERTICAL, border=5)
+        sizer.Add(self.vram_palette_y_value, pos=(3, 1), flag=wx.ALL | wx.ALIGN_CENTER_VERTICAL, border=5)
+        sizer.Add(self.vram_palette_y_input, pos=(3, 2), flag=wx.ALL | wx.ALIGN_CENTER_VERTICAL, border=5)
+        
+        sizer.Add(self.vram_image_x, pos=(4, 0), flag=wx.ALL | wx.ALIGN_CENTER_VERTICAL, border=5)
+        sizer.Add(self.vram_image_x_value, pos=(4, 1), flag=wx.ALL | wx.ALIGN_CENTER_VERTICAL, border=5)
+        sizer.Add(self.vram_image_x_input, pos=(4, 2), flag=wx.ALL | wx.ALIGN_CENTER_VERTICAL, border=5)
+        
+        sizer.Add(self.vram_image_y, pos=(5, 0), flag=wx.ALL | wx.ALIGN_CENTER_VERTICAL, border=5)
+        sizer.Add(self.vram_image_y_value, pos=(5, 1), flag=wx.ALL | wx.ALIGN_CENTER_VERTICAL, border=5)
+        sizer.Add(self.vram_image_y_input, pos=(5, 2), flag=wx.ALL | wx.ALIGN_CENTER_VERTICAL, border=5)
+        
+        sizer.Add(self.write_button, pos=(6, 0), span=(1, 3), flag=wx.EXPAND | wx.ALL, border=5)
+        
+        panel.SetSizer(sizer)
+        dialog_sizer = wx.BoxSizer(wx.VERTICAL)
+        dialog_sizer.Add(panel, 1, wx.EXPAND)
+        self.SetSizer(dialog_sizer)
+        self.SetMinSize((300, 320))  # 设置对话框的最小尺寸
+        self.SetSize((300, 320))  # 设置对话框的初始尺寸
+        self.Fit()
+
+    def on_file_selected(self, event):
+        filepath = self.file_picker.GetPath()
+        fmemory = open_and_read_file(filepath)
+        tim_type = unpack4bytes(fmemory[4:8])
+        
+        if tim_type in [TYPE_4BPP, TYPE_8BPP]:
+            palette_org_x = unpack2bytes_le(fmemory[0x0C:0x0E])
+            palette_org_y = unpack2bytes_le(fmemory[0x0E:0x10])
+            self.vram_palette_x_value.SetLabel(str(palette_org_x))
+            self.vram_palette_y_value.SetLabel(str(palette_org_y))
+            self.vram_palette_x_input.SetValue(str(palette_org_x))
+            self.vram_palette_y_input.SetValue(str(palette_org_y))
+        else:
+            self.vram_palette_x_value.SetLabel("None")
+            self.vram_palette_y_value.SetLabel("None")
+            self.vram_palette_x_input.SetValue("")
+            self.vram_palette_y_input.SetValue("")
+        
+        if tim_type in [TYPE_4BPP, TYPE_8BPP]:
+            clut_count = unpack2bytes_le(fmemory[0x12:0x14])
+            total_clut_size = clut_count * (16 if tim_type == TYPE_4BPP else 256) * 2
+            image_data_start = 0x14 + total_clut_size
+            image_org_x = unpack2bytes_le(fmemory[image_data_start + 0x04:image_data_start + 0x06])
+            image_org_y = unpack2bytes_le(fmemory[image_data_start + 0x06:image_data_start + 0x08])
+        elif tim_type in [TYPE_16BPP, TYPE_24BPP]:
+            image_org_x = unpack2bytes_le(fmemory[0x0C:0x0E])
+            image_org_y = unpack2bytes_le(fmemory[0x0E:0x10])
+        else:
+            image_org_x = unpack2bytes_le(fmemory[0x18:0x1A])
+            image_org_y = unpack2bytes_le(fmemory[0x1A:0x1C])
+        
+        self.vram_image_x_value.SetLabel(str(image_org_x))
+        self.vram_image_y_value.SetLabel(str(image_org_y))
+        self.vram_image_x_input.SetValue(str(image_org_x))
+        self.vram_image_y_input.SetValue(str(image_org_y))
+
+    def on_write_vram(self, event):
+        filepath = self.file_picker.GetPath()
+        fmemory = open_and_read_file(filepath)
+        tim_type = unpack4bytes(fmemory[4:8])
+        
+        if tim_type in [TYPE_4BPP, TYPE_8BPP]:
+            palette_org_x = int(self.vram_palette_x_input.GetValue())
+            palette_org_y = int(self.vram_palette_y_input.GetValue())
+            fmemory[0x0C:0x0E] = palette_org_x.to_bytes(2, 'little')
+            fmemory[0x0E:0x10] = palette_org_y.to_bytes(2, 'little')
+        
+        image_org_x = int(self.vram_image_x_input.GetValue())
+        image_org_y = int(self.vram_image_y_input.GetValue())
+        if tim_type in [TYPE_4BPP, TYPE_8BPP]:
+            clut_count = unpack2bytes_le(fmemory[0x12:0x14])
+            total_clut_size = clut_count * (16 if tim_type == TYPE_4BPP else 256) * 2
+            image_data_start = 0x14 + total_clut_size
+            fmemory[image_data_start + 0x04:image_data_start + 0x06] = image_org_x.to_bytes(2, 'little')
+            fmemory[image_data_start + 0x06:image_data_start + 0x08] = image_org_y.to_bytes(2, 'little')
+        elif tim_type in [TYPE_16BPP, TYPE_24BPP]:
+            fmemory[0x0C:0x0E] = image_org_x.to_bytes(2, 'little')
+            fmemory[0x0E:0x10] = image_org_y.to_bytes(2, 'little')
+        else:
+            fmemory[0x18:0x1A] = image_org_x.to_bytes(2, 'little')
+            fmemory[0x1A:0x1C] = image_org_y.to_bytes(2, 'little')
+        
+        output_path = os.path.join(os.path.dirname(filepath), "edited_vram.tim")
+        with open(output_path, "wb") as f:
+            f.write(fmemory)
+        
+        wx.MessageBox(f"VRAM coordinates written to {output_path}", "Write Complete", wx.OK | wx.ICON_INFORMATION)
+        self.Close()
 
 class ColorInfoDialog(wx.Dialog):
     def __init__(self, parent, color):
