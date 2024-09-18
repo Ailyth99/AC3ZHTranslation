@@ -3,6 +3,7 @@ import struct
 import os,pathlib
 from ulz_compress import compress_file, decompress_file
 import bin_tool
+from tim2img import tim_to_bmp
 
 MAGIC = 0x10
 TYPE_24BPP = 0x03
@@ -45,6 +46,9 @@ class Frame(wx.Frame):
         
         self.bitmap = None
         self.SetDropTarget(TIMFileDropTarget(self))
+        
+        self.image_panel.Bind(wx.EVT_RIGHT_DOWN, self.on_image_right_click)
+        self.Bind(wx.EVT_MENU, self.on_save_as_bmp, id=wx.ID_SAVEAS)
     
     def handle_dropped_file(self, file_path):
         self.file_picker.SetPath(file_path)
@@ -312,6 +316,24 @@ class Frame(wx.Frame):
                     wx.MessageBox(f"BIN file merged successfully to {dest_path}", "Success", wx.OK | wx.ICON_INFORMATION)
                 except Exception as e:
                     wx.MessageBox(f"Failed to merge BIN file: {e}", "Error", wx.OK | wx.ICON_ERROR)
+
+    def on_image_right_click(self, event):
+        if self.bitmap:
+            menu = wx.Menu()
+            save_as_bmp_item = menu.Append(wx.ID_SAVEAS, "Save as BMP\n(4BPP/8BPP Only)")
+            self.PopupMenu(menu)
+            menu.Destroy()
+
+    def on_save_as_bmp(self, event):
+        with wx.FileDialog(self, "Save BMP file", wildcard="BMP files (*.bmp)|*.bmp",
+                           style=wx.FD_SAVE | wx.FD_OVERWRITE_PROMPT) as fileDialog:
+            if fileDialog.ShowModal() == wx.ID_CANCEL:
+                return
+
+            save_path = fileDialog.GetPath()
+            tim_path = self.file_picker.GetPath()
+            tim_to_bmp(tim_path, save_path)
+            wx.MessageBox(f"BMP file saved to {save_path}", "Save Complete", wx.OK | wx.ICON_INFORMATION)
 
 class HeaderReplaceDialog(wx.Dialog):
     def __init__(self, parent):
