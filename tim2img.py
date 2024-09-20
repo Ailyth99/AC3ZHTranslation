@@ -27,33 +27,6 @@ def convert_8bpp(data, width, height, clut):
             pixels[x, y] = byte
     return img
 
-def convert_16bpp(data, width, height):
-    img = Image.new('RGBA', (width, height))
-    pixels = img.load()
-    index = 0
-    for y in range(height):
-        for x in range(width):
-            color = struct.unpack_from('<H', data, index)[0]
-            index += 2
-            r = (color & 0x1F) << 3
-            g = ((color >> 5) & 0x1F) << 3
-            b = ((color >> 10) & 0x1F) << 3
-            a = 255 if color & 0x8000 == 0 else 0
-            pixels[x, y] = (r, g, b, a)
-    return img
-
-def convert_24bpp(data, width, height):
-    img = Image.new('RGBA', (width, height))
-    pixels = img.load()
-    index = 0
-    for y in range(height):
-        for x in range(width):
-            b = data[index]
-            g = data[index + 1]
-            r = data[index + 2]
-            index += 3
-            pixels[x, y] = (r, g, b, 255)
-    return img
 
 def tim_to_bmp(input_path, output_path):
     with open(input_path, 'rb') as f:

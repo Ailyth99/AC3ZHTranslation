@@ -453,7 +453,7 @@ class EditVRAMDialog(wx.Dialog):
         self.vram_image_y_value = wx.StaticText(panel, label="", size=(100, -1))
         self.vram_image_y_input = wx.TextCtrl(panel, size=(100, -1))
         
-        self.write_button = wx.Button(panel, label="Write")
+        self.write_button = wx.Button(panel, label="Save to New TIM")
         self.write_button.Bind(wx.EVT_BUTTON, self.on_write_vram)
         
         sizer = wx.GridBagSizer(5, 5)
