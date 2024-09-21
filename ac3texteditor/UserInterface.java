@@ -20,7 +20,6 @@
  *
  * Created on 02-feb-2014, 22:58:37
  */
-
 package ac3texteditor;
 
 import java.awt.Color;
@@ -38,7 +37,6 @@ import java.awt.image.IndexColorModel;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.URL;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
@@ -48,10 +46,6 @@ import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import javax.swing.GroupLayout;
-
 /**
  *
  * @author Jonatan
@@ -171,20 +165,16 @@ public class UserInterface extends javax.swing.JFrame {
     byte[] g;
     byte[] b;
 
-    JComboBox<String> fontComboBox;
-    JComboBox<Integer> fontSizeComboBox;
-    JLabel fontSelectLabel;
-    JLabel fontSizeLabel;
+    // 在类变量声明区添加新的组件变量
+    JComboBox<String> comboFontType;
+    JComboBox<String> comboFontSize;
+    JLabel labelFontType;
+    JLabel labelFontSize;
 
     /** Creates new form UserInterface */
     public UserInterface() {
         initComponents();
-        URL location = getClass().getResource("/Neucom.png");
-        if (location == null) {
-            System.err.println("Icon not found: /Neucom.png");
-        } else {
-            this.setIconImage(new ImageIcon(location).getImage());
-        }
+        this.setIconImage(new ImageIcon(getClass().getClassLoader().getResource("resources/icons/Project_aces_logo.png")).getImage());
 
         panelShow.setBounds(0, 0, scrollPreview.getWidth(), scrollPreview.getHeight());
         scrollPreview.setViewportView(panelShow);
@@ -201,94 +191,21 @@ public class UserInterface extends javax.swing.JFrame {
 
         try {
             // Register the "small" font
-            InputStream is = getClass().getResourceAsStream("/custom.ttf");
-            if (is != null) {
-                ac3font = Font.createFont(Font.TRUETYPE_FONT, is);
-                fontLoaded = true;
-            } else {
-                System.err.println("Font file not found in JAR root: /custom.ttf");
-            }
-        } catch (FontFormatException | IOException ex) {
+            InputStream is = UserInterface.class.getResourceAsStream("Antonio-Bold-Custom.ttf");
+
+            ac3font = Font.createFont(Font.TRUETYPE_FONT, is);
+            GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+            ge.registerFont(ac3font);
+
+            fontLoaded = true;
+        } catch (FontFormatException ex) {
+            Logger.getLogger(UserInterface.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            System.err.println("Custom font not loaded. Using serif font.");
+            ac3font = null;
+            //ac3font = new Font("serif", Font.PLAIN, 24);
             Logger.getLogger(UserInterface.class.getName()).log(Level.SEVERE, null, ex);
         }
-
-        // Initialize font selection components
-        initFontSelection();
-    }
-
-    private void initFontSelection() {
-        // Get available fonts
-        String[] fonts = GraphicsEnvironment.getLocalGraphicsEnvironment().getAvailableFontFamilyNames();
-        fontComboBox = new JComboBox<>(fonts);
-        fontComboBox.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent evt) {
-                updateFont();
-            }
-        });
-
-        // Font size options
-        Integer[] fontSizes = {10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30};
-        fontSizeComboBox = new JComboBox<>(fontSizes);
-        fontSizeComboBox.setSelectedItem(12); // Default size
-        fontSizeComboBox.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent evt) {
-                updateFont();
-            }
-        });
-
-        // Labels for font selection and size
-        fontSelectLabel = new JLabel("Font select:");
-        fontSizeLabel = new JLabel("Font size:");
-
-        // Adjust layout
-        GroupLayout layout = new GroupLayout(panelText);
-        panelText.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                    .addComponent(textareaTranslation, GroupLayout.DEFAULT_SIZE, 380, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(labelTextColor)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(comboTextColor, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(fontSelectLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(fontComboBox, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE)
-                        .addGap(20)
-                        .addComponent(fontSizeLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(fontSizeComboBox, GroupLayout.PREFERRED_SIZE, 70, GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(textareaTranslation, GroupLayout.PREFERRED_SIZE, 200, GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelTextColor)
-                    .addComponent(comboTextColor, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                    .addComponent(fontSelectLabel)
-                    .addComponent(fontComboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                    .addComponent(fontSizeLabel)
-                    .addComponent(fontSizeComboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-    }
-
-    private void updateFont() {
-        String selectedFont = (String) fontComboBox.getSelectedItem();
-        int selectedSize = (Integer) fontSizeComboBox.getSelectedItem();
-        previewEdit.setFont(new Font(selectedFont, Font.PLAIN, selectedSize));
-        previewEdit.repaint();
     }
 
     /** This method is called from within the constructor to
@@ -351,7 +268,7 @@ public class UserInterface extends javax.swing.JFrame {
         panelColor16 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Ace Combat 3 Text Editor v1.3.4a by Dashman, modified by aikika");
+        setTitle("Ace Combat 3 Text Editor v1.3.4a by Dashman");
         setResizable(false);
 
         panelOriginal.setBorder(javax.swing.BorderFactory.createTitledBorder("Original File"));
@@ -481,6 +398,12 @@ public class UserInterface extends javax.swing.JFrame {
             }
         });
 
+        
+        comboFontType = new JComboBox<>(GraphicsEnvironment.getLocalGraphicsEnvironment().getAvailableFontFamilyNames());
+        comboFontSize = new JComboBox<>(new String[]{"8", "10", "12", "14", "16", "18", "20", "22", "24"});
+        labelFontType = new JLabel("Select Font:");
+        labelFontSize = new JLabel("Font Size:");
+
         javax.swing.GroupLayout panelTextLayout = new javax.swing.GroupLayout(panelText);
         panelText.setLayout(panelTextLayout);
         panelTextLayout.setHorizontalGroup(
@@ -511,7 +434,15 @@ public class UserInterface extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(checkInverted)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(checkFlip)))
+                        .addComponent(checkFlip))
+                    .addGroup(panelTextLayout.createSequentialGroup()
+                        .addComponent(labelFontType)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(comboFontType, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(labelFontSize)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(comboFontSize, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         panelTextLayout.setVerticalGroup(
@@ -535,6 +466,12 @@ public class UserInterface extends javax.swing.JFrame {
                     .addComponent(comboTextColor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(radioFontSmall)
                     .addComponent(radioFontBig))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(panelTextLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelFontType)
+                    .addComponent(comboFontType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelFontSize)
+                    .addComponent(comboFontSize, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -1040,7 +977,24 @@ public class UserInterface extends javax.swing.JFrame {
         }
 
         writeEdit(txt);
-}//GEN-LAST:event_comboBackgroundActionPerformed
+}//GEN-LAST:event_textareaTranslationKeyTyped
+
+    private void comboTextColorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboTextColorActionPerformed
+        // TODO add your handling code here:
+        if (!textareaTranslation.getText().isEmpty())
+            writeEdit(textareaTranslation.getText());
+    }//GEN-LAST:event_comboTextColorActionPerformed
+
+    private void comboBackgroundActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBackgroundActionPerformed
+        // TODO add your handling code here:
+        /*if (comboBackground.getSelectedIndex() == 0)
+            labelExplanation.setVisible(true);
+        else
+            labelExplanation.setVisible(false);*/
+        
+        if (!textareaTranslation.getText().isEmpty())
+            writeEdit(textareaTranslation.getText());
+    }//GEN-LAST:event_comboBackgroundActionPerformed
 
     private void buttonGenerateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonGenerateActionPerformed
         // TODO add your handling code here:
@@ -2427,7 +2381,7 @@ public class UserInterface extends javax.swing.JFrame {
                 //g2d.setFont(ac3font.deriveFont(18f));   // simkai
                 //g2d.setFont(ac3font.deriveFont(16f));   // Antonio-Regular
                 //g2d.setFont(ac3font.deriveFont(14f));   // Antonio-Bold
-                g2d.setFont(ac3font.deriveFont(13f));   // Antonio-Bold-Custom
+                g2d.setFont(ac3font.deriveFont(12f));   // Antonio-Bold-Custom
             }
         }
 

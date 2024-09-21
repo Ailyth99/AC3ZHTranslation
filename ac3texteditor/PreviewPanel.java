@@ -25,7 +25,6 @@ package ac3texteditor;
 
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
@@ -42,7 +41,6 @@ public class PreviewPanel extends javax.swing.JPanel {
     int requiredWidth = 256;
     int requiredHeight = 256;
     JPanel textLayer = new JPanel();
-    private Font currentFont = new Font("Arial", Font.PLAIN, 12);
 
     /** Creates new form PreviewPanel */
     public PreviewPanel() {
@@ -72,10 +70,6 @@ public class PreviewPanel extends javax.swing.JPanel {
         writeText(blank);
     }
 
-    public void setFont(Font font) {
-        this.currentFont = font;
-    }
-
     private void displayText(){
         this.remove(textLayer);
         textLayer = new JPanel(){
@@ -86,7 +80,6 @@ public class PreviewPanel extends javax.swing.JPanel {
                 g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
                         RenderingHints.VALUE_ANTIALIAS_ON);
                 super.paintComponent(g);
-                g2.setFont(currentFont); // Set the font
                 g2.drawImage(message, 0, 0, message.getWidth(), message.getHeight(), null);
                 g2.dispose();
             }
@@ -127,6 +120,6 @@ public class PreviewPanel extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    // End of variables declaration//GEN-ENDIFICATIONS
+    // End of variables declaration//GEN-END:variables
 
 }
