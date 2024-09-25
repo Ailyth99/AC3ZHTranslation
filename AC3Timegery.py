@@ -1,7 +1,7 @@
 import wx
 import struct
-import os,pathlib
-import bin_tool
+import os,pathlib,time
+import bin_tool,subprocess
 from img_convert import tim_to_bmp,bmp_to_tim
 from ulz_compress import compress_file, decompress_file
 
@@ -169,8 +169,12 @@ class Frame(wx.Frame):
             for i, color in enumerate(clut):
                 x = (i % 16) * 16
                 y = (i // 16) * 16
-                dc.SetBrush(wx.Brush(wx.Colour(color[0], color[1], color[2])))
-                dc.DrawRectangle(x, y, 16, 16)
+                alpha = color[3] if len(color) > 3 else 255  # 获取alpha值，默认为255（不透明）
+                height = 8 if alpha < 255 else 16  # 如果alpha值小于255，则高度为8，否则为16
+                dc.SetBrush(wx.Brush(wx.Colour(color[0], color[1], color[2], alpha)))
+                dc.DrawRectangle(x, y, 16, height)
+                # 调试信息
+                print(f"Color: {color}, Alpha: {alpha}, Height: {height}")
 
     def on_clut_click(self, event):
         if hasattr(self, 'cluts') and self.cluts:
@@ -313,232 +317,185 @@ class Frame(wx.Frame):
         dialog = BMPToULZDialog(self)
         dialog.ShowModal()
 
-class BMPToULZDialog(wx.Dialog):
-    def __init__(self, parent):
-        super().__init__(parent, title="BMP to ULZ")
-        panel = wx.Panel(self)
-        
-        bmp_label = wx.StaticText(panel, label="选择需要转换的BMP")
-        self.bmp_picker = wx.FilePickerCtrl(panel, message="Select BMP file", wildcard="BMP files (*.bmp)|*.bmp")
-        
-        tim_label = wx.StaticText(panel, label="选择原始TIM")
-        self.tim_picker = wx.FilePickerCtrl(panel, message="Select original TIM file", wildcard="TIM files (*.tim)|*.tim")
-        
-        self.info_text = wx.StaticText(panel, label="用于获取原始TIM的VRAM坐标")
-        self.process_button = wx.Button(panel, label="开始处理")
-        self.process_button.Bind(wx.EVT_BUTTON, self.on_process)
-        self.log_text = wx.TextCtrl(panel, style=wx.TE_MULTILINE | wx.TE_READONLY, size=(400, 100))
-        
-        sizer = wx.BoxSizer(wx.VERTICAL)
-        sizer.Add(bmp_label, 0, wx.ALL, 5)
-        sizer.Add(self.bmp_picker, 0, wx.ALL | wx.EXPAND, 5)
-        sizer.Add(tim_label, 0, wx.ALL, 5)
-        sizer.Add(self.tim_picker, 0, wx.ALL | wx.EXPAND, 5)
-        sizer.Add(self.info_text, 0, wx.ALL, 5)
-        sizer.Add(self.process_button, 0, wx.ALL | wx.EXPAND, 5)
-        sizer.Add(self.log_text, 1, wx.ALL | wx.EXPAND, 5)
-        
-        panel.SetSizer(sizer)
-        dialog_sizer = wx.BoxSizer(wx.VERTICAL)
-        dialog_sizer.Add(panel, 1, wx.EXPAND)
-        self.SetSizer(dialog_sizer)
-        self.Fit()
 
-    def on_process(self, event):
-        bmp_path = self.bmp_picker.GetPath()
-        tim_path = self.tim_picker.GetPath()
-        
-        if not bmp_path.lower().endswith('.bmp'):
-            wx.MessageBox("Please select a BMP file", "Error", wx.OK | wx.ICON_ERROR)
-            return
-        
-        if not tim_path.lower().endswith('.tim'):
-            wx.MessageBox("Please select a TIM file", "Error", wx.OK | wx.ICON_ERROR)
-            return
-        
-        try:
-            # Convert BMP to TIM
-            tim_output_path = bmp_path.replace('.bmp', '.tim')
-            bmp_to_tim(bmp_path, tim_output_path)
-            self.log_text.AppendText(f"{os.path.basename(bmp_path)} 已成功转换成 {os.path.basename(tim_output_path)}\n")
-            
-            # Copy VRAM coordinates from original TIM to new TIM
-            original_memory = open_and_read_file(tim_path)
-            new_memory = open_and_read_file(tim_output_path)
-            image_org_x, image_org_y = self.get_image_vram_coordinates(original_memory)
-            palette_org_x, palette_org_y = self.get_palette_vram_coordinates(original_memory)
-            self.set_image_vram_coordinates(new_memory, image_org_x, image_org_y)
-            self.set_palette_vram_coordinates(new_memory, palette_org_x, palette_org_y)
-            with open(tim_output_path, "wb") as f:
-                f.write(new_memory)
-            self.log_text.AppendText(f"{os.path.basename(tim_output_path)} 已成功获取原始VRAM坐标\n")
-            
-            # Compress TIM to ULZ
-            ulz_output_path = tim_output_path.replace('.tim', '.ulz')
-            compress_file(tim_output_path, output_file=ulz_output_path, level=1)
-            self.log_text.AppendText(f"{os.path.basename(tim_output_path)} 已经成功压缩为 {os.path.basename(ulz_output_path)}\n")
-            
-            self.log_text.AppendText(f"转换完成，转换的 {os.path.basename(tim_output_path)} 和 {os.path.basename(ulz_output_path)} 已经保存到 {os.path.dirname(bmp_path)}\n")
-        except Exception as e:
-            wx.MessageBox(f"Error during processing: {str(e)}", "Error", wx.OK | wx.ICON_ERROR)
 
-    def get_image_vram_coordinates(self, fmemory):
-        tim_type = unpack4bytes(fmemory[4:8])
-        if tim_type in [TYPE_4BPP, TYPE_8BPP]:
-            image_data_start = 0x14 + unpack2bytes_le(fmemory[0x12:0x14]) * 16 * 2
-            image_org_x = unpack2bytes_le(fmemory[image_data_start + 0x04:image_data_start + 0x06])
-            image_org_y = unpack2bytes_le(fmemory[image_data_start + 0x06:image_data_start + 0x08])
-        elif tim_type in [TYPE_16BPP, TYPE_24BPP]:
-            image_org_x = unpack2bytes_le(fmemory[0x0C:0x0E])
-            image_org_y = unpack2bytes_le(fmemory[0x0E:0x10])
-        else:
-            image_org_x = unpack2bytes_le(fmemory[0x18:0x1A])
-            image_org_y = unpack2bytes_le(fmemory[0x1A:0x1C])
-        return image_org_x, image_org_y
-
-    def set_image_vram_coordinates(self, fmemory, image_org_x, image_org_y):
-        tim_type = unpack4bytes(fmemory[4:8])
-        if tim_type in [TYPE_4BPP, TYPE_8BPP]:
-            image_data_start = 0x14 + unpack2bytes_le(fmemory[0x12:0x14]) * 16 * 2
-            fmemory[image_data_start + 0x04:image_data_start + 0x06] = image_org_x.to_bytes(2, 'little')
-            fmemory[image_data_start + 0x06:image_data_start + 0x08] = image_org_y.to_bytes(2, 'little')
-        elif tim_type in [TYPE_16BPP, TYPE_24BPP]:
-            fmemory[0x0C:0x0E] = image_org_x.to_bytes(2, 'little')
-            fmemory[0x0E:0x10] = image_org_y.to_bytes(2, 'little')
-        else:
-            fmemory[0x18:0x1A] = image_org_x.to_bytes(2, 'little')
-            fmemory[0x1A:0x1C] = image_org_y.to_bytes(2, 'little')
-
-    def get_palette_vram_coordinates(self, fmemory):
-        tim_type = unpack4bytes(fmemory[4:8])
-        if tim_type in [TYPE_4BPP, TYPE_8BPP]:
-            palette_org_x = unpack2bytes_le(fmemory[0x0C:0x0E])
-            palette_org_y = unpack2bytes_le(fmemory[0x0E:0x10])
-        else:
-            palette_org_x = 0
-            palette_org_y = 0
-        return palette_org_x, palette_org_y
-
-    def set_palette_vram_coordinates(self, fmemory, palette_org_x, palette_org_y):
-        tim_type = unpack4bytes(fmemory[4:8])
-        if tim_type in [TYPE_4BPP, TYPE_8BPP]:
-            fmemory[0x0C:0x0E] = palette_org_x.to_bytes(2, 'little')
-            fmemory[0x0E:0x10] = palette_org_y.to_bytes(2, 'little')
 
 class BMPToULZDialog(wx.Dialog):
-    def __init__(self, parent):
-        super().__init__(parent, title="BMP to ULZ")
-        panel = wx.Panel(self)
-        
-        bmp_label = wx.StaticText(panel, label="选择需要转换的BMP")
-        self.bmp_picker = wx.FilePickerCtrl(panel, message="Select BMP file", wildcard="BMP files (*.bmp)|*.bmp")
-        
-        tim_label = wx.StaticText(panel, label="选择原始TIM")
-        self.tim_picker = wx.FilePickerCtrl(panel, message="Select original TIM file", wildcard="TIM files (*.tim)|*.tim")
-        
-        self.info_text = wx.StaticText(panel, label="用于获取原始TIM的VRAM坐标")
-        self.process_button = wx.Button(panel, label="开始处理")
-        self.process_button.Bind(wx.EVT_BUTTON, self.on_process)
-        self.log_text = wx.TextCtrl(panel, style=wx.TE_MULTILINE | wx.TE_READONLY, size=(400, 100))
-        
-        sizer = wx.BoxSizer(wx.VERTICAL)
-        sizer.Add(bmp_label, 0, wx.ALL, 5)
-        sizer.Add(self.bmp_picker, 0, wx.ALL | wx.EXPAND, 5)
-        sizer.Add(tim_label, 0, wx.ALL, 5)
-        sizer.Add(self.tim_picker, 0, wx.ALL | wx.EXPAND, 5)
-        sizer.Add(self.info_text, 0, wx.ALL, 5)
-        sizer.Add(self.process_button, 0, wx.ALL | wx.EXPAND, 5)
-        sizer.Add(self.log_text, 1, wx.ALL | wx.EXPAND, 5)
-        
-        panel.SetSizer(sizer)
-        dialog_sizer = wx.BoxSizer(wx.VERTICAL)
-        dialog_sizer.Add(panel, 1, wx.EXPAND)
-        self.SetSizer(dialog_sizer)
-        self.Fit()
+	def __init__(self, parent):
+		super().__init__(parent, title="BMP to ULZ")
+		panel = wx.Panel(self)
+		
+		radio_sizer = wx.BoxSizer(wx.HORIZONTAL)
+		self.single_layer_radio = wx.RadioButton(panel, label="单层tim", style=wx.RB_GROUP)
+		self.double_layer_radio = wx.RadioButton(panel, label="双层tim")
+		self.single_layer_radio.Bind(wx.EVT_RADIOBUTTON, self.on_radio_change)
+		self.double_layer_radio.Bind(wx.EVT_RADIOBUTTON, self.on_radio_change)
+		radio_sizer.Add(self.single_layer_radio, 0, wx.ALL, 5)
+		radio_sizer.Add(self.double_layer_radio, 0, wx.ALL, 5)
+		
+		bmp_label = wx.StaticText(panel, label="选择需要转换的BMP（若是双层tim，则按照CLUT顺序选择）")
+		self.bmp_picker = wx.FilePickerCtrl(panel, message="Select BMP file", wildcard="BMP files (*.bmp)|*.bmp")
+		
+		self.bmp_picker2 = wx.FilePickerCtrl(panel, message="Select second BMP file", wildcard="BMP files (*.bmp)|*.bmp")
+		self.bmp_picker2.Hide()
+		
+		tim_label = wx.StaticText(panel, label="选择原始TIM")
+		self.tim_picker = wx.FilePickerCtrl(panel, message="Select original TIM file", wildcard="TIM files (*.tim)|*.tim")
+		
+		self.info_text = wx.StaticText(panel, label="用于获取原始TIM的VRAM坐标")
+		self.process_button = wx.Button(panel, label="开始处理")
+		self.process_button.Bind(wx.EVT_BUTTON, self.on_process)
+		self.log_text = wx.TextCtrl(panel, style=wx.TE_MULTILINE | wx.TE_READONLY, size=(400, 100))
+		
+		sizer = wx.BoxSizer(wx.VERTICAL)
+		sizer.Add(radio_sizer, 0, wx.ALL, 5)
+		sizer.Add(bmp_label, 0, wx.ALL, 5)
+		sizer.Add(self.bmp_picker, 0, wx.ALL | wx.EXPAND, 5)
+		sizer.Add(self.bmp_picker2, 0, wx.ALL | wx.EXPAND, 5)
+		sizer.Add(tim_label, 0, wx.ALL, 5)
+		sizer.Add(self.tim_picker, 0, wx.ALL | wx.EXPAND, 5)
+		sizer.Add(self.info_text, 0, wx.ALL, 5)
+		sizer.Add(self.process_button, 0, wx.ALL | wx.EXPAND, 5)
+		sizer.Add(self.log_text, 1, wx.ALL | wx.EXPAND, 5)
+		
+		panel.SetSizer(sizer)
+		dialog_sizer = wx.BoxSizer(wx.VERTICAL)
+		dialog_sizer.Add(panel, 1, wx.EXPAND)
+		self.SetSizer(dialog_sizer)
+		self.Fit()
 
-    def on_process(self, event):
-        bmp_path = self.bmp_picker.GetPath()
-        tim_path = self.tim_picker.GetPath()
-        
-        if not bmp_path.lower().endswith('.bmp'):
-            wx.MessageBox("Please select a BMP file", "Error", wx.OK | wx.ICON_ERROR)
-            return
-        
-        if not tim_path.lower().endswith('.tim'):
-            wx.MessageBox("Please select a TIM file", "Error", wx.OK | wx.ICON_ERROR)
-            return
-        
-        try:
-            # Get the base name without extension
-            base_name = os.path.splitext(os.path.basename(bmp_path))[0]
-            
-            # Convert BMP to TIM
-            tim_output_path = bmp_path.replace('.bmp', '.tim')
-            bmp_to_tim(bmp_path, tim_output_path)
-            self.log_text.AppendText(f"{os.path.basename(bmp_path)} 已成功转换成 {base_name}.tim\n")
-            
-            # Copy VRAM coordinates from original TIM to new TIM
-            original_memory = open_and_read_file(tim_path)
-            new_memory = open_and_read_file(tim_output_path)
-            image_org_x, image_org_y = self.get_image_vram_coordinates(original_memory)
-            palette_org_x, palette_org_y = self.get_palette_vram_coordinates(original_memory)
-            self.set_image_vram_coordinates(new_memory, image_org_x, image_org_y)
-            self.set_palette_vram_coordinates(new_memory, palette_org_x, palette_org_y)
-            with open(tim_output_path, "wb") as f:
-                f.write(new_memory)
-            self.log_text.AppendText(f"{base_name}.tim 已成功获取原始VRAM坐标\n")
-            
-            # Compress TIM to ULZ
-            ulz_output_path = os.path.join(os.path.dirname(tim_output_path), f"{base_name}.ulz")
-            compress_file(tim_output_path, output_file=ulz_output_path, level=1)
-            self.log_text.AppendText(f"{base_name}.tim 已经成功压缩为 {base_name}.ulz\n")
-            
-            self.log_text.AppendText(f"转换完成，转换的 {base_name}.tim 和 {base_name}.ulz 已经保存到 {os.path.dirname(bmp_path)}\n")
-        except Exception as e:
-            wx.MessageBox(f"Error during processing: {str(e)}", "Error", wx.OK | wx.ICON_ERROR)
+	def on_radio_change(self, event):
+		if self.double_layer_radio.GetValue():
+			self.bmp_picker2.Show()
+		else:
+			self.bmp_picker2.Hide()
+		self.Layout()
 
-    def get_image_vram_coordinates(self, fmemory):
-        tim_type = unpack4bytes(fmemory[4:8])
-        if tim_type in [TYPE_4BPP, TYPE_8BPP]:
-            image_data_start = 0x14 + unpack2bytes_le(fmemory[0x12:0x14]) * 16 * 2
-            image_org_x = unpack2bytes_le(fmemory[image_data_start + 0x04:image_data_start + 0x06])
-            image_org_y = unpack2bytes_le(fmemory[image_data_start + 0x06:image_data_start + 0x08])
-        elif tim_type in [TYPE_16BPP, TYPE_24BPP]:
-            image_org_x = unpack2bytes_le(fmemory[0x0C:0x0E])
-            image_org_y = unpack2bytes_le(fmemory[0x0E:0x10])
-        else:
-            image_org_x = unpack2bytes_le(fmemory[0x18:0x1A])
-            image_org_y = unpack2bytes_le(fmemory[0x1A:0x1C])
-        return image_org_x, image_org_y
+	def on_process(self, event):
+		bmp_path = self.bmp_picker.GetPath()
+		tim_path = self.tim_picker.GetPath()
+		if not bmp_path.lower().endswith('.bmp'):
+			wx.MessageBox("Please select a BMP file", "Error", wx.OK | wx.ICON_ERROR)
+			return
+		if not tim_path.lower().endswith('.tim'):
+			wx.MessageBox("Please select a TIM file", "Error", wx.OK | wx.ICON_ERROR)
+			return
 
-    def set_image_vram_coordinates(self, fmemory, image_org_x, image_org_y):
-        tim_type = unpack4bytes(fmemory[4:8])
-        if tim_type in [TYPE_4BPP, TYPE_8BPP]:
-            image_data_start = 0x14 + unpack2bytes_le(fmemory[0x12:0x14]) * 16 * 2
-            fmemory[image_data_start + 0x04:image_data_start + 0x06] = image_org_x.to_bytes(2, 'little')
-            fmemory[image_data_start + 0x06:image_data_start + 0x08] = image_org_y.to_bytes(2, 'little')
-        elif tim_type in [TYPE_16BPP, TYPE_24BPP]:
-            fmemory[0x0C:0x0E] = image_org_x.to_bytes(2, 'little')
-            fmemory[0x0E:0x10] = image_org_y.to_bytes(2, 'little')
-        else:
-            fmemory[0x18:0x1A] = image_org_x.to_bytes(2, 'little')
-            fmemory[0x1A:0x1C] = image_org_y.to_bytes(2, 'little')
+		if self.double_layer_radio.GetValue():
+			bmp_path2 = self.bmp_picker2.GetPath()
+			if not bmp_path2.lower().endswith('.bmp'):
+				wx.MessageBox("Please select a second BMP file", "Error", wx.OK | wx.ICON_ERROR)
+				return
+			try:
+				# Get the base name without extension
+				base_name = os.path.splitext(os.path.basename(bmp_path))[0]
+				
+				# Convert BMPs to TIMs
+				tim_output_path1 = bmp_path.replace('.bmp', '.tim')
+				tim_output_path2 = bmp_path2.replace('.bmp', '.tim')
+				bmp_to_tim(bmp_path, tim_output_path1)
+				bmp_to_tim(bmp_path2, tim_output_path2)
+				self.log_text.AppendText(f"{os.path.basename(bmp_path)} 已成功转换成 {base_name}.tim\n")
+				self.log_text.AppendText(f"{os.path.basename(bmp_path2)} 已成功转换成 {os.path.basename(tim_output_path2)}\n")
+				
+				# Merge TIMs
+				merged_tim_output_path = os.path.join(os.path.dirname(tim_output_path1), f"{base_name}_merged.tim")
+				print(f"Running command: bin/AC3LayerMerger.exe {tim_output_path1} {tim_output_path2} {merged_tim_output_path}")
+				subprocess.run(["bin/AC3LayerMerger.exe", tim_output_path1, tim_output_path2, merged_tim_output_path], check=True)
+				self.log_text.AppendText(f"{os.path.basename(tim_output_path1)} 和 {os.path.basename(tim_output_path2)} 已成功合并成 {os.path.basename(merged_tim_output_path)}\n开始替换VRAM坐标")
+				time.sleep(2)
+                    
+				# Copy VRAM coordinates from original TIM to merged TIM
+				original_memory = open_and_read_file(tim_path)
+				merged_memory = open_and_read_file(merged_tim_output_path)
+				image_org_x, image_org_y = self.get_image_vram_coordinates(original_memory)
+				palette_org_x, palette_org_y = self.get_palette_vram_coordinates(original_memory)
+				self.set_image_vram_coordinates(merged_memory, image_org_x, image_org_y)
+				self.set_palette_vram_coordinates(merged_memory, palette_org_x, palette_org_y)
+				with open(merged_tim_output_path, "wb") as f:
+					f.write(merged_memory)
+				self.log_text.AppendText(f"{os.path.basename(merged_tim_output_path)} 已成功获取原始VRAM坐标\n开始ulz压缩...")
+				
+				# Compress merged TIM to ULZ
+				ulz_output_path = os.path.join(os.path.dirname(merged_tim_output_path), f"{base_name}_merged.ulz")
+				compress_file(merged_tim_output_path, output_file=ulz_output_path, level=1)
+				self.log_text.AppendText(f"{os.path.basename(merged_tim_output_path)} 已经成功压缩为 {os.path.basename(ulz_output_path)}\n")
+				
+				self.log_text.AppendText(f"转换完成，转换的 {os.path.basename(merged_tim_output_path)} 和 {os.path.basename(ulz_output_path)} 已经保存到 {os.path.dirname(bmp_path)}\n")
+			except Exception as e:
+				wx.MessageBox(f"Error during processing: {str(e)}", "Error", wx.OK | wx.ICON_ERROR)
+		else:
+			try:
+				# Get the base name without extension
+				base_name = os.path.splitext(os.path.basename(bmp_path))[0]
+				
+				# Convert BMP to TIM
+				tim_output_path = bmp_path.replace('.bmp', '.tim')
+				bmp_to_tim(bmp_path, tim_output_path)
+				self.log_text.AppendText(f"{os.path.basename(bmp_path)} 已成功转换成 {base_name}.tim\n")
+				
+				# Copy VRAM coordinates from original TIM to new TIM
+				original_memory = open_and_read_file(tim_path)
+				new_memory = open_and_read_file(tim_output_path)
+				image_org_x, image_org_y = self.get_image_vram_coordinates(original_memory)
+				palette_org_x, palette_org_y = self.get_palette_vram_coordinates(original_memory)
+				self.set_image_vram_coordinates(new_memory, image_org_x, image_org_y)
+				self.set_palette_vram_coordinates(new_memory, palette_org_x, palette_org_y)
+				with open(tim_output_path, "wb") as f:
+					f.write(new_memory)
+				self.log_text.AppendText(f"{base_name}.tim 已成功获取原始VRAM坐标\n开始ulz压缩...")
+				
+				# Compress TIM to ULZ
+				ulz_output_path = os.path.join(os.path.dirname(tim_output_path), f"{base_name}.ulz")
+				compress_file(tim_output_path, output_file=ulz_output_path, level=1)
+				self.log_text.AppendText(f"{base_name}.tim 已经成功压缩为 {base_name}.ulz\n")
+				
+				self.log_text.AppendText(f"转换完成，转换的 {base_name}.tim 和 {base_name}.ulz 已经保存到 {os.path.dirname(bmp_path)}\n")
+			except Exception as e:
+				wx.MessageBox(f"Error during processing: {str(e)}", "Error", wx.OK | wx.ICON_ERROR)
 
-    def get_palette_vram_coordinates(self, fmemory):
-        tim_type = unpack4bytes(fmemory[4:8])
-        if tim_type in [TYPE_4BPP, TYPE_8BPP]:
-            palette_org_x = unpack2bytes_le(fmemory[0x0C:0x0E])
-            palette_org_y = unpack2bytes_le(fmemory[0x0E:0x10])
-        else:
-            palette_org_x = 0
-            palette_org_y = 0
-        return palette_org_x, palette_org_y
+	def get_image_vram_coordinates(self, fmemory):
+		tim_type = unpack4bytes(fmemory[4:8])
+		if tim_type in [TYPE_4BPP, TYPE_8BPP]:
+			image_data_start = 0x14 + unpack2bytes_le(fmemory[0x12:0x14]) * 16 * 2
+			image_org_x = unpack2bytes_le(fmemory[image_data_start + 0x04:image_data_start + 0x06])
+			image_org_y = unpack2bytes_le(fmemory[image_data_start + 0x06:image_data_start + 0x08])
+		elif tim_type in [TYPE_16BPP, TYPE_24BPP]:
+			image_org_x = unpack2bytes_le(fmemory[0x0C:0x0E])
+			image_org_y = unpack2bytes_le(fmemory[0x0E:0x10])
+		else:
+			image_org_x = unpack2bytes_le(fmemory[0x18:0x1A])
+			image_org_y = unpack2bytes_le(fmemory[0x1A:0x1C])
+		return image_org_x, image_org_y
 
-    def set_palette_vram_coordinates(self, fmemory, palette_org_x, palette_org_y):
-        tim_type = unpack4bytes(fmemory[4:8])
-        if tim_type in [TYPE_4BPP, TYPE_8BPP]:
-            fmemory[0x0C:0x0E] = palette_org_x.to_bytes(2, 'little')
-            fmemory[0x0E:0x10] = palette_org_y.to_bytes(2, 'little')
+	def set_image_vram_coordinates(self, fmemory, image_org_x, image_org_y):
+		tim_type = unpack4bytes(fmemory[4:8])
+		if tim_type in [TYPE_4BPP, TYPE_8BPP]:
+			image_data_start = 0x14 + unpack2bytes_le(fmemory[0x12:0x14]) * 16 * 2
+			fmemory[image_data_start + 0x04:image_data_start + 0x06] = image_org_x.to_bytes(2, 'little')
+			fmemory[image_data_start + 0x06:image_data_start + 0x08] = image_org_y.to_bytes(2, 'little')
+		elif tim_type in [TYPE_16BPP, TYPE_24BPP]:
+			fmemory[0x0C:0x0E] = image_org_x.to_bytes(2, 'little')
+			fmemory[0x0E:0x10] = image_org_y.to_bytes(2, 'little')
+		else:
+			fmemory[0x18:0x1A] = image_org_x.to_bytes(2, 'little')
+			fmemory[0x1A:0x1C] = image_org_y.to_bytes(2, 'little')
+
+	def get_palette_vram_coordinates(self, fmemory):
+		tim_type = unpack4bytes(fmemory[4:8])
+		if tim_type in [TYPE_4BPP, TYPE_8BPP]:
+			palette_org_x = unpack2bytes_le(fmemory[0x0C:0x0E])
+			palette_org_y = unpack2bytes_le(fmemory[0x0E:0x10])
+		else:
+			palette_org_x = 0
+			palette_org_y = 0
+		return palette_org_x, palette_org_y
+
+	def set_palette_vram_coordinates(self, fmemory, palette_org_x, palette_org_y):
+		tim_type = unpack4bytes(fmemory[4:8])
+		if tim_type in [TYPE_4BPP, TYPE_8BPP]:
+			fmemory[0x0C:0x0E] = palette_org_x.to_bytes(2, 'little')
+			fmemory[0x0E:0x10] = palette_org_y.to_bytes(2, 'little')
 
 class HeaderReplaceDialog(wx.Dialog):
     def __init__(self, parent):
@@ -859,6 +816,11 @@ def process_file(fmemory, filepath):
     header_info += f"Height:\t{height}\n"
     print(f"Debug: Header info: {header_info}")
 
+    # 调试信息：打印CLUT颜色数据
+    for clut in cluts:
+        for color in clut:
+            print(f"CLUT Color: {color}")
+
     return pixels, width, height, header_info, cluts
 
 def process_24bpp(fmemory):
@@ -892,15 +854,14 @@ def process_16bpp(fmemory):
 def getpixeldata(datatable, position):
     value = datatable[position*2:position*2 + 2]
     if len(value) < 2:
-        return (0, 0, 0)
+        return (0, 0, 0, 255)  # 默认alpha值为255
     color = unpack2bytes(value)
     mask = 0b011111
     red = color & mask
     green = (color >> 5) & mask
     blue = (color >> 10) & mask
-    if blue >= 0b100000:
-        return (0, 0, 0)
-    return (red * 8, green * 8, blue * 8)
+    alpha = 255 if (color & 0x8000) == 0 else 0  # 检查最高位是否为1，表示透明
+    return (red * 8, green * 8, blue * 8, alpha)
 
 def process_8bpp(fmemory):
     end_of_clut = unpack4bytes(fmemory[8:12]) + 8
@@ -918,7 +879,6 @@ def process_8bpp(fmemory):
             position = indices[i]
             pixels[x][i] = clut[x][position]
     return pixels, image_width, image_height, "", clut
-
 def process_4bpp(fmemory):
     end_of_clut = unpack4bytes(fmemory[8:12]) + 8
     clut_size = unpack2bytes(fmemory[16:18])
@@ -940,7 +900,6 @@ def process_4bpp(fmemory):
             i += 2
             j += 1
     return pixels, image_width, image_height, "", clut
-
 def create_bitmap(pixels, width, height):
     image = wx.Image(width, height)
     for y in range(height):
