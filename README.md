@@ -14,7 +14,7 @@
 - 🎬 即时动画字幕
 - 🎮 游戏菜单界面（保留部分英文）
 <br>
-![000.png](https://cdn-fusion.imgcdn.store/i/2024/234ecbef0a1057f1.png)
+[000.png](https://cdn-fusion.imgcdn.store/i/2024/234ecbef0a1057f1.png)
 
 
 
