@@ -1,6 +1,6 @@
 ## ACE COMBAT 3: ELECTROSPHERE 中文化项目
 
-基于《皇牌空战3：电脑空间》日本游戏进行翻译。
+基于《皇牌空战3：电脑空间》日版游戏进行翻译。
 
 - [项目主页](https://ailyth99.github.io/ac3es/)
 
