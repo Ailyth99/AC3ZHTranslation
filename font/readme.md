@@ -1,4 +1,4 @@
-# 自定义寒蝉全圆体 (Custom ChillRound Font)
+## 自定义寒蝉全圆体 (Custom ChillRound Font)
 
 这是一个基于“寒蝉全圆体”修改的字体文件：`custom_ChillRound.ttf`。
 
@@ -6,7 +6,7 @@
 
 ## 协议 (License)
 
-本字体修改遵循原作者的 **OFL 协议**¹。使用前请确保您已了解并同意该协议内容。
+本字体修改遵循原作者的 **OFL 协议**。使用前请确保您已了解并同意该协议内容。
 
 
 ## 其他字体 
