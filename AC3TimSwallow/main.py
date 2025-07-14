@@ -25,7 +25,7 @@ class TIMFileDropTarget(wx.FileDropTarget):
 
 class Frame(wx.Frame):
     def __init__(self):
-        wx.Frame.__init__(self, None, -1, 'AC3TIMSwallow', style=wx.SYSTEM_MENU | wx.CAPTION | wx.CLOSE_BOX | wx.MINIMIZE_BOX | wx.RESIZE_BORDER)
+        wx.Frame.__init__(self, None, -1, 'AC3TimSwallow 1.5 by aikika', style=wx.SYSTEM_MENU | wx.CAPTION | wx.CLOSE_BOX | wx.MINIMIZE_BOX | wx.RESIZE_BORDER)
         icon = wx.Icon("bin/morrigan.png", wx.BITMAP_TYPE_PNG)
         self.SetIcon(icon)
         self.panel = wx.Panel(self)
@@ -39,9 +39,9 @@ class Frame(wx.Frame):
         
         self.panel.SetSizer(self.sizer)
         
-        self.SetSize((645, 620))
-        self.SetMinSize((645, 620))
-        self.SetMaxSize((700, 700))
+        self.SetSize((680, 620))
+        self.SetMinSize((680, 620))
+        self.SetMaxSize((750, 700))
         
         self.Layout()
         
@@ -66,11 +66,11 @@ class Frame(wx.Frame):
         self.info_text = wx.TextCtrl(left_panel, style=wx.TE_MULTILINE | wx.TE_READONLY, size=(330, 230))
         left_sizer.Add(self.info_text, 0, wx.ALL | wx.EXPAND, 5)
         
-        self.header_replace_button = wx.Button(left_panel, label="Replace VRAM X/Y")
+        self.header_replace_button = wx.Button(left_panel, label="替换 VRAM 坐标")
         self.header_replace_button.Bind(wx.EVT_BUTTON, self.on_header_replace)
         left_sizer.Add(self.header_replace_button, 0, wx.ALL | wx.EXPAND, 5)
         
-        self.edit_vram_button = wx.Button(left_panel, label="Edit VRAM X/Y")
+        self.edit_vram_button = wx.Button(left_panel, label="编辑 VRAM 坐标")
         self.edit_vram_button.Bind(wx.EVT_BUTTON, self.on_edit_vram)
         left_sizer.Add(self.edit_vram_button, 0, wx.ALL | wx.EXPAND, 5)
         
@@ -81,7 +81,7 @@ class Frame(wx.Frame):
         right_panel = wx.Panel(self.panel)
         right_sizer = wx.BoxSizer(wx.VERTICAL)
         
-        self.file_picker = wx.FilePickerCtrl(right_panel, message="Select a TIM file")
+        self.file_picker = wx.FilePickerCtrl(right_panel, message="选择一个 TIM 文件")
         self.file_picker.Bind(wx.EVT_FILEPICKER_CHANGED, self.on_file_selected)
         right_sizer.Add(self.file_picker, 0, wx.ALL | wx.EXPAND, 5)
         
@@ -90,37 +90,37 @@ class Frame(wx.Frame):
         right_sizer.Add(self.clut_choice, 0, wx.ALL | wx.EXPAND, 5)
         
         self.clut_panel = wx.Panel(right_panel, size=(320, 256))
-        self.clut_panel.SetBackgroundColour(wx.Colour(211, 211, 211))  # 设置背景色为浅灰色
+        self.clut_panel.SetBackgroundColour(wx.Colour(211, 211, 211))
         self.clut_panel.Bind(wx.EVT_PAINT, self.on_clut_paint)
         self.clut_panel.Bind(wx.EVT_RIGHT_DOWN, self.on_clut_right_click)
         self.clut_panel.Bind(wx.EVT_LEFT_DOWN, self.on_clut_click)
         right_sizer.Add(self.clut_panel, 0, wx.ALL | wx.EXPAND, 5)
         
-        self.export_button = wx.Button(right_panel, label="Export TIM with Selected CLUT")
+        self.export_button = wx.Button(right_panel, label="使用所选 CLUT 导出 TIM")
         self.export_button.Bind(wx.EVT_BUTTON, self.on_export_tim)
         right_sizer.Add(self.export_button, 0, wx.ALL | wx.EXPAND, 5)
         
-        right_sizer.Add(wx.StaticText(right_panel, label="Tools"), 0, wx.ALL, 5)
+        right_sizer.Add(wx.StaticText(right_panel, label="工具"), 0, wx.ALL, 5)
         
         tools_sizer = wx.BoxSizer(wx.VERTICAL)
         
         ulz_tools_sizer = wx.BoxSizer(wx.HORIZONTAL)
-        self.ulz_compress_button = wx.Button(right_panel, label="ULZ Compressor")
+        self.ulz_compress_button = wx.Button(right_panel, label="ULZ 压缩")
         self.ulz_compress_button.Bind(wx.EVT_BUTTON, self.on_ulz_compress)
         ulz_tools_sizer.Add(self.ulz_compress_button, 1, wx.RIGHT, 5)
         
-        self.ulz_decompress_button = wx.Button(right_panel, label="ULZ Decompressor")
+        self.ulz_decompress_button = wx.Button(right_panel, label="ULZ 解压")
         self.ulz_decompress_button.Bind(wx.EVT_BUTTON, self.on_ulz_decompress)
         ulz_tools_sizer.Add(self.ulz_decompress_button, 1)
         
         tools_sizer.Add(ulz_tools_sizer, 0, wx.EXPAND | wx.BOTTOM, 5)
         
         bin_tools_sizer = wx.BoxSizer(wx.HORIZONTAL)
-        self.bin_split_button = wx.Button(right_panel, label="Extract BIN/DAT")
+        self.bin_split_button = wx.Button(right_panel, label="解包 BIN/DAT")
         self.bin_split_button.Bind(wx.EVT_BUTTON, self.on_split_bin)
         bin_tools_sizer.Add(self.bin_split_button, 1, wx.RIGHT, 5)
         
-        self.bin_merge_button = wx.Button(right_panel, label="Repack BIN/DAT")
+        self.bin_merge_button = wx.Button(right_panel, label="封包 BIN/DAT")
         self.bin_merge_button.Bind(wx.EVT_BUTTON, self.on_merge_bin)
         bin_tools_sizer.Add(self.bin_merge_button, 1)
         
@@ -128,7 +128,7 @@ class Frame(wx.Frame):
         
         right_sizer.Add(tools_sizer, 0, wx.ALL | wx.EXPAND, 5)
         
-        self.bmp_to_ulz_button = wx.Button(right_panel, label="BMP2TIM")
+        self.bmp_to_ulz_button = wx.Button(right_panel, label="BMP 转 TIM")
         self.bmp_to_ulz_button.Bind(wx.EVT_BUTTON, self.on_bmp_to_ulz)
         right_sizer.Add(self.bmp_to_ulz_button, 0, wx.ALL | wx.EXPAND, 5)
         
@@ -146,7 +146,7 @@ class Frame(wx.Frame):
         self.image_height = imgheight
         self.all_pixels = pixels
         self.cluts = cluts
-        self.clut_choice.Set([f"CLUT {i+1} / {len(cluts)}" for i in range(len(cluts))])
+        self.clut_choice.Set([f"色板 {i+1} / {len(cluts)}" for i in range(len(cluts))])
         self.clut_choice.SetSelection(0)
         self.selected_clut = 0
         self.update_bitmap()
@@ -168,18 +168,17 @@ class Frame(wx.Frame):
             for i, color in enumerate(clut):
                 x = (i % 16) * 16
                 y = (i // 16) * 16
-                alpha = color[3] if len(color) > 3 else 255  # 获取alpha值，默认为255（不透明）
+                alpha = color[3] if len(color) > 3 else 255
                 dc.SetBrush(wx.Brush(wx.Colour(color[0], color[1], color[2], alpha)))
-                dc.DrawRectangle(x, y, 16, 16)  # 绘制完整的正方形
+                dc.DrawRectangle(x, y, 16, 16)
 
-                # 如果alpha值小于255，绘制一个右下角的三角形表示透明
                 if alpha < 255:
                     points = [wx.Point(x + 15, y + 15), wx.Point(x + 8, y + 15), wx.Point(x + 15, y + 8)]
-                    dc.SetBrush(wx.Brush(wx.Colour(255, 255, 255), wx.BRUSHSTYLE_SOLID))  # 使用白色填充三角形
+                    dc.SetBrush(wx.Brush(wx.Colour(255, 255, 255), wx.BRUSHSTYLE_SOLID))
                     dc.DrawPolygon(points)
 
                 # 调试信息
-                print(f"Color: {color}, Alpha: {alpha}")
+                # print(f"Color: {color}, Alpha: {alpha}")
 
     def on_clut_click(self, event):
         if hasattr(self, 'cluts') and self.cluts:
@@ -193,7 +192,7 @@ class Frame(wx.Frame):
 
     def on_clut_right_click(self, event):
         menu = wx.Menu()
-        item = menu.Append(wx.ID_ANY, "Copy All CLUT Colors")
+        item = menu.Append(wx.ID_ANY, "复制所有 CLUT 颜色")
         menu.Bind(wx.EVT_MENU, self.on_copy_clut_values, item)
         self.clut_panel.PopupMenu(menu)
         menu.Destroy()
@@ -205,13 +204,13 @@ class Frame(wx.Frame):
             if wx.TheClipboard.Open():
                 wx.TheClipboard.SetData(wx.TextDataObject(color_values))
                 wx.TheClipboard.Close()
-                wx.MessageBox("CLUT colors copied to clipboard", "Copy Successful", wx.OK | wx.ICON_INFORMATION)
+                wx.MessageBox("CLUT 颜色已复制到剪贴板", "复制成功", wx.OK | wx.ICON_INFORMATION)
 
     def on_paint(self, event):
         dc = wx.PaintDC(self.image_panel)
         dc.Clear()
         dc.SetBackground(wx.Brush(wx.Colour(211, 211, 211)))  
-        dc.Clear()  # 清除背景色
+        dc.Clear()
         if self.bitmap:
             panel_width, panel_height = self.image_panel.GetSize()
             bitmap_width, bitmap_height = self.bitmap.GetSize()
@@ -225,16 +224,14 @@ class Frame(wx.Frame):
         selected_clut = self.selected_clut
         new_filepath = f"{filepath}_clut{selected_clut + 1}.tim"
         export_tim(fmemory, selected_clut, new_filepath)
-        wx.MessageBox(f"TIM file exported to {new_filepath}", "Export Complete", wx.OK | wx.ICON_INFORMATION)
+        wx.MessageBox(f"TIM 文件已导出至 {new_filepath}", "导出完成", wx.OK | wx.ICON_INFORMATION)
 
     def on_header_replace(self, event):
         if self.bitmap:
-            # 图片区域有图
             modified_path = self.file_picker.GetPath()
             dialog = HeaderReplaceDialog(self, modified_path=modified_path)
             dialog.ShowModal()
         else:
-            # 没图
             dialog = HeaderReplaceDialog(self)
             dialog.ShowModal()
 
@@ -249,7 +246,7 @@ class Frame(wx.Frame):
             dialog.ShowModal()
 
     def on_ulz_compress(self, event):
-        with wx.FileDialog(self, "Select file to compress", wildcard="All files (*.*)|*.*",
+        with wx.FileDialog(self, "选择要压缩的文件", wildcard="所有文件 (*.*)|*.*",
                            style=wx.FD_OPEN | wx.FD_FILE_MUST_EXIST) as fileDialog:
             if fileDialog.ShowModal() == wx.ID_CANCEL:
                 return
@@ -260,66 +257,56 @@ class Frame(wx.Frame):
                 compress_ulz(input_path)
                 base_name = os.path.splitext(os.path.basename(input_path))[0]
                 output_path = os.path.join(os.path.dirname(input_path), f"{base_name}.ulz")
-                wx.MessageBox(f"File compressed successfully: {output_path}", "Success", wx.OK | wx.ICON_INFORMATION)
+                wx.MessageBox(f"文件压缩成功: {output_path}", "成功", wx.OK | wx.ICON_INFORMATION)
             except Exception as e:
-                wx.MessageBox(f"Error compressing file: {str(e)}", "Error", wx.OK | wx.ICON_ERROR)
+                wx.MessageBox(f"压缩文件时出错: {str(e)}", "错误", wx.OK | wx.ICON_ERROR)
 
-    # ####################################################################
-    # ## THIS IS THE MODIFIED FUNCTION
-    # ####################################################################
     def on_ulz_decompress(self, event):
-        with wx.FileDialog(self, "Select ULZ file to decompress", wildcard="ULZ files (*.ulz)|*.ulz",
+        with wx.FileDialog(self, "选择要解压的 ULZ 文件", wildcard="ULZ 文件 (*.ulz)|*.ulz",
                            style=wx.FD_OPEN | wx.FD_FILE_MUST_EXIST) as fileDialog:
             if fileDialog.ShowModal() == wx.ID_CANCEL:
                 return
 
             input_path = fileDialog.GetPath()
-            # This is now a temporary path without an extension
             temp_output_path = input_path.replace(".ulz", "")
 
             try:
-                # 1. Decompress to the temporary path
                 decompress_ulz(input_path, temp_output_path)
                 
-                # 2. Read the header of the newly created file to determine its type
                 with open(temp_output_path, 'rb') as f:
                     header = f.read(4)
 
-                # 3. Decide the final path based on the header
                 if header == b'\x10\x00\x00\x00':
                     final_output_path = temp_output_path + ".tim"
                 else:
                     final_output_path = temp_output_path + ".dat"
                 
-                # 4. Rename the file to its final name
                 os.rename(temp_output_path, final_output_path)
                 
-                # 5. Show success message with the final path
-                wx.MessageBox(f"File decompressed successfully: {final_output_path}", "Success", wx.OK | wx.ICON_INFORMATION)
+                wx.MessageBox(f"文件解压成功: {final_output_path}", "成功", wx.OK | wx.ICON_INFORMATION)
 
             except Exception as e:
-                # Catch any error during decompression or file processing
-                wx.MessageBox(f"Error during processing: {str(e)}", "Error", wx.OK | wx.ICON_ERROR)
+                wx.MessageBox(f"处理过程中出错: {str(e)}", "错误", wx.OK | wx.ICON_ERROR)
 
     def on_split_bin(self, event):
-        with wx.FileDialog(self, "Select BIN or DAT file", wildcard="BIN files (*.bin;*.dat)|*.bin;*.dat", style=wx.FD_OPEN | wx.FD_FILE_MUST_EXIST) as fileDialog:
+        with wx.FileDialog(self, "选择 BIN 或 DAT 文件", wildcard="BIN/DAT 文件 (*.bin;*.dat)|*.bin;*.dat", style=wx.FD_OPEN | wx.FD_FILE_MUST_EXIST) as fileDialog:
             if fileDialog.ShowModal() == wx.ID_CANCEL:
                 return
 
             bin_path = pathlib.Path(fileDialog.GetPath())
             try:
                 bin_tool.split_file(bin_path)
-                wx.MessageBox(f"BIN file split successfully into {bin_path.stem} folder", "Success", wx.OK | wx.ICON_INFORMATION)
+                wx.MessageBox(f"BIN 文件已成功拆分到 {bin_path.stem} 文件夹", "成功", wx.OK | wx.ICON_INFORMATION)
             except Exception as e:
-                wx.MessageBox(f"Failed to split BIN file: {e}", "Error", wx.OK | wx.ICON_ERROR)
+                wx.MessageBox(f"拆分 BIN 文件失败: {e}", "错误", wx.OK | wx.ICON_ERROR)
 
     def on_merge_bin(self, event):
-        with wx.FileDialog(self, "Select filelist.txt", wildcard="Text files (*.txt)|*.txt", style=wx.FD_OPEN | wx.FD_FILE_MUST_EXIST) as fileDialog:
+        with wx.FileDialog(self, "选择 filelist.txt", wildcard="文本文件 (*.txt)|*.txt", style=wx.FD_OPEN | wx.FD_FILE_MUST_EXIST) as fileDialog:
             if fileDialog.ShowModal() == wx.ID_CANCEL:
                 return
 
             list_path = pathlib.Path(fileDialog.GetPath())
-            with wx.FileDialog(self, "Save merged BIN file", wildcard="BIN files (*.bin)|*.bin", style=wx.FD_SAVE | wx.FD_OVERWRITE_PROMPT) as saveDialog:
+            with wx.FileDialog(self, "保存合并后的 BIN 文件", wildcard="BIN 文件 (*.bin)|*.bin", style=wx.FD_SAVE | wx.FD_OVERWRITE_PROMPT) as saveDialog:
                 if saveDialog.ShowModal() == wx.ID_CANCEL:
                     return
 
@@ -327,9 +314,9 @@ class Frame(wx.Frame):
                 try:
                     bin_tool.merge_files_from_list(list_path, dest_path)
                     
-                    wx.MessageBox(f"BIN file merged successfully!\nBIN: {dest_path}", "Success", wx.OK | wx.ICON_INFORMATION)
+                    wx.MessageBox(f"BIN 文件合并成功!\n路径: {dest_path}", "成功", wx.OK | wx.ICON_INFORMATION)
                 except Exception as e:
-                    wx.MessageBox(f"Failed to process file: {e}", "Error", wx.OK | wx.ICON_ERROR)
+                    wx.MessageBox(f"处理文件失败: {e}", "错误", wx.OK | wx.ICON_ERROR)
 
     def compress_ulz(self, input_file, output_file):
         command = [
@@ -343,13 +330,13 @@ class Frame(wx.Frame):
     def on_image_right_click(self, event):
         if self.bitmap:
             menu = wx.Menu()
-            save_as_bmp_item = menu.Append(wx.ID_SAVEAS, "Save as BMP")
+            save_as_bmp_item = menu.Append(wx.ID_SAVEAS, "另存为 BMP")
             self.Bind(wx.EVT_MENU, self.on_save_as_bmp, save_as_bmp_item)
             self.PopupMenu(menu)
             menu.Destroy()
 
     def on_save_as_bmp(self, event):
-        with wx.FileDialog(self, "Save BMP file", wildcard="BMP files (*.bmp)|*.bmp",
+        with wx.FileDialog(self, "保存 BMP 文件", wildcard="BMP 文件 (*.bmp)|*.bmp",
                            style=wx.FD_SAVE | wx.FD_OVERWRITE_PROMPT) as fileDialog:
             if fileDialog.ShowModal() == wx.ID_CANCEL:
                 return
@@ -362,9 +349,9 @@ class Frame(wx.Frame):
         command = ['bin/tim2bmp.exe', tim_path, bmp_path]
         result = subprocess.run(command, capture_output=True, text=True)
         if result.returncode != 0:
-            wx.MessageBox(f"Error converting TIM to BMP: {result.stderr}", "Error", wx.OK | wx.ICON_ERROR)
+            wx.MessageBox(f"转换 TIM 到 BMP 时出错: {result.stderr}", "错误", wx.OK | wx.ICON_ERROR)
         else:
-            wx.MessageBox(f"BMP file saved to {bmp_path}", "Save Complete", wx.OK | wx.ICON_INFORMATION)
+            wx.MessageBox(f"BMP 文件已保存至 {bmp_path}", "保存完成", wx.OK | wx.ICON_INFORMATION)
 
     def on_bmp_to_ulz(self, event):
         dialog = BMPToULZDialog(self)
@@ -373,32 +360,31 @@ class Frame(wx.Frame):
 
 class BMPToULZDialog(wx.Dialog):
 	def __init__(self, parent):
-		super().__init__(parent, title="BMP2TIM")
+		super().__init__(parent, title="BMP 转 TIM")
 		panel = wx.Panel(self)
 		
 		radio_sizer = wx.BoxSizer(wx.HORIZONTAL)
-		self.single_layer_radio = wx.RadioButton(panel, label="Single Layer TIM", style=wx.RB_GROUP)
-		self.double_layer_radio = wx.RadioButton(panel, label="Double Layer TIM")
+		self.single_layer_radio = wx.RadioButton(panel, label="单层 TIM", style=wx.RB_GROUP)
+		self.double_layer_radio = wx.RadioButton(panel, label="双层 TIM")
 		self.single_layer_radio.Bind(wx.EVT_RADIOBUTTON, self.on_radio_change)
 		self.double_layer_radio.Bind(wx.EVT_RADIOBUTTON, self.on_radio_change)
 		radio_sizer.Add(self.single_layer_radio, 0, wx.ALL, 5)
 		radio_sizer.Add(self.double_layer_radio, 0, wx.ALL, 5)
 		
-		bmp_label = wx.StaticText(panel, label="Select BMP to convert (For double layer TIM, select in CLUT order)")
-		self.bmp_picker = wx.FilePickerCtrl(panel, message="Select BMP file", wildcard="BMP files (*.bmp)|*.bmp")
+		bmp_label = wx.StaticText(panel, label="选择要转换的 BMP (对于双层 TIM, 请按 CLUT 顺序选择)")
+		self.bmp_picker = wx.FilePickerCtrl(panel, message="选择 BMP 文件", wildcard="BMP 文件 (*.bmp)|*.bmp")
 		
-		self.bmp_picker2 = wx.FilePickerCtrl(panel, message="Select second BMP file", wildcard="BMP files (*.bmp)|*.bmp")
+		self.bmp_picker2 = wx.FilePickerCtrl(panel, message="选择第二个 BMP 文件", wildcard="BMP 文件 (*.bmp)|*.bmp")
 		self.bmp_picker2.Hide()
 		
-		tim_label = wx.StaticText(panel, label="Select original TIM")
-		self.tim_picker = wx.FilePickerCtrl(panel, message="Select original TIM file", wildcard="TIM files (*.tim)|*.tim")
+		tim_label = wx.StaticText(panel, label="选择原始 TIM")
+		self.tim_picker = wx.FilePickerCtrl(panel, message="选择原始 TIM 文件", wildcard="TIM 文件 (*.tim)|*.tim")
 		
-		self.info_text = wx.StaticText(panel, label="Used to get original TIM's VRAM coordinates")
+		self.info_text = wx.StaticText(panel, label="用于获取原始 TIM 的 VRAM 坐标")
 		
-		# Add ULZ compress checkbox
-		self.ulz_compress_checkbox = wx.CheckBox(panel, label="Compress new TIM to ULZ")
+		self.ulz_compress_checkbox = wx.CheckBox(panel, label="将新 TIM 压缩为 ULZ")
 		
-		self.process_button = wx.Button(panel, label="Start Processing")
+		self.process_button = wx.Button(panel, label="开始处理")
 		self.process_button.Bind(wx.EVT_BUTTON, self.on_process)
 		self.log_text = wx.TextCtrl(panel, style=wx.TE_MULTILINE | wx.TE_READONLY, size=(400, 100))
 		
@@ -431,37 +417,33 @@ class BMPToULZDialog(wx.Dialog):
 		bmp_path = self.bmp_picker.GetPath()
 		tim_path = self.tim_picker.GetPath()
 		if not bmp_path.lower().endswith('.bmp'):
-			wx.MessageBox("Please select a BMP file", "Error", wx.OK | wx.ICON_ERROR)
+			wx.MessageBox("请选择一个 BMP 文件", "错误", wx.OK | wx.ICON_ERROR)
 			return
 		if not tim_path.lower().endswith('.tim'):
-			wx.MessageBox("Please select a TIM file", "Error", wx.OK | wx.ICON_ERROR)
+			wx.MessageBox("请选择一个 TIM 文件", "错误", wx.OK | wx.ICON_ERROR)
 			return
 
 		if self.double_layer_radio.GetValue():
 			bmp_path2 = self.bmp_picker2.GetPath()
 			if not bmp_path2.lower().endswith('.bmp'):
-				wx.MessageBox("Please select a second BMP file", "Error", wx.OK | wx.ICON_ERROR)
+				wx.MessageBox("请选择第二个 BMP 文件", "错误", wx.OK | wx.ICON_ERROR)
 				return
 			try:
-				# Get the base name without extension
 				base_name = os.path.splitext(os.path.basename(bmp_path))[0]
 				
-				# Convert BMPs to TIMs
 				tim_output_path1 = bmp_path.replace('.bmp', '.tim')
 				tim_output_path2 = bmp_path2.replace('.bmp', '.tim')
 				bmp_to_tim(bmp_path, tim_output_path1)
 				bmp_to_tim(bmp_path2, tim_output_path2)
-				self.log_text.AppendText(f"{os.path.basename(bmp_path)} has been successfully converted to {base_name}.tim\n")
-				self.log_text.AppendText(f"{os.path.basename(bmp_path2)} has been successfully converted to {os.path.basename(tim_output_path2)}\n")
+				self.log_text.AppendText(f"{os.path.basename(bmp_path)} 已成功转换为 {base_name}.tim\n")
+				self.log_text.AppendText(f"{os.path.basename(bmp_path2)} 已成功转换为 {os.path.basename(tim_output_path2)}\n")
 				
-				# Merge TIMs
 				merged_tim_output_path = os.path.join(os.path.dirname(tim_output_path1), f"{base_name}_merged.tim")
 				print(f"Running command: bin/AC3LayerMerger.exe {tim_output_path1} {tim_output_path2} {merged_tim_output_path}")
 				subprocess.run(["bin/AC3LayerMerger.exe", tim_output_path1, tim_output_path2, merged_tim_output_path], check=True)
-				self.log_text.AppendText(f"{os.path.basename(tim_output_path1)} and {os.path.basename(tim_output_path2)} have been successfully merged into {os.path.basename(merged_tim_output_path)}\nStarting to replace VRAM coordinates")
+				self.log_text.AppendText(f"{os.path.basename(tim_output_path1)} 和 {os.path.basename(tim_output_path2)} 已成功合并为 {os.path.basename(merged_tim_output_path)}\n开始替换 VRAM 坐标...\n")
 				time.sleep(2)
 					
-				# Copy VRAM coordinates from original TIM to merged TIM
 				original_memory = open_and_read_file(tim_path)
 				merged_memory = open_and_read_file(merged_tim_output_path)
 				image_org_x, image_org_y = self.get_image_vram_coordinates(original_memory)
@@ -470,24 +452,23 @@ class BMPToULZDialog(wx.Dialog):
 				self.set_palette_vram_coordinates(merged_memory, palette_org_x, palette_org_y)
 				with open(merged_tim_output_path, "wb") as f:
 					f.write(merged_memory)
-				self.log_text.AppendText(f"{os.path.basename(merged_tim_output_path)} has successfully obtained original VRAM coordinates\n")
+				self.log_text.AppendText(f"{os.path.basename(merged_tim_output_path)} 已成功获取原始 VRAM 坐标\n")
 				
-				# Compress merged TIM to ULZ if selected
 				if self.ulz_compress_checkbox.GetValue():
-					self.log_text.AppendText("Starting ULZ compression...\n")
+					self.log_text.AppendText("开始 ULZ 压缩...\n")
 					compress_ulz(merged_tim_output_path)
-					self.log_text.AppendText(f"{os.path.basename(merged_tim_output_path)} has been successfully compressed to {base_name}_merged.ulz\n")
+					self.log_text.AppendText(f"{os.path.basename(merged_tim_output_path)} 已成功压缩为 {base_name}_merged.ulz\n")
 				
-				self.log_text.AppendText(f"Conversion complete, the converted {os.path.basename(merged_tim_output_path)} and {base_name}_merged.ulz have been saved to {os.path.dirname(bmp_path)}\n")
+				self.log_text.AppendText(f"转换完成, 转换后的 {os.path.basename(merged_tim_output_path)} 和 {base_name}_merged.ulz 已保存到 {os.path.dirname(bmp_path)}\n")
 			except Exception as e:
-				wx.MessageBox(f"Error during processing: {str(e)}", "Error", wx.OK | wx.ICON_ERROR)
+				wx.MessageBox(f"处理过程中出错: {str(e)}", "错误", wx.OK | wx.ICON_ERROR)
 		else:
 			try:
 				base_name = os.path.splitext(os.path.basename(bmp_path))[0]
 				
 				tim_output_path = bmp_path.replace('.bmp', '.tim')
 				bmp_to_tim(bmp_path, tim_output_path)
-				self.log_text.AppendText(f"{os.path.basename(bmp_path)} has been successfully converted to {base_name}.tim\n")
+				self.log_text.AppendText(f"{os.path.basename(bmp_path)} 已成功转换为 {base_name}.tim\n")
 				
 				original_memory = open_and_read_file(tim_path)
 				new_memory = open_and_read_file(tim_output_path)
@@ -497,16 +478,16 @@ class BMPToULZDialog(wx.Dialog):
 				self.set_palette_vram_coordinates(new_memory, palette_org_x, palette_org_y)
 				with open(tim_output_path, "wb") as f:
 					f.write(new_memory)
-				self.log_text.AppendText(f"{base_name}.tim has successfully obtained original VRAM coordinates\n")
+				self.log_text.AppendText(f"{base_name}.tim 已成功获取原始 VRAM 坐标\n")
 				
 				if self.ulz_compress_checkbox.GetValue():
-					self.log_text.AppendText("Starting ULZ compression...\n")
+					self.log_text.AppendText("开始 ULZ 压缩...\n")
 					compress_ulz(tim_output_path)
-					self.log_text.AppendText(f"{base_name}.tim has been successfully compressed to {base_name}.ulz\n")
+					self.log_text.AppendText(f"{base_name}.tim 已成功压缩为 {base_name}.ulz\n")
 				
-				self.log_text.AppendText(f"Conversion complete, the converted {base_name}.tim and {base_name}.ulz have been saved to {os.path.dirname(bmp_path)}\n")
+				self.log_text.AppendText(f"转换完成, 转换后的 {base_name}.tim 和 {base_name}.ulz 已保存到 {os.path.dirname(bmp_path)}\n")
 			except Exception as e:
-				wx.MessageBox(f"Error during processing: {str(e)}", "Error", wx.OK | wx.ICON_ERROR)
+				wx.MessageBox(f"处理过程中出错: {str(e)}", "错误", wx.OK | wx.ICON_ERROR)
 
 	def get_image_vram_coordinates(self, fmemory):
 		tim_type = unpack4bytes(fmemory[4:8])
@@ -573,24 +554,24 @@ def decompress_ulz(input_file, output_file):
 
 class HeaderReplaceDialog(wx.Dialog):
     def __init__(self, parent, original_path=None, modified_path=None):
-        super().__init__(parent, title="Replace VRAM XY")
+        super().__init__(parent, title="替换 VRAM XY 坐标")
         panel = wx.Panel(self)
         
-        wx.StaticText(panel, label="Original TIM:")
-        self.original_picker = wx.FilePickerCtrl(panel, message="Select Original TIM")
+        wx.StaticText(panel, label="原始 TIM:")
+        self.original_picker = wx.FilePickerCtrl(panel, message="选择原始 TIM")
         if original_path:
             self.original_picker.SetPath(original_path)
-        wx.StaticText(panel, label="Modified TIM:")        
-        self.modified_picker = wx.FilePickerCtrl(panel, message="Select Modified TIM")
+        wx.StaticText(panel, label="修改后的 TIM:")        
+        self.modified_picker = wx.FilePickerCtrl(panel, message="选择修改后的 TIM")
         if modified_path:
             self.modified_picker.SetPath(modified_path)
-        self.replace_button = wx.Button(panel, label="Replace VRAM XY")
+        self.replace_button = wx.Button(panel, label="替换 VRAM XY 坐标")
         self.replace_button.Bind(wx.EVT_BUTTON, self.on_replace)
         
         sizer = wx.BoxSizer(wx.VERTICAL)
-        sizer.Add(wx.StaticText(panel, label="Original TIM:"), 0, wx.LEFT | wx.TOP, 5)
+        sizer.Add(wx.StaticText(panel, label="原始 TIM:"), 0, wx.LEFT | wx.TOP, 5)
         sizer.Add(self.original_picker, 0, wx.ALL | wx.EXPAND, 5)
-        sizer.Add(wx.StaticText(panel, label="Modified TIM:"), 0, wx.LEFT | wx.TOP, 5)
+        sizer.Add(wx.StaticText(panel, label="修改后的 TIM:"), 0, wx.LEFT | wx.TOP, 5)
         sizer.Add(self.modified_picker, 0, wx.ALL | wx.EXPAND, 5)
         sizer.Add(self.replace_button, 0, wx.ALL | wx.EXPAND, 5)
         panel.SetSizer(sizer)
@@ -605,7 +586,7 @@ class HeaderReplaceDialog(wx.Dialog):
         modified_path = self.modified_picker.GetPath()
         
         if not original_path or not modified_path:
-            wx.MessageBox("Please select both original and modified TIM files", "Error", wx.OK | wx.ICON_ERROR)
+            wx.MessageBox("请同时选择原始和修改后的 TIM 文件", "错误", wx.OK | wx.ICON_ERROR)
             return
         
         original_memory = open_and_read_file(original_path)
@@ -623,7 +604,7 @@ class HeaderReplaceDialog(wx.Dialog):
         with open(output_path, "wb") as f:
             f.write(modified_memory)
         
-        wx.MessageBox(f"New TIM saved to {output_path}", "Replace Complete", wx.OK | wx.ICON_INFORMATION)
+        wx.MessageBox(f"新 TIM 文件已保存至 {output_path}", "替换完成", wx.OK | wx.ICON_INFORMATION)
         self.Close()
 
     def get_image_vram_coordinates(self, fmemory):
@@ -671,20 +652,20 @@ class HeaderReplaceDialog(wx.Dialog):
 
 class EditVRAMDialog(wx.Dialog):
     def __init__(self, parent, original_path=None):
-        super().__init__(parent, title="Edit VRAM Coordinates")
+        super().__init__(parent, title="编辑 VRAM 坐标")
         panel = wx.Panel(self)
         
-        self.mode_single = wx.RadioButton(panel, label="Modify Single TIM", style=wx.RB_GROUP)
-        self.mode_batch = wx.RadioButton(panel, label="Batch Modify TIMs")
+        self.mode_single = wx.RadioButton(panel, label="修改单个 TIM", style=wx.RB_GROUP)
+        self.mode_batch = wx.RadioButton(panel, label="批量修改 TIM")
         self.mode_single.SetValue(True)
         self.mode_single.Bind(wx.EVT_RADIOBUTTON, self.on_mode_change)
         self.mode_batch.Bind(wx.EVT_RADIOBUTTON, self.on_mode_change)
         
         picker_panel = wx.Panel(panel)
-        self.file_picker = wx.FilePickerCtrl(picker_panel, message="Select TIM file")
+        self.file_picker = wx.FilePickerCtrl(picker_panel, message="选择 TIM 文件")
         self.file_picker.Bind(wx.EVT_FILEPICKER_CHANGED, self.on_file_selected)
         
-        self.folder_picker = wx.DirPickerCtrl(picker_panel, message="Select Folder")
+        self.folder_picker = wx.DirPickerCtrl(picker_panel, message="选择文件夹")
         self.folder_picker.Bind(wx.EVT_DIRPICKER_CHANGED, self.on_folder_selected)
         self.folder_picker.Hide()
         
@@ -693,24 +674,24 @@ class EditVRAMDialog(wx.Dialog):
         picker_sizer.Add(self.folder_picker, 0, wx.EXPAND)
         picker_panel.SetSizer(picker_sizer)
         
-        self.vram_info = wx.StaticText(panel, label="X range: 0-1023, Y range: 0-511")
-        self.vram_palette_x = wx.StaticText(panel, label="VRAM Palette X:")
+        self.vram_info = wx.StaticText(panel, label="X 范围: 0-1023, Y 范围: 0-511")
+        self.vram_palette_x = wx.StaticText(panel, label="VRAM 色板 X:")
         self.vram_palette_x_value = wx.StaticText(panel, label="", size=(100, -1))
         self.vram_palette_x_input = wx.TextCtrl(panel, size=(100, -1))
         
-        self.vram_palette_y = wx.StaticText(panel, label="VRAM Palette Y:")
+        self.vram_palette_y = wx.StaticText(panel, label="VRAM 色板 Y:")
         self.vram_palette_y_value = wx.StaticText(panel, label="", size=(100, -1))
         self.vram_palette_y_input = wx.TextCtrl(panel, size=(100, -1))
         
-        self.vram_image_x = wx.StaticText(panel, label="VRAM Image X:")
+        self.vram_image_x = wx.StaticText(panel, label="VRAM 图像 X:")
         self.vram_image_x_value = wx.StaticText(panel, label="", size=(100, -1))
         self.vram_image_x_input = wx.TextCtrl(panel, size=(100, -1))
         
-        self.vram_image_y = wx.StaticText(panel, label="VRAM Image Y:")
+        self.vram_image_y = wx.StaticText(panel, label="VRAM 图像 Y:")
         self.vram_image_y_value = wx.StaticText(panel, label="", size=(100, -1))
         self.vram_image_y_input = wx.TextCtrl(panel, size=(100, -1))
         
-        self.write_button = wx.Button(panel, label="Save Changes")
+        self.write_button = wx.Button(panel, label="保存更改")
         self.write_button.Bind(wx.EVT_BUTTON, self.on_write_vram)
         
         self.log_text = wx.TextCtrl(panel, style=wx.TE_MULTILINE | wx.TE_READONLY)
@@ -757,11 +738,11 @@ class EditVRAMDialog(wx.Dialog):
             self.file_picker.Hide()
             self.folder_picker.Show()
             self.clear_coordinate_values() 
-            self.vram_info.SetLabel("batch modify, X range: 0-1023, Y range: 0-511")
+            self.vram_info.SetLabel("批量修改, X 范围: 0-1023, Y 范围: 0-511")
         else:
             self.folder_picker.Hide()
             self.file_picker.Show()
-            self.vram_info.SetLabel("X range: 0-1023, Y range: 0-511")
+            self.vram_info.SetLabel("X 范围: 0-1023, Y 范围: 0-511")
         self.Layout()
 
     def clear_coordinate_values(self):
@@ -794,8 +775,8 @@ class EditVRAMDialog(wx.Dialog):
             self.vram_palette_x_input.SetValue(str(palette_org_x))
             self.vram_palette_y_input.SetValue(str(palette_org_y))
         else:
-            self.vram_palette_x_value.SetLabel("None")
-            self.vram_palette_y_value.SetLabel("None")
+            self.vram_palette_x_value.SetLabel("无")
+            self.vram_palette_y_value.SetLabel("无")
             self.vram_palette_x_input.SetValue("")
             self.vram_palette_y_input.SetValue("")
         
@@ -818,7 +799,7 @@ class EditVRAMDialog(wx.Dialog):
         self.vram_image_y_input.SetValue(str(image_org_y))
 
     def on_write_vram(self, event):
-        self.log_text.Clear()  # 清空之前的日志
+        self.log_text.Clear()
         if self.mode_single.GetValue():
             self.modify_single_tim()
         else:
@@ -853,16 +834,16 @@ class EditVRAMDialog(wx.Dialog):
         with open(filepath, "wb") as f:
             f.write(fmemory)
         
-        self.log_text.AppendText(f"VRAM coordinates written to {filepath}\n")
+        self.log_text.AppendText(f"VRAM 坐标已写入 {filepath}\n")
 
     def modify_batch_tim(self):
         folder_path = self.folder_picker.GetPath()
-        self.log_text.AppendText(f"Starting batch modification in folder: {folder_path}\n")
+        self.log_text.AppendText(f"开始批量修改文件夹: {folder_path}\n")
         
         for filename in os.listdir(folder_path):
             if filename.lower().endswith('.tim'):
                 filepath = os.path.join(folder_path, filename)
-                self.log_text.AppendText(f"Processing file: {filename}\n")
+                self.log_text.AppendText(f"正在处理文件: {filename}\n")
                 
                 try:
                     with open(filepath, "rb+") as f:
@@ -874,7 +855,7 @@ class EditVRAMDialog(wx.Dialog):
                             palette_org_y = int(self.vram_palette_y_input.GetValue())
                             fmemory[0x0C:0x0E] = palette_org_x.to_bytes(2, 'little')
                             fmemory[0x0E:0x10] = palette_org_y.to_bytes(2, 'little')
-                            self.log_text.AppendText(f"  Palette coordinates set to ({palette_org_x}, {palette_org_y})\n")
+                            self.log_text.AppendText(f"  色板坐标已设置为 ({palette_org_x}, {palette_org_y})\n")
                         
                         image_org_x = int(self.vram_image_x_input.GetValue())
                         image_org_y = int(self.vram_image_y_input.GetValue())
@@ -891,29 +872,29 @@ class EditVRAMDialog(wx.Dialog):
                             fmemory[0x18:0x1A] = image_org_x.to_bytes(2, 'little')
                             fmemory[0x1A:0x1C] = image_org_y.to_bytes(2, 'little')
                         
-                        self.log_text.AppendText(f"  Image coordinates set to ({image_org_x}, {image_org_y})\n")
+                        self.log_text.AppendText(f"  图像坐标已设置为 ({image_org_x}, {image_org_y})\n")
                         
                         f.seek(0)
                         f.write(fmemory)
                         f.flush()
                         os.fsync(f.fileno())
                     
-                    self.log_text.AppendText(f"  VRAM coordinates written to {filepath}\n")
+                    self.log_text.AppendText(f"  VRAM 坐标已写入 {filepath}\n")
                 except Exception as e:
-                    self.log_text.AppendText(f"  Error processing {filename}: {str(e)}\n")
+                    self.log_text.AppendText(f"  处理 {filename} 时出错: {str(e)}\n")
         
-        self.log_text.AppendText(f"Batch modification completed for all TIM files in {folder_path}\n")
+        self.log_text.AppendText(f"文件夹 {folder_path} 中的所有 TIM 文件批量修改完成\n")
 
 
 
 class ColorInfoDialog(wx.Dialog):
     def __init__(self, parent, color):
-        super().__init__(parent, title="Color Info", style=wx.DEFAULT_DIALOG_STYLE | wx.STAY_ON_TOP)
+        super().__init__(parent, title="颜色信息", style=wx.DEFAULT_DIALOG_STYLE | wx.STAY_ON_TOP)
         panel = wx.Panel(self)
         
-        color_hex = f"#{color[0]:02X}{color[1]:02X}{color[2]:02X}"  # 转换为十六进制颜色值
+        color_hex = f"#{color[0]:02X}{color[1]:02X}{color[2]:02X}"
         self.color_text = wx.TextCtrl(panel, value=color_hex, style=wx.TE_READONLY)
-        self.copy_button = wx.Button(panel, label="Copy color value")
+        self.copy_button = wx.Button(panel, label="复制颜色值")
         self.copy_button.Bind(wx.EVT_BUTTON, self.on_copy)
         
         sizer = wx.BoxSizer(wx.VERTICAL)
@@ -952,17 +933,18 @@ def process_file(fmemory, filepath):
     print(f"Debug: Magic number: 0x{magic:08X}, TIM type: 0x{tim_type:08X}")
 
     if magic != MAGIC:
-        return [], 0, 0, "File is not a .tim image file", []
+        return [], 0, 0, "文件不是 .tim 图像文件", []
 
-    header_info = f"{filepath} Information\n"
+    header_info = f"{filepath} 文件信息\n"
     header_info += f"Magic:\t0x{magic:08X}\n"
     header_info += f"Type:\t0x{tim_type:08X}\n"
 
+    palette_org_x, palette_org_y = 0, 0
     if tim_type in [TYPE_4BPP, TYPE_8BPP]:
         palette_org_x = unpack2bytes_le(fmemory[0x0C:0x0E])
         palette_org_y = unpack2bytes_le(fmemory[0x0E:0x10])
         clut_count = unpack2bytes_le(fmemory[0x12:0x14])
-        header_info += f"CLUT Count:\t{clut_count} (0x{clut_count:04X})\n"
+        header_info += f"CLUT 数量:\t{clut_count} (0x{clut_count:04X})\n"
         
         clut_size = 16 if tim_type == TYPE_4BPP else 256
         total_clut_size = clut_count * clut_size * 2
@@ -981,33 +963,28 @@ def process_file(fmemory, filepath):
     if tim_type == TYPE_24BPP:
         pixels, width, height = process_24bpp(fmemory)
         cluts = [[]]
-        header_info += f"BitMode:\t24BPP\n"
+        header_info += f"位深度:\t24BPP\n"
     elif tim_type == TYPE_16BPP:
         pixels, width, height = process_16bpp(fmemory)
         cluts = [[]]
-        header_info += f"BitMode:\t16BPP\n"
+        header_info += f"位深度:\t16BPP\n"
     elif tim_type == TYPE_8BPP:
         pixels, width, height, clut_info, cluts = process_8bpp(fmemory)
-        header_info += f"BitMode:\t8BPP\n"
+        header_info += f"位深度:\t8BPP\n"
     elif tim_type == TYPE_4BPP:
         pixels, width, height, clut_info, cluts = process_4bpp(fmemory)
-        header_info += f"BitMode:\t4BPP\n"
+        header_info += f"位深度:\t4BPP\n"
     else:
-        return [], 0, 0, "Unsupported .tim file type", []
+        return [], 0, 0, "不支持的 .tim 文件类型", []
 
-    header_info += f"Width:\t{width}\n"
-    header_info += f"Height:\t{height}\n"
-    header_info += f"Palette X:\t{palette_org_x} (0x{palette_org_x:04X})\n"
-    header_info += f"Palette Y:\t{palette_org_y} (0x{palette_org_y:04X})\n"
-    header_info += f"Image X:\t{image_org_x} (0x{image_org_x:04X})\n"
-    header_info += f"Image Y:\t{image_org_y} (0x{image_org_y:04X})\n"
+    header_info += f"宽度:\t{width}\n"
+    header_info += f"高度:\t{height}\n"
+    header_info += f"色板 X:\t{palette_org_x} (0x{palette_org_x:04X})\n"
+    header_info += f"色板 Y:\t{palette_org_y} (0x{palette_org_y:04X})\n"
+    header_info += f"图像 X:\t{image_org_x} (0x{image_org_x:04X})\n"
+    header_info += f"图像 Y:\t{image_org_y} (0x{image_org_y:04X})\n"
 
     print(f"Debug: Header info: {header_info}")
-
-    #调试：打印CLUT颜色数据
-    #for clut in cluts:
-    #    for color in clut:
-    #        print(f"CLUT Color: {color}")
 
     return pixels, width, height, header_info, cluts
 
@@ -1042,13 +1019,13 @@ def process_16bpp(fmemory):
 def getpixeldata(datatable, position):
     value = datatable[position*2:position*2 + 2]
     if len(value) < 2:
-        return (0, 0, 0, 255)  # 默认alpha值为255
+        return (0, 0, 0, 255)
     color = unpack2bytes(value)
     mask = 0b011111
     red = color & mask
     green = (color >> 5) & mask
     blue = (color >> 10) & mask
-    alpha = 255 if (color & 0x8000) == 0 else 0  # 检查最高位是否为1，表示透明
+    alpha = 255 if (color & 0x8000) == 0 else 0
     return (red * 8, green * 8, blue * 8, alpha)
 
 def process_8bpp(fmemory):
@@ -1067,6 +1044,7 @@ def process_8bpp(fmemory):
             position = indices[i]
             pixels[x][i] = clut[x][position]
     return pixels, image_width, image_height, "", clut
+
 def process_4bpp(fmemory):
     end_of_clut = unpack4bytes(fmemory[8:12]) + 8
     clut_size = unpack2bytes(fmemory[16:18])
@@ -1088,13 +1066,22 @@ def process_4bpp(fmemory):
             i += 2
             j += 1
     return pixels, image_width, image_height, "", clut
+
 def create_bitmap(pixels, width, height):
     image = wx.Image(width, height)
     for y in range(height):
         for x in range(width):
             color = pixels[y * width + x]
+            # SetRGBTuple takes a tuple of (r,g,b)
             image.SetRGB(x, y, color[0], color[1], color[2])
+            # SetAlpha is separate
+            if len(color) > 3:
+                # wx.Image needs an alpha channel buffer initialized first
+                if not image.HasAlpha():
+                    image.InitAlpha()
+                image.SetAlpha(x, y, color[3])
     return wx.Bitmap(image)
+
 
 def export_tim(fmemory, selected_clut, new_filepath):
     tim_type = unpack4bytes(fmemory[4:8])
