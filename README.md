@@ -87,7 +87,7 @@
 
 ### 步骤二：修改图像资源 (核心汉化工作)
 
-**核心机制：** 游戏中的所有文本（对话、菜单、字幕等）都是以**TIM图像**的形式存在的。因此，汉化工作本质上就是**替换这些图像**。
+**核心机制：** 游戏中的所有文本（对话、菜单、字幕等）都是以**TIM图像**的形式存在的。因此，汉化工作本质上就是**替换这些图像**。原始文本放在了**Script**目录里面。
 
 #### 1. 图像类型与工具
 
@@ -188,3 +188,12 @@
 
 - **方法一 (推荐)**: 直接使用 `xdelta` 等通用补丁制作工具，对比原始游戏镜像和你的修改版镜像，生成一个 `.xdelta` 补丁文件。并提供 `xdelta` 的使用说明。
 - **方法二 (高级)**: 参考 `Patcher` 目录里的说明文档，可以制作一个自定义的补丁程序，它可以自动判断镜像，并自动打补丁（需要使用go语音编译环境）。
+
+
+## 致谢Acknowledgments
+*  [AC3-Layer-Merger](https://github.com/DashmanGC/AC3-Layer-Merger)
+*  [ac3es-tools](https://github.com/loadwordteam/ac3es-tools)
+*  [tim2bmp](https://github.com/simias/psxsdk/blob/c68f12c05b0da85b44c3d7d3fa81236cbb9a9d7c/tools/tim2bmp.c#L197)
+*  [FUSION PIXEL](https://github.com/TakWolf/fusion-pixel-font)
+*  [寒蝉全圆体](https://github.com/Warren2060/ChillRound)
+*  [PSX-MODE2](https://www.romhacking.net/utilities/848/)
