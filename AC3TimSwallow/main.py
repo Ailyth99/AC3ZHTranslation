@@ -264,6 +264,9 @@ class Frame(wx.Frame):
             except Exception as e:
                 wx.MessageBox(f"Error compressing file: {str(e)}", "Error", wx.OK | wx.ICON_ERROR)
 
+    # ####################################################################
+    # ## THIS IS THE MODIFIED FUNCTION
+    # ####################################################################
     def on_ulz_decompress(self, event):
         with wx.FileDialog(self, "Select ULZ file to decompress", wildcard="ULZ files (*.ulz)|*.ulz",
                            style=wx.FD_OPEN | wx.FD_FILE_MUST_EXIST) as fileDialog:
@@ -271,13 +274,32 @@ class Frame(wx.Frame):
                 return
 
             input_path = fileDialog.GetPath()
-            output_path = input_path.replace(".ulz",                                             "")
+            # This is now a temporary path without an extension
+            temp_output_path = input_path.replace(".ulz", "")
 
             try:
-                decompress_ulz(input_path, output_path)
-                wx.MessageBox(f"File decompressed successfully: {output_path}", "Success", wx.OK | wx.ICON_INFORMATION)
+                # 1. Decompress to the temporary path
+                decompress_ulz(input_path, temp_output_path)
+                
+                # 2. Read the header of the newly created file to determine its type
+                with open(temp_output_path, 'rb') as f:
+                    header = f.read(4)
+
+                # 3. Decide the final path based on the header
+                if header == b'\x10\x00\x00\x00':
+                    final_output_path = temp_output_path + ".tim"
+                else:
+                    final_output_path = temp_output_path + ".dat"
+                
+                # 4. Rename the file to its final name
+                os.rename(temp_output_path, final_output_path)
+                
+                # 5. Show success message with the final path
+                wx.MessageBox(f"File decompressed successfully: {final_output_path}", "Success", wx.OK | wx.ICON_INFORMATION)
+
             except Exception as e:
-                wx.MessageBox(f"Error decompressing file: {str(e)}", "Error", wx.OK | wx.ICON_ERROR)
+                # Catch any error during decompression or file processing
+                wx.MessageBox(f"Error during processing: {str(e)}", "Error", wx.OK | wx.ICON_ERROR)
 
     def on_split_bin(self, event):
         with wx.FileDialog(self, "Select BIN or DAT file", wildcard="BIN files (*.bin;*.dat)|*.bin;*.dat", style=wx.FD_OPEN | wx.FD_FILE_MUST_EXIST) as fileDialog:
@@ -318,15 +340,6 @@ class Frame(wx.Frame):
             raise Exception(f"Compression failed: {result.stderr}")
         return result.stdout
 
-    def compress_ulz(self, input_file, output_file):
-        command = [
-            'bin/ac3es_tools.exe', 'ulz', '--compress', input_file, '--ulz-type=2', '--level=1', '--output', output_file
-        ]
-        result = subprocess.run(command, capture_output=True, text=True)
-        if result.returncode != 0:
-            raise Exception(f"Compression failed: {result.stderr}")
-        return result.stdout
-
     def on_image_right_click(self, event):
         if self.bitmap:
             menu = wx.Menu()
@@ -356,8 +369,6 @@ class Frame(wx.Frame):
     def on_bmp_to_ulz(self, event):
         dialog = BMPToULZDialog(self)
         dialog.ShowModal()
-
-
 
 
 class BMPToULZDialog(wx.Dialog):
@@ -559,48 +570,6 @@ def decompress_ulz(input_file, output_file):
     if result.returncode != 0:
         raise Exception(f"Decompression failed: {result.stderr}")
     return result.stdout
-
-def compress_ulz(input_file):
-    base_name = os.path.splitext(os.path.basename(input_file))[0]
-    output_file = os.path.join(os.path.dirname(input_file), f"{base_name}.ulz")
-    command = [
-        'bin/ac3es_tools.exe', 'ulz', '--compress', input_file, '--ulz-type=2', '--level=1', '--output', output_file
-    ]
-    result = subprocess.run(command, capture_output=True, text=True)
-    if result.returncode != 0:
-        raise Exception(f"Compression failed: {result.stderr}")
-    return result.stdout
-
-def compress_ulz(input_file):
-    base_name = os.path.splitext(os.path.basename(input_file))[0]
-    output_file = os.path.join(os.path.dirname(input_file), f"{base_name}.ulz")
-    command = [
-        'bin/ac3es_tools.exe', 'ulz', '--compress', input_file, '--ulz-type=2', '--level=1', '--output', output_file
-    ]
-    result = subprocess.run(command, capture_output=True, text=True)
-    if result.returncode != 0:
-        raise Exception(f"Compression failed: {result.stderr}")
-    return result.stdout
-
-def decompress_ulz(input_file, output_file):
-    command = [
-        'bin/ac3es_tools.exe', 'ulz', '--decompress', input_file, '--output', output_file
-    ]
-    result = subprocess.run(command, capture_output=True, text=True)
-    if result.returncode != 0:
-        raise Exception(f"Decompression failed: {result.stderr}")
-    return result.stdout
-
-def decompress_ulz(input_file, output_file):
-    command = [
-        'bin/ac3es_tools.exe', 'ulz', '--decompress', input_file, '--output', output_file
-    ]
-    result = subprocess.run(command, capture_output=True, text=True)
-    if result.returncode != 0:
-        raise Exception(f"Decompression failed: {result.stderr}")
-    return result.stdout
-
-
 
 class HeaderReplaceDialog(wx.Dialog):
     def __init__(self, parent, original_path=None, modified_path=None):

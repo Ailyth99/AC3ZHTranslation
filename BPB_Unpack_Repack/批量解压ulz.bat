@@ -2,13 +2,13 @@
 setlocal
 
 :input_folder
-set /p "folder=请输入要遍历的文件夹路径: "
+set /p "folder=A folder contain ULZ files: "
 if not exist "%folder%" (
   echo not_exist
   goto input_folder
 )
 
-echo 正在遍历 "%folder%" 及其子文件夹中的 ulz 文件...
+echo UNCOMPRESSING "%folder%" ...
 
 for /r "%folder%" %%a in (*.ulz) do (
   echo umcprs: %%a
@@ -20,6 +20,6 @@ for /r "%folder%" %%a in (*.ulz) do (
   )
 )
 
-echo 完成!
+echo COMPLETE!
 endlocal
 pause

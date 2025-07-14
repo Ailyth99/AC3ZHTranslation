@@ -11,6 +11,6 @@
 
 ## 其他字体 
 
-在相关游戏项目中，任务对话等部分使用了另一款开源字体：
+在任务对话等部分使用了另一款开源字体：
 
 -   [fusion-pixel-font (缝合像素字体)](https://github.com/TakWolf/fusion-pixel-font)
