@@ -1,0 +1,688 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>AC3 CHINESELIZATION - GR Route</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(50, 48, 44, 1);
+}
+.highlight-gray {
+	color: rgba(115, 114, 110, 1);
+	fill: rgba(115, 114, 110, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(205, 60, 58, 1);
+	fill: rgba(205, 60, 58, 1);
+}
+.highlight-default_background {
+	color: rgba(50, 48, 44, 1);
+}
+.highlight-gray_background {
+	background: rgba(248, 248, 247, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(248, 243, 252, 1);
+}
+.highlight-pink_background {
+	background: rgba(252, 241, 246, 1);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(115, 114, 110, 1);
+	fill: rgba(115, 114, 110, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(205, 60, 58, 1);
+	fill: rgba(205, 60, 58, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(248, 248, 247, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(248, 243, 252, 1);
+}
+.block-color-pink_background {
+	background: rgba(252, 241, 246, 1);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-default { background-color: rgba(84, 72, 49, 0.08); }
+.select-value-color-gray { background-color: rgba(84, 72, 49, 0.15); }
+.select-value-color-brown { background-color: rgba(210, 162, 141, 0.35); }
+.select-value-color-orange { background-color: rgba(224, 124, 57, 0.27); }
+.select-value-color-yellow { background-color: rgba(236, 191, 66, 0.39); }
+.select-value-color-green { background-color: rgba(123, 183, 129, 0.27); }
+.select-value-color-blue { background-color: rgba(93, 165, 206, 0.27); }
+.select-value-color-purple { background-color: rgba(168, 129, 197, 0.27); }
+.select-value-color-pink { background-color: rgba(225, 136, 179, 0.27); }
+.select-value-color-red { background-color: rgba(244, 171, 159, 0.4); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="11b72ce6-1367-80be-9e5e-ebd06468bc71" class="page sans"><header><img class="page-cover-image" src="https://cdna.artstation.com/p/assets/images/images/040/442/416/large/shwetank-shukla-f-15-mt.jpg?1628858558" style="object-position:center 39.24999999999999%"/><div class="page-header-icon page-header-icon-with-cover"><span class="icon">🔄</span></div><h1 class="page-title">AC3 CHINESELIZATION - GR Route</h1><p class="page-description"></p></header><div class="page-body"><p id="11b72ce6-1367-80f8-81b5-c1f8c3a603da" class="">
+</p><h1 id="11b72ce6-1367-8084-82f9-ca3fd504b7b7" class="">新闻</h1><table id="11b72ce6-1367-80ef-b82d-eff8969f6051" class="simple-table"><tbody><tr id="17fd9b15-e67d-4921-82ab-159563520e4b"><td id="Hc;p" class="block-color-pink">序号</td><td id="JZQ:" class="block-color-pink">文件路径</td><td id="uHtM" class="block-color-pink" style="width:317px">原文</td><td id="rDU`" class="block-color-pink" style="width:285px">译文</td><td id="TwO~" class="block-color-pink" style="width:229px">备注</td></tr><tr id="1054dde1-86b7-4c42-8b1a-1d628c2f1c32"><td id="Hc;p" class="">1</td><td id="JZQ:" class="">0384_0001_0000_0000</td><td id="uHtM" class="" style="width:317px">こんばんは。<br/>『ゼネラル·ニュース·トウディ』の時間、<br/>カール·ラーソンです。<br/>こんばんは。<br/>セリース·クリスティです。<br/>まず最初は、<br/>フォート·グレイス空港に緊急着陸した<br/>戦鬪機についての話題から<br/>はい、お伝えします。<br/>昨日未明、ゼネラルリソースの<br/>フォート·グレイス空港上空に<br/>一機の戦鬪機力突然あらわれ、<br/></td><td id="rDU`" class="" style="width:285px">大家晚上好。<br/>欢迎收看&lt;通用资源每日新闻&gt;，<br/>我是卡尔·拉尔森。<br/>晚上好。<br/>我是赛丽丝·克里斯蒂。<br/>来看第一件新闻，<br/>一架战斗机紧急迫降在格雷斯堡机场。<br/><br/>好的，我来报道这则新闻。<br/>昨天凌晨，通用资源集团的<br/>格雷斯堡机场上空<br/>突然出现一架战斗机<br/></td><td id="TwO~" class="" style="width:229px">M20<br/><br/><br/>连续新闻，注意三个图VRAM坐标不同<br/></td></tr><tr id="053d0448-bc64-4a2a-a7d4-0b3ebb661ca7"><td id="Hc;p" class="">2</td><td id="JZQ:" class=""></td><td id="uHtM" class="" style="width:317px">数分後、第三滑走路に緊急着陸しました。<br/>当初は所属不明とも伝えられていた同機は、<br/>ゼネラルリソース航空警備保障による<br/>取り調べの結果、<br/>UPEO治安雑持部隊所属の戦鬪機と判明。<br/>この着陸の目的は、<br/>同機搭乗員のゼネラルリソースへの<br/>移籍と見られており、<br/>ゼネラルリソース航空警備保障では<br/>現在も搭乗員から<br/>詳しい事情を聞いています。<br/>さて、皆さんの中にはこのニュースを聞き、<br/></td><td id="rDU`" class="" style="width:285px">几分钟后，它紧急迫降在第三跑道。<br/>对于这架来历不明的飞机，<br/>通用资源航空警备保障部门<br/>迅速对其进行了调查，<br/>确认其属于UPEO维和部队。<br/>据推测，此次迫降的目的<br/>是该机飞行员<br/>希望加入通用资源。<br/>通用资源航空警备保障部门<br/>目前仍在向该机飞行员<br/>了解详细情况。<br/>那么，各位观众在看到这则新闻后，<br/></td><td id="TwO~" class="" style="width:229px"></td></tr><tr id="fc2ba9cf-bea8-463c-b759-ab182c576336"><td id="Hc;p" class="">3</td><td id="JZQ:" class="">0384_0001_0001_0001</td><td id="uHtM" class="" style="width:317px">何故この戦鬪機は<br/>フォート·グレイス空港上空に現れるまで、<br/>一度もゼネラルリソース側の<br/>警戒システムに発見されずに<br/>飛行出来たのが …… と、疑問に思う方も<br/>おられるのではないでしょうか。<br/>もしも、このようにして<br/>戦問機が簡単に警戒システムを潜り抜け、<br/>ゼネラルリソース側の空港に<br/>着陸する事が出来るならば、<br/>我々は知らず知らずのうちに<br/>大変な危険と鄰り合わせで暮らしている、<br/></td><td id="rDU`" class="" style="width:285px">或许会产生疑问……<br/>为什么这架战斗机<br/>直到出现在格雷斯堡机场上空之前，<br/>都没有被通用资源的<br/>警戒系统发现呢？<br/>这的确是个问题。<br/>如果，像这件事一样，<br/>战斗机可以轻易地突破警戒系统，<br/>并且在通用资源的机场<br/>安然着陆，<br/>那么，我们岂不是毫无察觉的，<br/>生活在巨大的危险之中吗？<br/></td><td id="TwO~" class="" style="width:229px"></td></tr><tr id="8f8b034d-1d3a-44d9-b5cf-f45f0fe26212"><td id="Hc;p" class=""></td><td id="JZQ:" class=""></td><td id="uHtM" class="" style="width:317px">とも考えられますよね?<br/>はい。まさに、その通りですね。<br/>そこで我々としては、<br/>ゼネラルリソース本社に<br/>特別な取材許可を申請しました。<br/>その結果、今回は、<br/>なんとゼネラルリソース防衛部隊隊長<br/>アピサル·ディジョン氏が、<br/>先程、ビデオフォンを通じて<br/>我々の疑問に直接答えてくれました。<br/>それでは早速、<br/>その模様をVTRでご覧ください。<br/></td><td id="rDU`" class="" style="width:285px">是不是可以这么认为？<br/>是的，的确如此。<br/>因此，<br/>我们向通用资源总部<br/>申请了特别的采访许可。<br/>结果，我们竟然<br/>得到了通用资源防卫部队队长<br/>阿比萨尔·迪森先生的亲自答复。<br/>他刚才通过视频电话<br/>直接回答了我们的疑问。<br/>那么，事不宜迟，<br/>让我们通过录像来了解一下情况。<br/></td><td id="TwO~" class="" style="width:229px"></td></tr><tr id="7eb80da7-beff-434d-84a9-53f8a50c00a2"><td id="Hc;p" class=""></td><td id="JZQ:" class="">0384_0001_0002_0002</td><td id="uHtM" class="" style="width:317px">今回、我々の警戒システムが<br/>作動しなかったのは、<br/>我々と着陸した戦闘機の<br/>パイロットとの間で、<br/>事前に連絡を取った上での、<br/>あくまで計画的な着陸だったからであり、<br/>ゼネラルの防空には<br/>報道されているような問題は<br/>何も生じていませんので<br/>安心して下さい。<br/>今のゴタゴタは、<br/>空港に設置されたカメラの捉えた映像が<br/></td><td id="rDU`" class="" style="width:285px">此次，我们的警戒系统<br/>之所以没有启动，<br/>是因为我们事前<br/>就与迫降战斗机的飞行员<br/>进行了联络，<br/>因此这是一次完全计划好的降落。<br/>通用资源的防空系统<br/>并没有出现任何报道中所说的问题，<br/>请大家放心。<br/><br/>目前的舆论乱局，<br/>是由机场摄像机拍摄的影像<br/></td><td id="TwO~" class="" style="width:229px"></td></tr><tr id="d7afbf36-f68c-4c02-91ef-e06f5dcf0028"><td id="Hc;p" class=""></td><td id="JZQ:" class=""></td><td id="uHtM" class="" style="width:317px">一部の報道機関に流出してしまったのが<br/>発端と言えるでしょう。<br/>我々としては、<br/>このような映像が流出していた事こそ<br/>大きなお題であると考えており、<br/>現在この原因を調査しています。<br/>——という事は、この移籍劇は<br/>最初から計画的なものだったんですか?<br/>ゼネラルリソースとしては、<br/>UPEOとの協力関係もあるワケですから、<br/>この移籍劇は極秘のうちに<br/>終わらせたかったのでしょう。<br/></td><td id="rDU`" class="" style="width:285px">泄露给部分媒体机构所导致的。<br/><br/>我们认为，<br/>影像泄露本身<br/>才是一个严重的问题，<br/>目前我们正在调查泄露的原因。<br/>——这么说来，这次的“跳槽”事件<br/>从一开始就是计划好的？<br/>考虑到通用资源<br/>与UPEO之间也存在合作关系，<br/>这次事件可能是他们<br/>想秘密地进行人员调动。<br/></td><td id="TwO~" class="" style="width:229px"></td></tr><tr id="a583be66-3aef-418e-b9ba-2a0b42026d93"><td id="Hc;p" class=""></td><td id="JZQ:" class="">0384_0001_0003_0003</td><td id="uHtM" class="" style="width:317px">関係者からの話によると、<br/>着陸した戦間機の搭乗員は<br/>とても優秀な人材のようですね?<br/>しかし、同じゼネラルリソースの<br/>エース·パイロットであり、<br/>ディジョン氏とは長年チームを組んでいる<br/>キース·プライアン氏の意見を聞くと、<br/>どうやら微妙なズレがあるようです。<br/>KEITH：あ? 例の戦鬪機——?<br/>いいが、大体がな<br/>UPEOの腰抜けん中で<br/>出来るってだけのヤツが、<br/></td><td id="rDU`" class="" style="width:285px">据相关人士透露，<br/>迫降战斗机的飞行员<br/>是一位非常优秀的人才。<br/>不过，作为通用资源的<br/>另一位王牌飞行员，<br/>并且和迪森长期做搭档的<br/>基思·布莱恩的看法，<br/>似乎略有不同。<br/>啊？你说那架战斗机——？<br/>还行吧，不过还是觉得，<br/>在UPEO那帮废材里<br/>还算可以的家伙，<br/></td><td id="TwO~" class="" style="width:229px"></td></tr><tr id="1f4481bb-ba0a-402e-b266-631023ca449c"><td id="Hc;p" class=""></td><td id="JZQ:" class=""></td><td id="uHtM" class="" style="width:317px">我らがゼネラルのメンバーとして<br/>通用するか!<br/>ま、とりあえず ……<br/>お手なみ拝見ってトコだな。<br/>——で、<br/>お前らちゃんと取材許可とってんのか?<br/></td><td id="rDU`" class="" style="width:285px">到了咱们通用资源，<br/>够不够格还不好说！<br/>嘛，总之……<br/>还是先看看他的本事吧。<br/>——喂，<br/>你们有采访许可吗？<br/></td><td id="TwO~" class="" style="width:229px"></td></tr><tr id="11b72ce6-1367-80d9-8d2a-f7629b05ada9"><td id="Hc;p" class=""></td><td id="JZQ:" class="">0385_0001_0000_0000</td><td id="uHtM" class="" style="width:317px">我々にとって科学の力は、<br/>大いなる繁栄をもたらし<br/>多くの恩恵を与えてくれる。<br/>しかし、同時に科学の暴走は、<br/>地球環境の破壊や災害を引き起こし、<br/>人類全体を滅ほすほどの力を秘めている。<br/>今回のレポートでもご覧いただいたように<br/>ニューコムが掲けている科学者の夢は、<br/>ナノ·テクノロジーや宇由開発、<br/>マイクロ波発電などという<br/>具体的な脅威となって、<br/></td><td id="rDU`" class="" style="width:285px">科技的力量，<br/>为我们带来了巨大的繁荣和诸多恩惠。<br/><br/>然而，一旦科技失控，<br/>不仅会破坏地球环境，引发灾害，<br/>更蕴含着足以毁灭全人类的力量。<br/>正如各位在本次报道中所见，<br/>Neucom的科学家们描绘的蓝图，<br/>正以纳米技术、太空开发、<br/>微波发电等形式，<br/>化作具体的威胁，<br/></td><td id="TwO~" class="" style="width:229px">M21</td></tr><tr id="11b72ce6-1367-80af-a58f-d8ed4c45b4c0"><td id="Hc;p" class=""></td><td id="JZQ:" class=""></td><td id="uHtM" class="" style="width:317px">人類全体を巻き込もうとしている。<br/>私たちグローバル·ウェイは、<br/>何も新しい技術の全てを<br/>否定しているワケではありません。<br/>その証拠に私は車にも乗るし、<br/>電脳空間のアカウントも取得しています。<br/>しかし、ニューコムの科学者たちは、<br/>自分たちの夢を実現する為には<br/>手段を選ばない。<br/>ニューコムの科学者たちは、<br/>ゼネラルリソースで<br/>異端兒集団と言われていた事からも<br/></td><td id="rDU`" class="" style="width:285px">将全人类裹挟其中。<br/>我们“寰球之路”组织，<br/>并非全盘否定新科技。<br/><br/>例如，我自己也开车，<br/>也在电脑空间注册了账号。<br/>只是，Neucom的科学家们，<br/>为了实现他们的所谓梦想，<br/>往往不择手段。<br/>这一点从他们在通用资源时期<br/>就被称为&quot;异端分子&quot;一事可见一斑。<br/></td><td id="TwO~" class="" style="width:229px"></td></tr><tr id="11b72ce6-1367-80e6-9649-e50f215cd6ba"><td id="Hc;p" class=""></td><td id="JZQ:" class=""> 0385_0001_0001_0001</td><td id="uHtM" class="" style="width:317px">わかるように、<br/>充分な実験期間も取らずに、<br/>大規模な範囲で<br/>新しい技術を実用化しようとしている。<br/>その危険性に対して、<br/>情報公開を求めて活動しているのです。<br/>そうです。<br/>私たちは何にでも反対する事を<br/>生きがいにするような団体ではありません。<br/>それだけはわかってほしいと思っています。<br/></td><td id="rDU`" class="" style="width:285px">他们在没有经过<br/>充分的实验验证的情况下，<br/>就试图将新技术<br/>大规模地应用于实际生产生活。<br/>我们开展活动，正是为了要求他们<br/>公开信息，揭示这种做法的危险性。<br/>是的，<br/>我们并非一个以反对一切为目标的组织。<br/><br/>希望大家能够理解这一点。<br/></td><td id="TwO~" class="" style="width:229px"></td></tr><tr id="11c72ce6-1367-8027-bf1b-f6c47ea9d7c6"><td id="Hc;p" class=""></td><td id="JZQ:" class="">0387_0001_0000_0000</td><td id="uHtM" class="" style="width:317px">ニューコムが、<br/>もとはゼネラルで異端の烙印を押された<br/>一部の科学者たちによって発展した事は、<br/>よく知られています。<br/>しかし、そのニューコムを<br/>古巣のゼネラルと肩を並べるほど,<br/>巨大な組織にさせた優秀な科学者たちが、<br/>なぜゼネラルでは異端とされていたのか?<br/>それについては、<br/>今までも様々な説が入り乱れ<br/>はっきりとした事はわかりませんでした。<br/>しかし、ここにその謎を解く、<br/></td><td id="rDU`" class="" style="width:285px">Neucom最初是由一群在<br/>通用资源被打上“异端”烙印的<br/>科学家们发展壮大的，<br/>这一点大家都知道。<br/>但是，正是这些优秀的科学家们<br/>让Neucom发展到足以与老东家通用资源<br/>匹敌的规模，<br/>那为什么他们当初会被视为异端呢？<br/>关于这一点，<br/>各种说法层出不穷，<br/>真相一直扑朔迷离。<br/>然而，就在最近，<br/></td><td id="TwO~" class="" style="width:229px">M23</td></tr><tr id="11c72ce6-1367-807d-9d66-cd2015daa3dc"><td id="Hc;p" class=""></td><td id="JZQ:" class=""></td><td id="uHtM" class="" style="width:317px">ーつの手掛かりになるような事実が、<br/>ついに明るみに出たのです。<br/>それは<br/>なんと、その科学者たちが非道な人体実験を<br/>密かに行っていたのではないかという<br/>驚くべきものでした。<br/>これは先日から行われている<br/>グローバル·ウェイが<br/>ニューコム·バイオを提訴した<br/>いわゆる「ナノ公害訴訟』の席上で、<br/>原告側が証拠として提出した資料に<br/>記載されており、<br/></td><td id="rDU`" class="" style="width:285px">可能解开这一谜团的一条关键线索<br/>终于浮出水面。<br/>令人震惊的是，<br/>这条线索指出这些科学家们<br/>可能秘密地进行了惨无人道的人体实验。<br/><br/>这条线索出自近日<br/>环保组织“寰球之路”<br/>起诉Neucom生物科技的<br/>“纳米污染诉讼案”中，<br/>由原告方作为证据提交的资料。<br/></td><td id="TwO~" class="" style="width:229px"></td></tr><tr id="11c72ce6-1367-8084-a165-f951aba1d2b0"><td id="Hc;p" class=""></td><td id="JZQ:" class="">0387_0001_0001_0001</td><td id="uHtM" class="" style="width:317px">この『S.O.C.文書』には、<br/>確かに人体実験が行われていたと<br/>取れる記述が存在します。<br/></td><td id="rDU`" class="" style="width:285px">在这份『S.O.C.文件』中，<br/>找到的一些记述，<br/>表明人体实验的确进行过。<br/></td><td id="TwO~" class="" style="width:229px"></td></tr><tr id="11c72ce6-1367-800d-bf87-fe6f44ee95e4"><td id="Hc;p" class=""></td><td id="JZQ:" class="">0386_0001_0000_0000</td><td id="uHtM" class="" style="width:317px">主持人：さて、本日はUPEOを代表して<br/>ガプリエル·W·クラークソン氏を<br/>グストにお迎えし、<br/>番組内容を一部変更して放送しております。<br/>では、引き続きクラークソンさんに<br/>お間きしたいのですが、<br/>こちらで掴んだ情報によりますと、<br/>UPEOでは、<br/>先日のフェイス·パーク紛争以降の<br/>ゼネラルリソース、ニューコムの両社に<br/>対話の場を模索しているそうですが?<br/>克拉克森：——ええ。<br/></td><td id="rDU`" class="" style="width:285px">今天我们非常荣幸地邀请到了UPEO代表<br/>加布里埃尔·W·克拉克森先生<br/>到我们的节目做客，<br/>并为此临时调整了节目内容。<br/>那么，接下来想继续请教克拉克森先生，<br/>根据我们掌握的情报，<br/><br/>UPEO似乎正在为前不久的<br/>菲斯·帕克冲突之后的<br/>通用资源和Neucom两家公司<br/>寻求对话的机会，是这样吗？<br/>——是的。<br/></td><td id="TwO~" class="" style="width:229px">M22</td></tr><tr id="11c72ce6-1367-807f-bb75-d2b5bcf3e5c6"><td id="Hc;p" class=""></td><td id="JZQ:" class=""></td><td id="uHtM" class="" style="width:317px">公式、非公式にかかわらず、<br/>一刻も早い両社の関係改善を願うのは、<br/>UPEOとして<br/>当然の事ではないでしょうか。<br/>主持人：しかし、具体的な提示がUPEO側から<br/>成される前に戦闘が行われた事は、<br/>両社の停戦協定が<br/>単なる机上の空論に過ぎなかった事を、<br/>証明しているように思うのですが。<br/>克拉克森：それそれの社内で<br/>一部、防衛部隊の暴走がありますが、<br/>大きな会社レベルでの対話による関係改善は<br/></td><td id="rDU`" class="" style="width:285px">无论正式还是非正式，<br/>UPEO都理所当然地<br/>希望两家公司<br/>能够尽快改善关系。<br/>然而，在UPEO正式提出<br/>具体方案之前就爆发了战斗，<br/>这难道不是证明两家公司的停战协议<br/>不过是一纸空文吗?<br/><br/>虽然两家公司内部<br/>部分防卫部队有些失控，<br/>但在公司高层层面，<br/></td><td id="TwO~" class="" style="width:229px"></td></tr><tr id="11c72ce6-1367-8094-8b7a-eeec10bb2038"><td id="Hc;p" class=""></td><td id="JZQ:" class="">0386_0001_0001_0001</td><td id="uHtM" class="" style="width:317px">常に続けられています。<br/>国家レベルでの政治が意味をなさない<br/>現在において、<br/>ゼネラルリソースとニューコムが、<br/>全面的に戦っていれば、経済も含め、<br/>とっくに大恐慌になっているでしょう。<br/>まだ …… はっきりした事を言える<br/>段階ではないのて、<br/>明言は控えさせてもらいます。<br/>が…ごく近い将来に両社のトップが<br/>同じテーブルにつく可能性のある事だけは、<br/>お約束しましょう。<br/></td><td id="rDU`" class="" style="width:285px">通过对话改善关系的努力一直在持续进行。<br/>在国家层面的政治<br/>已无意义的当下，<br/>如果通用资源和Neucom全面开战，<br/>包括经济在内的各个方面<br/>早晚会陷入大萧条。<br/>现在……还不能透露<br/>更多明确的信息，<br/>所以我暂时不便多说。<br/>但是……我可以保证，在不久的将来，<br/>两家公司的高层<br/>大概率会坐到同一张谈判桌前。<br/></td><td id="TwO~" class="" style="width:229px"></td></tr><tr id="11c72ce6-1367-800a-b4c7-c33033b7bb15"><td id="Hc;p" class=""></td><td id="JZQ:" class=""></td><td id="uHtM" class="" style="width:317px">主持人：なるほど。<br/>今後もUPEOの尽カに期持しています。<br/>今日は本当にありがとうございました。<br/></td><td id="rDU`" class="" style="width:285px">原来如此，<br/>我们期待UPEO今后的努力。<br/>今天真的非常感谢您。<br/></td><td id="TwO~" class="" style="width:229px"></td></tr><tr id="11c72ce6-1367-80db-8c88-fc2652f47c18"><td id="Hc;p" class=""></td><td id="JZQ:" class="">0388_0001_0000_0000</td><td id="uHtM" class="" style="width:317px">こちらは、スフィア放送大学です。<br/>さて今月の『近代史への招待』は、<br/>『政治と経済の交差点』<br/>と題してお送りしています。<br/>第三回のテーマは、<br/>ゼネラルリソースの誕生と<br/>その台頭にスポットを当て、<br/>国家レベルでの政治と司法が<br/>権力構造の頂点だった時代が<br/>いかにして終焉を迎え、<br/>現在のような多国籍企業による<br/>企業権力の時代に突入したのかを<br/></td><td id="rDU`" class="" style="width:285px">这里是电脑空间广播电视大学。<br/>本月的“走进近代史”栏目，<br/>将以“政治与经济的交汇点”<br/>为题进行讲解。<br/>第三讲的主题是<br/>通用资源的诞生及其崛起，<br/>我们将深入探讨<br/>国家层面的政治和司法<br/>位于权力结构顶端的时代<br/>是如何走向终结的，<br/>以及世界如何进入到如今<br/>由跨国企业主导的企业权力时代。<br/></td><td id="TwO~" class="" style="width:229px">M24</td></tr><tr id="11c72ce6-1367-80f5-947c-dcada418d82a"><td id="Hc;p" class=""></td><td id="JZQ:" class=""></td><td id="uHtM" class="" style="width:317px">深っていく事にしましょう。<br/>しかし、ごこで忘れてはならないのは、<br/>歴史を古代にまで遡ってみると、<br/>常に直接的な形ではないにしろ、<br/>経済による何らかの権力構造は<br/>あったという事です。<br/>宗教、司法、政治の影に隠れてはいても、<br/>我々人間が『貨幣』という流通方式を<br/>使用した時点で、<br/>時代の権力は経済状態の優劣に<br/>左右されていたと言えるでしょう。<br/>待に顯著なのは、<br/></td><td id="rDU`" class="" style="width:285px"><br/>首先，我们不应该忽略一个事实，<br/>回溯历史，就会发现<br/>即使形式不同，<br/>由经济主导的权力结构也始终存在。<br/><br/>即便隐藏在宗教、司法和政治的庇荫下，<br/>自从人类开始使用<br/>“货币”进行交易的那一刻起，<br/>时代的权力<br/>就已经取决于经济状况的优劣了。<br/>尤其显著的是，<br/></td><td id="TwO~" class="" style="width:229px"></td></tr><tr id="11c72ce6-1367-8033-93bc-c5b8e450d666"><td id="Hc;p" class=""></td><td id="JZQ:" class="">0388_0001_0001_0001</td><td id="uHtM" class="" style="width:317px">共産主義の衰退と資本主義の時代——。<br/>それは、まさに理想的な思想が、<br/>経済によって駆逐された<br/>歴史的な瞬間ではないでしょうか。<br/>しかも今、時代はその経済でさえ脅かす<br/>科学技術の登場によって、<br/>また新たな火種を世界に広けているのです。<br/></td><td id="rDU`" class="" style="width:285px">共产主义的衰退和资本主义的兴起——。<br/>这难道不正是理想主义<br/>被经济力量驱逐的<br/>历史性见证吗？<br/>但如今，即使强如经济本身，也受到威胁，<br/>科学技术的兴起<br/>正在世界范围内播撒新的火种。 <br/></td><td id="TwO~" class="" style="width:229px"></td></tr><tr id="11d72ce6-1367-803a-b682-c3c935f4a11e"><td id="Hc;p" class=""></td><td id="JZQ:" class="">0390_0001_0000_0000</td><td id="uHtM" class="" style="width:317px">今日は、<br/>予定されていた内容を大幅に変更して、<br/>現在NUN——<br/>新国際連合本部で行われている<br/>UPEO代表ギルバート·パーク氏の<br/>緊急記者会見の模様を<br/>生中継でお送りします。<br/>今の会見は、ますます激化する<br/>最近のゼネラルリソースと<br/>ニューコムの紛争に対して、<br/>UPEOとしての立場を明確にする為に<br/>開かれたもので、<br/></td><td id="rDU`" class="" style="width:285px">今天，<br/>我们将大幅更改原定节目内容，<br/>为您现场直播正在NUN——<br/>新国际联合共同体总部<br/>举行的UPEO代表<br/>吉尔伯特·朴先生的<br/>紧急记者招待会。<br/>此次记者会的目的是<br/>阐明UPEO在近期<br/>日益激化的通用资源和<br/>Neucom冲突中的立场，<br/>并回应公众对<br/></td><td id="TwO~" class="" style="width:229px">M27 Technology Transfer</td></tr><tr id="11d72ce6-1367-8031-9a90-f74834923b36"><td id="Hc;p" class=""></td><td id="JZQ:" class=""></td><td id="uHtM" class="" style="width:317px">今では半ば形骸化してしまっている<br/>治安維持活動に対し、<br/>一般から多数寄せられている抗議に<br/>答えるかたちでー<br/>あっ!中継が繋がったようです。<br/>では、ご覧ください。<br/>よって、皆さん良くご存じのように、<br/>今や両社間の争いは<br/>既に紛争というレベルを超え、<br/>USEA全土に広がっております。<br/>もはや我々UPEOのような、<br/>NUN管辖に属する治安維持活動では<br/></td><td id="rDU`" class="" style="width:285px">如今已名存实亡的<br/>维和行动的<br/>众多抗议……<br/><br/>啊！直播连线上了，<br/>那么，请看现场画面。<br/>各位都很清楚，<br/>如今两家公司之间的争端<br/>已经超越了冲突的范畴，<br/>蔓延至整个USEA地区。<br/>事态已经发展到<br/>像我们UPEO这样隶属于NUN的机构<br/></td><td id="TwO~" class="" style="width:229px"></td></tr><tr id="11d72ce6-1367-80e8-81f2-c63d90884c73"><td id="Hc;p" class=""></td><td id="JZQ:" class="">0390_0001_0001_0001</td><td id="uHtM" class="" style="width:317px">事態を収拾する事は不可能です。<br/>これが、誠に遺憾ではありますが、<br/>常に様々な国際紛争の最前線の現場に<br/>立ち続けてきた我々の<br/>公式の見解であります。<br/>まさに時代は変わったのです。<br/>かつてのような対話による解決の時代は<br/>もはや終焉を迎え、<br/>我々UPEO——いやNUN全体にとっても<br/>行動の季節がきたのた、と。<br/>今後の我々は、そのような自覚を胸に、<br/>かつてない程の大胆な行動を<br/></td><td id="rDU`" class="" style="width:285px">已无力开展维和行动的地步了。<br/>虽然我们对此深表遗憾，<br/>但这的确是我们<br/>长期置身国际冲突最前线，<br/>经过慎重考虑后得出的正式结论。<br/>时代已经变了。<br/>那个可以通过对话解决问题的时代<br/>已经一去不复返。<br/>对我们UPEO——不，对整个NUN来说，<br/>是时候采取行动了。<br/>今后我们将秉持这一认知，<br/>采取前所未有的大胆行动。<br/></td><td id="TwO~" class="" style="width:229px"></td></tr><tr id="11d72ce6-1367-806a-b63a-ce4d102eafd8"><td id="Hc;p" class=""></td><td id="JZQ:" class=""></td><td id="uHtM" class="" style="width:317px">勇気を持って実行していく所存であります。<br/>つきましては、国民の皆様にも<br/>我々の立場を十分にご理解していただき ……<br/>あんたら …… この全面戦争で<br/>どちらかに荷担するとでもいうつもりか!<br/>ふざけるな!<br/>元ゼネラルの出向社員がどういうつもりだ !?<br/>貴様ら全員……<br/>国民の税金で人殺しでもするって気か!<br/>その態度が、<br/>火に油を注いでいるんじゃないのか!<br/></td><td id="rDU`" class="" style="width:285px"><br/>因此，希望广大民众<br/>能够充分理解我们的立场……<br/>你们……是想在这场<br/>全面战争中选边站吗？！<br/>开什么玩笑呢！<br/>你这个通用资源的派遣员工是什么意思!?<br/>你们这些混蛋，<br/>是想用纳税人的钱去杀人吗？！<br/>你们的态度<br/>才是火上浇油吧！<br/></td><td id="TwO~" class="" style="width:229px"></td></tr><tr id="11e72ce6-1367-805b-8949-e7a0ae3c10dd"><td id="Hc;p" class=""></td><td id="JZQ:" class="">0391_0001_0000_0000</td><td id="uHtM" class="" style="width:317px">それでは、我らがウロボロスの指導者<br/>アビサル·ディジョンを紹介しよう。<br/>我々の決起を多くの人々は、<br/>まだ誤解している事だろう。<br/>確かに現時点で人々が目にしているモノは、<br/>人類にとってお訓染みの殺し合いに<br/>過ぎないからだ。<br/>ただ、これだけは言っておこう。<br/>ゼネラルリソース、ニューコム、<br/>UPEOといった組織が保持している軍隊と<br/>たった今も行われている交戦は、<br/>我々が望む革命にとって入口。<br/></td><td id="rDU`" class="" style="width:285px">那么，接下来介绍我们衔尾蛇的领导者：<br/>阿比萨尔 · 迪森。<br/>我们起义这件事，<br/>至今仍被很多人误解。<br/>诚然，目前人们所看到的，<br/>不过是人类习以为常的<br/>互相残杀罢了。<br/>但是……有一点我必须说清楚。<br/>与通用资源、Neucom、<br/>UPEO等组织的军队<br/>正在进行的战斗，<br/>只是我们为了实现理想的革命的序章。<br/></td><td id="TwO~" class="" style="width:229px">M30</td></tr><tr id="11e72ce6-1367-80f3-9bad-d0108c708762"><td id="Hc;p" class=""></td><td id="JZQ:" class=""></td><td id="uHtM" class="" style="width:317px">そう、我々にとって真実の敵とは、<br/>ゼネラルリソース、ニューコム、<br/>ましてUPEOなどといった権力ではない。<br/>この革命が完成する時、我々が、いや、<br/>人類全体が握むモノは、<br/>このような権力ではない。<br/></td><td id="rDU`" class="" style="width:285px">……没错，对我们来说，真正的敌人，<br/>并非通用资源、Neucom，<br/>更不是UPEO之类的权力机构。<br/>当这场革命最终完成之时<br/>我们——，不，全人类将会掌握的，<br/>绝非那种世俗的权力！<br/></td><td id="TwO~" class="" style="width:229px"></td></tr><tr id="11e72ce6-1367-8022-af87-d93e1a67143b"><td id="Hc;p" class=""></td><td id="JZQ:" class="">0392_0001_0000_0000</td><td id="uHtM" class="" style="width:317px">え、何、もう映ってんの !?<br/>あ …… マイク、マイク!<br/>はい、みなさん、<br/>今、私はメガフロートの上から<br/>中継をお送りしています。<br/>ウロボロスを名乗る<br/>クーデターー派の参加によって<br/>ゼネラルリソース、ニューコム、UPEOの<br/>四つ巴状態となったこの粉争は<br/>じわじわとその戦間範囲を広げ、<br/>いよいよこのメガフロートや<br/>ジオフロント周辺の上空でも、<br/></td><td id="rDU`" class="" style="width:285px">诶，什么，已经开始了吗？！<br/>啊……麦克风，麦克风！<br/>各位观众，<br/>现在我正在巨浮城<br/>进行现场报道。<br/>由于自称“衔尾蛇”的<br/>政变势力的介入，<br/>通用资源、Neucom和UPEO<br/>陷入了四方混战的局面，<br/>战火逐渐蔓延，<br/>现在，巨浮城和<br/>地下都市周围的空域<br/></td><td id="TwO~" class="" style="width:229px"></td></tr><tr id="11e72ce6-1367-80b2-80bd-dd8df4a62194"><td id="Hc;p" class=""></td><td id="JZQ:" class=""></td><td id="uHtM" class="" style="width:317px">激しい争いが始まっています。<br/>実は先程もニューコムのものらしき戦闘機が<br/>メガフロートの上に墜落したようで ……<br/>ここからは見る事は出来なかったのですが、<br/>ドーンという大きな音だけは<br/>聞こえてきました。<br/>さて、われ…<br/></td><td id="rDU`" class="" style="width:285px">也展开了激烈的战斗。<br/>就在刚才，疑似Neucom的战斗机<br/>坠落在了巨浮城……<br/>虽然我这里看不到现场情况，<br/>但“咚”的一声巨响<br/>我还是听到了。<br/>接下来，我……<br/></td><td id="TwO~" class="" style="width:229px"></td></tr><tr id="11e72ce6-1367-8071-83f4-fbf75975255d"><td id="Hc;p" class=""></td><td id="JZQ:" class="">0393_0001_0000_0000</td><td id="uHtM" class="" style="width:317px">ご覧いただけますでしょうか !?<br/>これが、あのメガフロートの現在の姿です。<br/>私、全く信じられません。<br/>まだ黒煙が上がっています。<br/>まるでこの世の終わりのようです。<br/>しかし、どうやら戦闘自体の方は<br/>終結に向かっている模様です。<br/>先程の情報では、<br/>すでにクーテター側は壞滅状態で、<br/>各地で投降しているとの …… あ、あれ?<br/>ちょっと待ってください。<br/>カメラさん、ズームして!<br/></td><td id="rDU`" class="" style="width:285px">大家看到了吗？！<br/>这就是巨浮城如今的样子。<br/>我简直不敢相信。<br/>还在冒着黑烟。<br/>就像世界毁灭了一样。<br/>但是，战斗看起来似乎<br/>要结束了。<br/>根据刚才的消息，<br/>政变势力已经溃不成军，<br/>到处都在投降……啊，那个是什么？<br/>等一下。<br/>摄影师，放大！<br/></td><td id="TwO~" class="" style="width:229px"></td></tr><tr id="11e72ce6-1367-80be-906f-d2e5349ec573"><td id="Hc;p" class=""></td><td id="JZQ:" class=""></td><td id="uHtM" class="" style="width:317px">あそこ …… ほら!<br/>え …… スーム出来ないの !?<br/>ああつ、ほら、あっ!<br/>たった今、<br/>正体不明の銀色の …… しがも沢山——。<br/>くそ、何だ !? おい、こっち来るそ!<br/>逃げろ!ほら、来てるだろ!右だ!<br/>あっ …… 何か撃った!<br/></td><td id="rDU`" class="" style="width:285px">那里……看！<br/>哎……不能再放大了吗？！<br/>啊，那里，啊！<br/>就在刚才，<br/>不明身份的银色的……而且数量很多——<br/>该死，那是什么东西？！喂，过来了！<br/>快逃！看，过来了！右边！<br/>啊……它发射了什么东西！<br/></td><td id="TwO~" class="" style="width:229px"></td></tr><tr id="11e72ce6-1367-804b-874c-c14d6777fbe2"><td id="Hc;p" class=""></td><td id="JZQ:" class=""></td><td id="uHtM" class="" style="width:317px"></td><td id="rDU`" class="" style="width:285px"></td><td id="TwO~" class="" style="width:229px"></td></tr></tbody></table><p id="11b72ce6-1367-8051-8462-d24db8f2174f" class="">
+</p><p id="11b72ce6-1367-804c-8c57-e9fe2be75ef9" class="">
+</p><h1 id="11b72ce6-1367-805e-a3d6-fae9d269e0c0" class="">角色对话</h1><table id="11b72ce6-1367-80c9-bcb0-f3272b6911c1" class="simple-table"><tbody><tr id="8a6269f8-a3d7-4cc2-b8d8-c61e4c5fb807"><td id="Hc;p" class="block-color-pink">序号</td><td id="JZQ:" class="block-color-pink" style="width:155.546875px">文件路径</td><td id="XWFP" class="block-color-pink">说话人</td><td id="uHtM" class="block-color-pink" style="width:317px">原文</td><td id="rDU`" class="block-color-pink" style="width:285px">译文</td><td id="TwO~" class="block-color-pink" style="width:229px">备注</td></tr><tr id="2e9e2d67-990e-43bd-96ab-145a4c518e5b"><td id="Hc;p" class="">1</td><td id="JZQ:" class="" style="width:155.546875px">0278_0001_0000_0000</td><td id="XWFP" class="">DISION</td><td id="uHtM" class="" style="width:317px">まず、私の言葉を信じ、<br/>強引な誘いに応じてくれた事を<br/>心から感謝している。<br/>キミが見せたこれまでの活躍は、<br/>堕落したUPEOの駒にしておくには、<br/>あまりに惜しい腕だ。<br/>我々は、今こそ変革の時を<br/>迎えようとしている。<br/>胸に大いなる理想を秘めて<br/>戦うべき時である。<br/>世界は、時に血を持って<br/>変えなくては動かないものだ。<br/></td><td id="rDU`" class="" style="width:285px">首先，我衷心感谢你<br/>相信我的话，<br/>并接受我的邀请。<br/>你拥有如此杰出的才能，<br/>却屈居于腐朽的UPEO，<br/>委身成为他们手中的一枚棋子，实在可惜。<br/>我们即将迎来<br/>变革的时刻。<br/>是时候怀抱着伟大理想<br/>去战斗了。<br/>这个世界，<br/>有时必须用鲜血侵洗才能改变。<br/></td><td id="TwO~" class="" style="width:229px"></td></tr><tr id="a6735f89-5400-455c-b79c-bc9ebfc8fa51"><td id="Hc;p" class="">2</td><td id="JZQ:" class="" style="width:155.546875px"></td><td id="XWFP" class=""></td><td id="uHtM" class="" style="width:317px">——私を信じてほしい。<br/>さて、今後、君は<br/>私の直属部隊に配属される。<br/>キミには『イーグルプラス』と<br/>『セイカーファルコン』を用意してある。<br/>その腕を存分に生かしてもらおう。<br/>期待している。<br/></td><td id="rDU`" class="" style="width:285px">——请相信我。<br/>从今天起，<br/>你会加入我的直属部队。<br/>我已经为你准备好了<br/>“鹰Plus”和“猎隼”。<br/>尽情施展你的才华吧。<br/>我期待你的表现。<br/></td><td id="TwO~" class="" style="width:229px"></td></tr><tr id="ebacc630-08ef-4723-a31c-b5dc4dd1ac48"><td id="Hc;p" class="">3</td><td id="JZQ:" class="" style="width:155.546875px">0279_0001_0000_0000</td><td id="XWFP" class="">DISION</td><td id="uHtM" class="" style="width:317px">また見せてくれたな。<br/>強引に上を説得し、<br/>キミを配属した私も嬉しい。<br/>しかし、まだゼネラルの中には、<br/>UPEOから来たキミを<br/>心良く思っていない輩もいる事は確かだ。<br/>ただ、この調子であれば、<br/>やがて誰もがキミを認めざるを得ない時が<br/>来るだろう。<br/>この紛争はますます激化する。<br/>我々の出番は、またすぐやってくる。<br/>それまでは翼を休めておいてくれ。<br/></td><td id="rDU`" class="" style="width:285px">你又一次证明了自己的实力。<br/>我也很高兴当初力排众议，<br/>把你调到我的麾下。<br/>不过，通用资源内部，<br/>确实还有一些人<br/>对你的到来心存芥蒂。<br/>但是，只要你保持这种势头，<br/>他们迟早会认可你的实力。<br/><br/>这场冲突将会愈演愈烈，<br/>我们很快就会再次出击。<br/>在此之前，让自己的羽翼休息一下吧。<br/></td><td id="TwO~" class="" style="width:229px">M20高</td></tr><tr id="c7892db8-b3be-4645-988e-95a6eebbbd93"><td id="Hc;p" class=""></td><td id="JZQ:" class="" style="width:155.546875px"></td><td id="XWFP" class=""></td><td id="uHtM" class="" style="width:317px">……では。</td><td id="rDU`" class="" style="width:285px">那么，就这样。</td><td id="TwO~" class="" style="width:229px"></td></tr><tr id="9d270009-a4cd-4d9c-9f88-60571440391b"><td id="Hc;p" class=""></td><td id="JZQ:" class="" style="width:155.546875px">0280_0001_0000_0000</td><td id="XWFP" class="">DISION</td><td id="uHtM" class="" style="width:317px">ご苦労だった。<br/>まだ不慣れな環境の中で、<br/>あそこまでやってくれた事を<br/>私は認めている。<br/>しかし、内部にはキミと、<br/>キミを強引に誘った私を批判する声が<br/>くすぷっている。<br/>この状態は、<br/>キミや私にとってベストな環境とは<br/>言えないだろう。<br/>この声を静めるには、<br/>キミが自らの力で認めさせるしかない。<br/></td><td id="rDU`" class="" style="width:285px">辛苦了。<br/>我知道你在还不适应的环境下，<br/>已经尽力了。<br/><br/>但是，内部确实有一些针对你，<br/>以及针对执意邀请你的我的<br/>批评的声音。<br/>这种情况，<br/>对你我而言，<br/>都称不上是理想的环境。<br/>想要平息这些质疑，<br/>你只能靠自己的实力来证明自己。<br/></td><td id="TwO~" class="" style="width:229px">M20低</td></tr><tr id="1b1c99db-1ad8-4d2c-9ac5-3fbbb413552f"><td id="Hc;p" class=""></td><td id="JZQ:" class="" style="width:155.546875px"></td><td id="XWFP" class=""></td><td id="uHtM" class="" style="width:317px">紛争はますます激化する。<br/>チャンスはある<br/>今後の活躍に期待している。<br/></td><td id="rDU`" class="" style="width:285px">冲突在不断加剧。<br/>你还有机会。<br/>我期待你今后的表现。<br/></td><td id="TwO~" class="" style="width:229px"></td></tr><tr id="b513a2ee-825e-454f-a2d0-1e0b7bab6ad1"><td id="Hc;p" class=""></td><td id="JZQ:" class="" style="width:155.546875px">0281_0001_0000_0000</td><td id="XWFP" class="">KEITH</td><td id="uHtM" class="" style="width:317px">よう、新入り。<br/>確かにオマエの腕は、<br/>ゼネラルでも中の下ぐらいである事は<br/>認めてやる。<br/>だがな、ディジョンにちょっとばかし<br/>気に入られているからって<br/>デカイ顔はするな。<br/>オマエと奴では、レベルが全くちがう。<br/>俺には、まだ奴がどういうつもりで<br/>オマエを直属の部下にしたのか<br/>理解できんのだ。<br/>オマエがくる前でも<br/></td><td id="rDU`" class="" style="width:285px">哟，新来的。<br/>你的本事嘛，<br/>在通用资源里勉强算个中下水平，<br/>这点我还是很确定的。<br/>但是，别以为被迪森<br/>稍微赏识了一下，<br/>就可以得意忘形。<br/>你和他，根本不是一个级别的。<br/>我到现在还不明白，<br/>他究竟是什么意思，<br/>把你弄到他的直属部队来。<br/>在你来之前，<br/></td><td id="TwO~" class="" style="width:229px">M21</td></tr><tr id="5065676a-67c2-42d7-bd2a-6c62234b0a09"><td id="Hc;p" class=""></td><td id="JZQ:" class="" style="width:155.546875px"></td><td id="XWFP" class=""></td><td id="uHtM" class="" style="width:317px">俺と奴で十分だったんだ。<br/>ま、それは俺の気分だから<br/>オマエが気にする事ではないがな。<br/>オマエがヘマをすれば、<br/>ディジョンが責任を被るって事を<br/>忘れるなよ。<br/>じゃあ<br/></td><td id="rDU`" class="" style="width:285px">我和他就能搞定一切了。<br/>好吧，这只是我的想法，<br/>你不用太在意。<br/>不过，你要是把事情搞砸了，<br/>迪森可是要负责任的，<br/>别忘了这点。<br/>就这样。<br/></td><td id="TwO~" class="" style="width:229px"></td></tr><tr id="11b72ce6-1367-8027-92f4-c0cab020857a"><td id="Hc;p" class=""></td><td id="JZQ:" class="" style="width:155.546875px">0282_0001_0000_0000</td><td id="XWFP" class="">DISION</td><td id="uHtM" class="" style="width:317px">もう、キースからのメールは見ただろう。<br/>奴の事は気にしなくていい。<br/>奴と私は、これまでずっと二人で<br/>チームを組んできた間柄だ。<br/>まあ、いい腕を持っているし、<br/>ゼネラルでは屈指の実戦経験者ではある。<br/>ただその分 …… 思い込みの激しい奴で、<br/>今回のキミをこちらに入れた件では、<br/>ちょっとあった。<br/>気分屋のところもあるが、<br/>戦場では奴ほどの度胸がある<br/>パイロットはいない。<br/></td><td id="rDU`" class="" style="width:285px">你应该已经看过基思的邮件了吧。<br/>不用在意他说的话。<br/>他和我二人，长期以来<br/>都在一个队伍里并肩作战。<br/>他的确技术精湛，<br/>在通用资源也算是少有的实战经验老手。<br/>但是，正因如此……他人比较固执，<br/>这次对你加入我们这件事，<br/>颇有微词。<br/>虽然他有点情绪化，<br/>但在战场上，像他那样有胆识的<br/>飞行员可不多见。<br/></td><td id="TwO~" class="" style="width:229px"></td></tr><tr id="11b72ce6-1367-800a-bdad-e131d2485667"><td id="Hc;p" class=""></td><td id="JZQ:" class="" style="width:155.546875px"></td><td id="XWFP" class=""></td><td id="uHtM" class="" style="width:317px">奴と飛ぶのは<br/>キミにとっていい経験になるだろう。<br/>それでは、また上空で会うのを<br/>楽しみにしている。<br/></td><td id="rDU`" class="" style="width:285px">和他一起飞行，<br/>对你来说会是很宝贵的经验。<br/>那么，期待与你在空中再次相会。<br/></td><td id="TwO~" class="" style="width:229px"></td></tr><tr id="11b72ce6-1367-80b3-9085-f8cc90911691"><td id="Hc;p" class=""></td><td id="JZQ:" class="" style="width:155.546875px">0283_0001_0000_0000</td><td id="XWFP" class="">DISION</td><td id="uHtM" class="" style="width:317px">どうやら、ゼネラル製のコフィンにも<br/>慣れてきたようだな。<br/>我々の戦鬪機のフォルムは、<br/>ニューコム·タイプと比較すれば<br/>前時代的だが、<br/>その分安定した飛行が出来るのが<br/>わかっただろう。<br/>ところで、ここからは個人的な用件だ。<br/>実は今回の作戦で<br/>メガフロートから説出した高速艇の残骸から<br/>興味深い情報を握んだ。<br/>それは、かつて ……<br/></td><td id="rDU`" class="" style="width:285px">看来你已经适应<br/>通用资源的Coffin系统了。<br/>我们的战斗机外形，<br/>比起Neucom的机型，<br/>虽然略显老旧，<br/>但飞行更稳定，<br/>这点你应该也体会到了吧。<br/>接下来，说点私事。<br/>事实上，在这次行动中，<br/>我们从巨浮城逃出的快艇残骸中<br/>发现了一些有趣的信息。<br/>那是在Neucom成立之前，<br/></td><td id="TwO~" class="" style="width:229px">M21故意等待第二阶段击毁小艇？<br/><br/><br/></td></tr><tr id="11b72ce6-1367-8002-8012-e5809a621b02"><td id="Hc;p" class=""></td><td id="JZQ:" class="" style="width:155.546875px"></td><td id="XWFP" class=""></td><td id="uHtM" class="" style="width:317px">ニューコム誕生以前に我々が<br/>様々な実験を行なっていた頃のもので、<br/>いわば失われた過去のようなものだ。<br/>だが、どうやらこの遺産には、<br/>我々の未来が隠されていると<br/>思える節がある。<br/>もう少し調べてみるが、<br/>いざとなれば<br/>私は独断での行動も考えている。<br/>その時が来たら<br/>キミにも協力してもらいたい。<br/>——また連絡する。<br/></td><td id="rDU`" class="" style="width:285px">我们进行各种实验的时期<br/>留下的东西，<br/>可以说是被遗忘的过去。<br/>但是，我感觉这份遗产中，<br/>似乎隐藏着我们的未来。<br/><br/>我会进一步调查，<br/>必要的时候，<br/>我会考虑采取单独行动。<br/>到那时，<br/>希望你能助我一臂之力。<br/>——我会再联系你。<br/></td><td id="TwO~" class="" style="width:229px">M21 3:30内击毁浮游城所有目标<br/>或者在第二阶段放走小艇<br/>会进入M23，否则进入M22<br/></td></tr><tr id="11b72ce6-1367-8067-a2ed-ccd77fb73d4d"><td id="Hc;p" class=""></td><td id="JZQ:" class="" style="width:155.546875px">0284_0001_0000_0000</td><td id="XWFP" class="">DISION</td><td id="uHtM" class="" style="width:317px">作戦はクリアした。<br/>どうやらキースとの連携も<br/>巧く出来たようだ。<br/>奴もキミの実力を評価していた。<br/>この調子でこれからも頼む。<br/>我の戦いは、まだ始まったばかりだ。<br/>メガフロートのー件で、<br/>ニューコム側もかなりの軍事力を<br/>持っている事が<br/>キミにもわかっただろう。<br/>では。<br/></td><td id="rDU`" class="" style="width:285px">作战任务完成。<br/>看来你和基思的配合<br/>也很默契。<br/>他也认可了你的实力。<br/>希望你继续保持下去。<br/>我们的战斗才刚刚开始。<br/>通过巨浮城这件事，<br/>你应该也了解到<br/>Neucom拥有<br/>相当强大的军事力量。<br/>就这样。<br/></td><td id="TwO~" class="" style="width:229px">M21快速击毁巨浮城所有设施？</td></tr><tr id="11c72ce6-1367-80ea-b6c1-c05f34c33d74"><td id="Hc;p" class=""></td><td id="JZQ:" class="" style="width:155.546875px">0285_0001_0000_0000</td><td id="XWFP" class="">KEITH</td><td id="uHtM" class="" style="width:317px">なんだ …… まだ戻ってないのか。<br/>オマエは、戦いの基本が<br/>スピードにある事ぐらいは<br/>知っているらしいな。<br/>どうやら俺は、誤解していたようだ。<br/>俺は実力のある奴を<br/>素直に認めるだけの度量は<br/>あるつもりでいる。<br/>今後もオマエの実力を<br/>俺たちに見せてくれ。<br/>じゃあな …… また連絡する。<br/></td><td id="rDU`" class="" style="width:285px">搞什么……还没回来吗？<br/>你小子看来还算明白<br/>战斗的根本在于速度。<br/><br/>看来是我之前看走眼了。<br/>对于有实力的家伙，<br/>我向来是认可的。<br/><br/>以后也让我多见识见识<br/>你的真本事吧。<br/>就这样……回头再联系。<br/></td><td id="TwO~" class="" style="width:229px"></td></tr><tr id="11c72ce6-1367-807c-8d43-c772b193fc2b"><td id="Hc;p" class=""></td><td id="JZQ:" class="" style="width:155.546875px">0286_0001_0000_0000</td><td id="XWFP" class="">KEITH</td><td id="uHtM" class="" style="width:317px">……ん、いないようだな。<br/>オマエにひとこと言っておく。<br/>あらゆる戦鬪は、スピードで全てが決まる。<br/>オマエが今回のような<br/>戦い方を続けるのなら、<br/>長生きは無理だな。<br/>これからは、もう少しその事を考えて<br/>行動しろ。<br/>大体、俺たちが<br/>オマエのサポートをする事など、<br/>あり得ないのだからな。<br/></td><td id="rDU`" class="" style="width:285px">……嗯，看来不在。<br/>给你一句忠告：<br/>所有战斗，速度决定一切。<br/>如果你继续<br/>像这次这样作战的话，<br/>活不了多久。<br/>今后多想想这一点，<br/>然后再行动。<br/>话说回来，在作战时<br/>我们也不可能<br/>给你提供太多支援。<br/></td><td id="TwO~" class="" style="width:229px">M21第二阶段不击毁小艇<br/><br/>进入M23<br/></td></tr><tr id="11c72ce6-1367-804b-9b2a-e281caa826e9"><td id="Hc;p" class=""></td><td id="JZQ:" class="" style="width:155.546875px">0287_0001_0000_0000</td><td id="XWFP" class="">DISION</td><td id="uHtM" class="" style="width:317px">最初に断っておく。<br/>このメールは、<br/>我が社のデフォルトではない暗号で<br/>圧縮して送っている。<br/>というのは、メガフロートの一件で、<br/>私が手に入れた情報について、<br/>詳しい検索結果が出たのだ。<br/>それによると以前、ゼネラル側が<br/>極秘のうちにUP EOに裏渡していた<br/>特殊兵器の存在が確認された。<br/>その兵器の存在は、<br/>忌まわしい過去のようなものらしいのだが、<br/></td><td id="rDU`" class="" style="width:285px">事先声明。<br/>这封邮件，<br/>是用非本公司标准的加密方式<br/>压缩后发送的。<br/>关于我上次从巨浮城任务<br/>得到的情报，<br/>详细的检索结果出来了。<br/>结果证实，<br/>之前通用资源曾秘密向UPEO<br/>提供过特殊武器。<br/>这件武器的存在似乎牵扯到<br/>一段不堪回首的过去，<br/></td><td id="TwO~" class="" style="width:229px">M22</td></tr><tr id="11c72ce6-1367-8088-be8d-ce55754f38e5"><td id="Hc;p" class=""></td><td id="JZQ:" class="" style="width:155.546875px"></td><td id="XWFP" class=""></td><td id="uHtM" class="" style="width:317px">現在の我々––いや私にとって、<br/>来たるべき未来世界を築く為に<br/>有益な力である可能性を感じる。<br/>もちろんこの事実の発覚は、<br/>ゼネラルの上層部にとっては<br/>触れられたくない過去だ ……<br/>しかし、連中にとっての過去が、<br/>我々の未来になるのなら、<br/>私は手に入れたい。<br/>——そう。<br/>あえて私は、今回、ゼネラルの公式任務とは<br/>離れた行動に出ようと思っている。<br/></td><td id="rDU`" class="" style="width:285px">但对现在的我们——不，对我来说，<br/>它可能是构建未来世界的<br/>的有益力量。<br/>当然，这件事一旦曝光，<br/>会让通用资源的高层<br/>非常难堪……<br/>但是，如果他们的过去<br/>能成为我们的未来，<br/>我就一定要得到它。<br/>——没错。<br/>这次我会去执行<br/>与通用资源官方任务无关的行动。<br/></td><td id="TwO~" class="" style="width:229px"></td></tr><tr id="11c72ce6-1367-801f-b9b8-d0a9e32f4e55"><td id="Hc;p" class=""></td><td id="JZQ:" class="" style="width:155.546875px">0287_0001_0001_0001</td><td id="XWFP" class=""></td><td id="uHtM" class="" style="width:317px">そこで、キミの腕を見込んで<br/>参加してもらいたい。<br/>もちろん、本社にはキミに与える<br/>ステルス機の試練飛行という事で<br/>フライト·プランは申諸してあるので<br/>安心してくれ。<br/>では、上空で待っている。<br/></td><td id="rDU`" class="" style="width:285px">而且，我见识过你的能力，<br/>希望你也能参与进来。<br/>当然，我已经向总部申报了<br/><br/>你进行隐形机试飞的飞行计划，<br/>所以请放心。<br/>那么，我在天空等你。<br/></td><td id="TwO~" class="" style="width:229px"></td></tr><tr id="11c72ce6-1367-80d2-8e0f-cbfa84e3ee99"><td id="Hc;p" class=""></td><td id="JZQ:" class="" style="width:155.546875px">0288_0001_0000_0000</td><td id="XWFP" class="">DISION</td><td id="uHtM" class="" style="width:317px">今のUPEOとの接触、<br/>上司には訓練の際、偶発的に起こった<br/>事故として報告しておいた。<br/>しかし、私の遂げたかった目的は<br/>完璧に達成された。<br/>それから、キミのかつての同僚との接触、<br/>あの件については、いつか必ず説明する。<br/>すまないが、今は何も間かないで<br/>おいてくれ<br/>ただ、私の求めている未来は、<br/>従来の組織を超えたところにある。<br/>それだけは伝えておにう。<br/></td><td id="rDU`" class="" style="width:285px">这次与UPEO的接触，<br/>我已经向上级报告为训练中的偶发事件。<br/><br/>而且，我想要达成的目的<br/>已经完美实现了。<br/>还有，这次遇到你曾经的同事这件事，<br/>我以后一定会解释清楚。<br/>抱歉，现在请不要多问。<br/><br/>我只想告诉你，<br/>我所追求的未来，<br/>是超越现有组织的。<br/></td><td id="TwO~" class="" style="width:229px">M22高</td></tr><tr id="11c72ce6-1367-803f-916a-dfd1fd9f9968"><td id="Hc;p" class=""></td><td id="JZQ:" class="" style="width:155.546875px"></td><td id="XWFP" class=""></td><td id="uHtM" class="" style="width:317px">キミの協力に感謝している。<br/>では、次は通常の任務で——。<br/></td><td id="rDU`" class="" style="width:285px">非常感谢你的帮助。<br/>那么，下次执行常规任务时再见。<br/></td><td id="TwO~" class="" style="width:229px"></td></tr><tr id="11c72ce6-1367-8099-92e9-e825405b2d99"><td id="Hc;p" class=""></td><td id="JZQ:" class="" style="width:155.546875px">0289_0001_0000_0000</td><td id="XWFP" class="">DISION</td><td id="uHtM" class="" style="width:317px">今のUPEOとの接触、<br/>上司には訓練の際、偶発的に起こった<br/>事故として報告しておいた。<br/>それから、キミのかつて同僚だった者との<br/>接触については——忘れてくれ。<br/>今回の件で私が手に入れた物は大きい。<br/>それは我々の未来を左右しうる力だ。<br/>協力に感謝する。<br/>では、また。<br/></td><td id="rDU`" class="" style="width:285px">这次与UPEO的接触，<br/>我已经向上级报告为训练中的偶发事件。<br/><br/>还有，关于你与曾经的同事<br/>接触的事情——忘了吧。<br/>这次的收获很大，<br/>那是一股足以左右我们未来的力量。<br/>感谢你的帮助。<br/>那么，再见。<br/></td><td id="TwO~" class="" style="width:229px">M22低<br/>第一阶段拍照，一直等到dision说被发现。<br/></td></tr><tr id="11c72ce6-1367-80ad-88f2-efd85ccd2063"><td id="Hc;p" class=""></td><td id="JZQ:" class="" style="width:155.546875px">0354_0001_0000_0000</td><td id="XWFP" class="">KEITH</td><td id="uHtM" class="" style="width:317px">お …… 急に割り込んですまなかった。<br/>ちょっと緊急で確認したい事があってな。<br/>オマエなら、もしかしたら<br/>ディジョンの行方を知ってるんじゃないかと<br/>思ったんだ<br/>実はな …… 今日の午後から奴が、<br/>正規のフライト·プランを出さずに<br/>飛んでるらしいんだ。<br/>それはまぁいいんだが、たった今、<br/>新しい任務が俺達に通達されて——。<br/>……お、もう時間か。<br/>仕方がない。<br/></td><td id="rDU`" class="" style="width:285px">哦……突然打扰你，不好意思。<br/>有点紧急情况需要确认一下。<br/>我觉得你或许<br/>知道迪森的行踪。<br/><br/>是这样的……今天下午开始这家伙<br/>好像没提交正式的飞行计划就起飞了。<br/><br/>这倒也无所谓，只是刚才，<br/>我们收到了新的任务指示——。<br/>……哦，时间到了吗？<br/>没办法。<br/></td><td id="TwO~" class="" style="width:229px">M23</td></tr><tr id="11c72ce6-1367-8058-bb86-cc91f21511ff"><td id="Hc;p" class=""></td><td id="JZQ:" class="" style="width:155.546875px"></td><td id="XWFP" class=""></td><td id="uHtM" class="" style="width:317px">今回は俺とオマエだけで任務を遂行する。<br/>作戦の詳細は、空に上がるまでに<br/>チェックしておけ。<br/>では、頼んた。<br/></td><td id="rDU`" class="" style="width:285px">这次就你和我执行任务。<br/>关于作战详情，<br/>在升空之前确认一下。<br/>那么，就拜托你了。<br/></td><td id="TwO~" class="" style="width:229px"></td></tr><tr id="11c72ce6-1367-8073-927a-e4f97b13f3c3"><td id="Hc;p" class=""></td><td id="JZQ:" class="" style="width:155.546875px">0290_0001_0000_0000</td><td id="XWFP" class="">KEITH</td><td id="uHtM" class="" style="width:317px">よう、相棒。<br/>——またいないのか。<br/>まぁいいけど。<br/>今回は、ご苦労だった。<br/>全く、いいコンビネーションだったな。<br/>これなら、奴がまた無断欠勤しても安心だ。<br/>それにしても、最近のディションは<br/>どっかおかしいんだ。<br/>オマエ、心あたりないか。<br/>ま、奴の事だから …… どっかで女とでも<br/>イチャついてるんだろうけどな。<br/></td><td id="rDU`" class="" style="width:285px">哟，好伙计。<br/>——又不在吗？<br/>算了。<br/>这次辛苦了。<br/>咱俩配合得真不错。这样一来，<br/>就算那家伙又无故缺勤也不用担心了。<br/>话说回来，<br/>迪森最近有点不对劲。<br/>你有什么头绪吗？<br/>嘛，那家伙的事……<br/>估计又在哪个地方跟女人鬼混吧。<br/></td><td id="TwO~" class="" style="width:229px">M23达成率高</td></tr><tr id="11c72ce6-1367-8091-acb7-ffc804302788"><td id="Hc;p" class=""></td><td id="JZQ:" class="" style="width:155.546875px">0291_0001_0000_0000</td><td id="XWFP" class="">KEITH</td><td id="uHtM" class="" style="width:317px">おい、オマエ<br/>ちゃんとメール見てんのか !?<br/>これで、いよいよニューコムの連中も<br/>本気でかかってくるだろうからな。<br/>もうちょっと手際よくかませ。<br/>まだまだ思い切りが足りない。<br/>機統でも気合で当てろ。<br/>ただ、ま …… ディジョンが<br/>いなかったって割には、上出来だった。<br/>この次は、バシッと決めろよ。<br/>しかし …… なぁ。<br/>奴はどこで油売ってんだか。<br/></td><td id="rDU`" class="" style="width:285px">喂，你小子<br/>有没有好好看邮件啊！？<br/>这下Neucom的那些家伙<br/>真的要认真对付我们了。<br/>动作能不能再麻利点？<br/>还是不够果断。<br/>就算用机炮，光凭气势也要击中目标。<br/>不过嘛……考虑到迪森不在，<br/>也算是不错了。<br/>下次，一定要干净利落地搞定。<br/>不过……<br/>那家伙到底在哪儿鬼混啊。<br/></td><td id="TwO~" class="" style="width:229px">M23达成率低</td></tr><tr id="11c72ce6-1367-80a2-b370-dec7191c9083"><td id="Hc;p" class=""></td><td id="JZQ:" class="" style="width:155.546875px">0292_0001_0000_0000</td><td id="XWFP" class="">DISION</td><td id="uHtM" class="" style="width:317px">今、水面下では、両社の間で<br/>現場を無視した権力抗争が続いているようだ。<br/>誰の目から見ても現状での停戦など、<br/>愚か者のあがきにすぎない。<br/>そんな事にも気付かない<br/>デスク·ワーク組らしい努力じゃないか。<br/>しかし、そのような行為は、<br/>時代が変革を求めている今、<br/>我にとって前時代的な足かせにすぎん。<br/>——そう思わないか?<br/>我が部署は、独自のルートでそんな奴らの<br/>息の根をとめる情報を手に入れた。<br/></td><td id="rDU`" class="" style="width:285px">现在，两家公司之间正在暗中进行着<br/>无视一线人员的权力斗争。<br/>在任何人看来，<br/>目前的停战不过是愚蠢的挣扎。<br/>这恐怕就是那些不了解实际情况的<br/>坐办公室的人才会做的“努力”吧。<br/>然而，在时代呼唤变革的当下，<br/>这种行为对我来说不过是旧时代<br/>留下的绊脚石。<br/>——你不觉得吗？<br/>我们部门通过特殊渠道<br/>获得了能够阻止这些家伙的情报。<br/></td><td id="TwO~" class="" style="width:229px">M24</td></tr><tr id="11c72ce6-1367-80e4-8789-ea0d4f6d023d"><td id="Hc;p" class=""></td><td id="JZQ:" class="" style="width:155.546875px"></td><td id="XWFP" class=""></td><td id="uHtM" class="" style="width:317px">少し強引な痛みを伴う作業となるだろうが、<br/>誰かがやらねばならない。<br/>それが、翼を持つ者の責任だ。<br/>我々の使命を果たす為に行こう。<br/>後の命令に従い、飛び立ってほしい。<br/></td><td id="rDU`" class="" style="width:285px">这将会是一项艰苦且痛苦的工作，<br/>但总得有人去做，<br/>这就是我们这些拥有翅膀之人肩负的责任<br/>为了完成我们的使命，出发吧。<br/>请按照后续指示起飞。<br/></td><td id="TwO~" class="" style="width:229px"></td></tr><tr id="11c72ce6-1367-8009-8b12-dfaa842765ac"><td id="Hc;p" class=""></td><td id="JZQ:" class="" style="width:155.546875px">0293_0001_0000_0000</td><td id="XWFP" class="">KEITH</td><td id="uHtM" class="" style="width:317px">もう格納庫はチェックしたか?<br/>俺達の部署に新しい2タイプの戦鬪機が<br/>届いているそうだ。<br/>まぁ …… これまでの戦闘機でも十分だったが、<br/>これからの戦いに備えて、<br/>新装備の機体を試しておくべきだな。<br/>いやいや …… 技術部の連中も、<br/>本腰いれてきたようだな。<br/>奴等のデータ採集でも手伝ってやるとするか。<br/></td><td id="rDU`" class="" style="width:285px">你检查过机库了吗？<br/>听说我们部门<br/>新配了两款战斗机。<br/>嘛……虽然之前的战斗机也足够用了，<br/>但为了应对以后的战斗，<br/>还是应该试试新装备的机体。<br/>哟……技术部门那些家伙，<br/>看来终于开窍了啊。<br/>这次就帮他们收集点数据吧。<br/></td><td id="TwO~" class="" style="width:229px"></td></tr><tr id="11c72ce6-1367-80ec-8899-f9e73cdfbf56"><td id="Hc;p" class=""></td><td id="JZQ:" class="" style="width:155.546875px">0294_0001_0000_0000</td><td id="XWFP" class="">DISON</td><td id="uHtM" class="" style="width:317px">——気分はどうだ。<br/>鈍重な大型機の撃墜は、<br/>確かに後味は悪いだろう。<br/>しかし、我々は必要な時に血を見るのを<br/>ためらってはいけない。<br/>この刺激は、必ず世界中の<br/>墮眠を貪る連中にも<br/>現実の叫びとして届くだろう。<br/>まだまだ我々の叫びは続く。<br/>この世界を変えるまでだ!<br/>キミには、私を信じてほしい。<br/>——それだけだ。<br/></td><td id="rDU`" class="" style="width:285px">——感觉如何？<br/>击落这种笨重的大型客机，<br/>的确让人心情沉重。<br/>但是，我们绝不能在<br/>需要流血的时候犹豫不决。<br/>这番举动，必将成为<br/>响彻世界的警钟，<br/>惊醒那些贪图安逸的家伙。<br/>我们的呐喊还将继续，<br/>直到改变这个世界！<br/>我希望你能继续相信我。<br/>——仅此而已。<br/></td><td id="TwO~" class="" style="width:229px">M24战后实际两个对话，不分评价，台本的三个对话，其中有一个没有实装到游戏。</td></tr><tr id="11c72ce6-1367-8096-9643-fcf4bc366c6a"><td id="Hc;p" class=""></td><td id="JZQ:" class="" style="width:155.546875px">0295_0001_0000_0000</td><td id="XWFP" class=""></td><td id="uHtM" class="" style="width:317px">おい …… 気がついているか?<br/>最近の命令内容、どうやらティジョンが<br/>関わってるらしいって話なんだ ··<br/>なんか、雲行きが怪しいと思わないか?<br/>俺も少し、奴の近辺を調べてみるが、<br/>オマエも気がついた事があったら<br/>俺に教えてくれ。<br/>–——頼んだ。<br/>それじゃあ …… またな。<br/></td><td id="rDU`" class="" style="width:285px">喂……你注意到没有？<br/>最近的命令内容，<br/>好像都和迪森有关。<br/>总觉得事有蹊跷，你不觉得吗？<br/>我也会稍微调查一下那家伙，<br/>你要是发现了什么，<br/>就告诉我。<br/>——拜托了。<br/>那么……回见。<br/></td><td id="TwO~" class="" style="width:229px"></td></tr><tr id="11c72ce6-1367-80f0-8e51-e5fd7385c907"><td id="Hc;p" class=""></td><td id="JZQ:" class="" style="width:155.546875px">0296_0001_0000_0000</td><td id="XWFP" class="">DISION</td><td id="uHtM" class="" style="width:317px">前回の事件によって、我々の意志は<br/>UPEOに限らずニューコムにも<br/>確かに届いたようた。<br/>彼らは、最新の高々度攻撃機を使った<br/>戦鬪に打って出た。<br/>しかも、我々の持つこれまでの<br/>エアロコフィンが、自力でその高度まで<br/>到達出来ない事もすでに確認済みだ。<br/>そこでキミには、今回の作戦用に<br/>特殊機体を緊急に用意した。<br/>高々度までロケットを使って打ち上げられ。<br/>成層圏ギリギリから降下し、<br/></td><td id="rDU`" class="" style="width:285px">通过上次的事件，我们的意志<br/>已经明确地传达给了UPEO，<br/>也传达给了Neucom。<br/>这次他们出动了最新的超高空攻击机<br/>进行作战。<br/>而且，他们已经确认，<br/>我们现有的战斗机(AERO COFFIN)<br/>无法自行到达那种高度。<br/>因此，我们为你紧急准备了<br/>用于此次作战的特殊机体。<br/>它将使用火箭发射至超高空，<br/>然后从平流层边缘进行俯冲攻击，<br/></td><td id="TwO~" class="" style="width:229px">M25</td></tr><tr id="11c72ce6-1367-8004-ac92-d6a9a2c4b0b2"><td id="Hc;p" class=""></td><td id="JZQ:" class="" style="width:155.546875px"></td><td id="XWFP" class=""></td><td id="uHtM" class="" style="width:317px">自分たちのテクノロジーに頼り<br/>油断している彼らを上から叩いてほしい。<br/>私は基地を護衛……<br/>キースは下から彼らを襲撃し、<br/>挟み撃ちにするつもりだ。<br/>これは、確かにかつてないタイプの<br/>作戦ではある。<br/>しかし、テクノロジーを売り物にする<br/>ニューコムを本気で相手にする以上、<br/>これからはゼネラルでの常識など通用しない<br/>場面も増えるだろう。<br/>それは、越えねばならない壁た。<br/></td><td id="rDU`" class="" style="width:285px">居高临下，从上方打击那些<br/>自恃技术优势而掉以轻心的家伙。<br/>我将负责基地防御……<br/>基思会从敌机下方进行突袭，<br/>从而形成上下夹击之势。<br/>这的确是一种<br/>前所未有的作战方式。<br/>但是，如果想要认真的<br/>和以技术为傲的Neucom打交道，<br/>以后通用资源的常识<br/>行不通的情况也会越来越多。<br/>这是一道必须跨越的障碍。<br/></td><td id="TwO~" class="" style="width:229px"></td></tr><tr id="11c72ce6-1367-801f-adfb-e620e654512d"><td id="Hc;p" class=""></td><td id="JZQ:" class="" style="width:155.546875px">0296_0001_0001_0001</td><td id="XWFP" class=""></td><td id="uHtM" class="" style="width:317px">キミには、その力があると信じている。</td><td id="rDU`" class="" style="width:285px">我相信你有这个能力。</td><td id="TwO~" class="" style="width:229px"></td></tr><tr id="11c72ce6-1367-8050-bb46-f2ba35becf44"><td id="Hc;p" class=""></td><td id="JZQ:" class="" style="width:155.546875px">0297_0001_0001_0001</td><td id="XWFP" class="">KEITH</td><td id="uHtM" class="" style="width:317px">それにしてもあきれだ話だ。<br/>科学バ力連中も無茶するが、<br/>こっちも相当の無茶を考えたもんだな。<br/>——俺たちゃ<br/>アストロノーツじゃないって事だよ。<br/>ま、下からの攻撃は俺に任せて<br/>打ち上げ花火に乗ってくれ。<br/>それじゃ…任せた。<br/></td><td id="rDU`" class="" style="width:285px">真是让人无语。<br/>那帮科技狂人胡来也就罢了，<br/>我们居然也要跟着一起疯。<br/>——我们是飞行员，<br/>不是宇航员啊。<br/>算了，下面的攻击就交给我，<br/>你就坐上你的大烟花上天吧。<br/>那就……拜托了。<br/></td><td id="TwO~" class="" style="width:229px"></td></tr><tr id="11c72ce6-1367-80c0-bc0a-f6f907f7a7d6"><td id="Hc;p" class=""></td><td id="JZQ:" class="" style="width:155.546875px">0298_0001_0000_0000</td><td id="XWFP" class="">KEITH</td><td id="uHtM" class="" style="width:317px">いや …… まなかった。<br/>今回は完全に俺の油断だった。<br/>確かにディジョンのヤツが言うとおり、<br/>らしくもない。<br/>——失態だ。<br/>この借りは必ずどこかで返す。<br/>それまで、オマエには死んでほしくない。<br/>俺より絶対に長生きさせてやるからな。<br/>それだけは覚えていてくれ。<br/>じゃあ …… 今度、またこっちから連絡する。<br/></td><td id="rDU`" class="" style="width:285px">哎……抱歉。<br/>这次完全是我的失误。<br/>迪森那家伙说得对，<br/>的确不像我的风格。<br/>——真是丢脸。<br/>这份人情我一定会还的。<br/>在那之前，你可不能先死了。<br/>我绝对会比你活得更久。<br/>你可要记住这点。<br/>那么……下次我会再联系你。<br/></td><td id="TwO~" class="" style="width:229px">M25后，援护基思后</td></tr><tr id="11c72ce6-1367-80d3-8869-d400701fe6b5"><td id="Hc;p" class=""></td><td id="JZQ:" class="" style="width:155.546875px">0299_0001_0000_0000</td><td id="XWFP" class="">DISION</td><td id="uHtM" class="" style="width:317px">キミには……<br/>ここで明確にしておきたい事がある。<br/>–——確かに、<br/>キミの仲間を想う気持ちには、感銘した。<br/>しかし …… 今回のような、奴の失態は、<br/>キース自身で解決すべき問題だろう。<br/>キミには、あの時、キミにしか出来ない<br/>任務があったはずだ。<br/>情に流されるのもよいが、<br/>今の私は、キミに対して<br/>疑問を感じざるを得ない。<br/>我々は、仲間の情などというモノですら<br/></td><td id="rDU`" class="" style="width:285px">我有些事……<br/>想在这里和你说明白。<br/>——你的伙伴之情，<br/>确实让我感触颇深。<br/>但是……像这次这样的失误，<br/>应该是基思自己去解决的问题。<br/>当时，你手里还有必须仰仗你<br/>才能完成的任务。<br/>感情用事也无可厚非，<br/>但现在的我，<br/>不得不对你产生一点疑问。<br/>我们当下的情况，<br/></td><td id="TwO~" class="" style="width:229px">M25 援护基思后</td></tr><tr id="11c72ce6-1367-803c-98e2-ca32e9fddf05"><td id="Hc;p" class=""></td><td id="JZQ:" class="" style="width:155.546875px"></td><td id="XWFP" class=""></td><td id="uHtM" class="" style="width:317px">捨てねばならない現状がある。<br/>それをしっかりと胸に刻んでから、<br/>次の任務に就いてくれ。<br/></td><td id="rDU`" class="" style="width:285px">有时必须舍弃同伴之情。<br/>请将这一点铭记于心，<br/>再执行下一个任务。<br/></td><td id="TwO~" class="" style="width:229px"></td></tr><tr id="11c72ce6-1367-8010-a62a-cee4b47c9158"><td id="Hc;p" class=""></td><td id="JZQ:" class="" style="width:155.546875px">0300_0001_0000_0000</td><td id="XWFP" class="">DISION</td><td id="uHtM" class="" style="width:317px">今回は本当にご苦労だった。<br/>キースのー件だがな<br/>あれは良い判断だった。<br/>ヤツもあれぐらいで<br/>死ぬような腕ではないしな。<br/>それにしても最近のキミには驚かされる。<br/>プラックバードにしても、<br/>よくぞ乗りになした。<br/>これからも、私の右腕として<br/>存分にその力を見せてくれ。<br/>——期待している。<br/>では。<br/></td><td id="rDU`" class="" style="width:285px">这次真是辛苦你了。<br/>关于基思那件事，<br/>你的判断很正确。<br/>那家伙的水平<br/>还不至于这种程度就把命丢了。<br/>不过，你最近的表现真是让我刮目相看。<br/>就连“黑鸟”那种机体，<br/>你也能驾驭得如此出色。<br/>今后也请作为我的左膀右臂，<br/>尽情展现你的实力吧。<br/>——我很期待。<br/>那么，再见。<br/></td><td id="TwO~" class="" style="width:229px">M25不援护基思，直接攻击敌机</td></tr><tr id="11d72ce6-1367-80df-9ed9-fcf83750e1a6"><td id="Hc;p" class=""></td><td id="JZQ:" class="" style="width:155.546875px">0301_0001_0000_0000</td><td id="XWFP" class="">KEITH</td><td id="uHtM" class="" style="width:317px">テロのニュース、見たか?<br/>まったく呆れるほど物騷な世の中に<br/>なっちまったもんだよな。<br/>こういう事件があると<br/>俺達の敵は、ニューコムだけとは<br/>限らないって気にもなる。<br/>ところで、珍しくティジョンの奴、<br/>俺には何の相談もなく<br/>有給休暇とったらしいんだよ。<br/>この忙しいって時に何考えてやがるのか<br/>さっばりわからん。<br/>奴とは、もう随分長い事チームで<br/></td><td id="rDU`" class="" style="width:285px">你看到关于恐袭的新闻了吗？<br/>这世道真是越来越乱了，<br/>简直让人无语。<br/>出了这种事，<br/>让我觉得我们的敌人<br/>可能不仅仅是Neucom。<br/>话说，迪森那家伙居然<br/>没跟我说一声就休年假去了，<br/>真是少见。<br/>在这节骨眼上，他到底在想啥，<br/>完全搞不懂。<br/>我们俩在同一个队伍里<br/></td><td id="TwO~" class="" style="width:229px"></td></tr><tr id="11d72ce6-1367-8010-998d-d5eacfc852ea"><td id="Hc;p" class=""></td><td id="JZQ:" class="" style="width:155.546875px"></td><td id="XWFP" class=""></td><td id="uHtM" class="" style="width:317px">飛んできた。<br/>だが、最近の行動や言動には<br/>この俺にも理解出来ない事が多すぎる。<br/>何のためか知らんが、<br/>こそこそと嗅ぎまわっているようだしな。<br/>もちろん俺は、<br/>奴の事を悪く言うつもりはないが——。<br/>ただこの予感は何か嫌な感じなんだ。<br/>それだけは。<br/>オマエにも知ってほしかっただけだ。<br/></td><td id="rDU`" class="" style="width:285px">飞了这么久，<br/>但是他最近的言行举止<br/>让我越来越看不懂了。<br/>不知道是为什么，<br/>他好像一直在偷偷摸摸地调查些什么。<br/>我当然不是<br/>想说他坏话——<br/>只是这种预感让我有点不安。<br/>就是这样，<br/>我只是想让你知道。<br/></td><td id="TwO~" class="" style="width:229px"></td></tr><tr id="11d72ce6-1367-801a-bdf8-e18374ab5bc7"><td id="Hc;p" class=""></td><td id="JZQ:" class="" style="width:155.546875px">0302_0001_0000_0000</td><td id="XWFP" class=""></td><td id="uHtM" class="" style="width:317px">よっ …… 元気か?<br/>それにしても、あいも変わらずいい腕だな。<br/>これならディジョンの出番が<br/>なくなる日も近いって。<br/>なんか最近 …… オマエと組んでると、<br/>不思議なんだが奴とチーム組んだ頃を<br/>思い出す事がある。<br/>最初はやっばりオマエの時と一緒で<br/>嫌な奴で …… 何かっていうと喧嘩してた。<br/>でも、俺にしてみると、<br/>それが良かったんだ。<br/>最近は、奴と喧嘩どころか<br/></td><td id="rDU`" class="" style="width:285px">哟……最近怎么样？<br/>你的技术还是一如既往地好啊。<br/>这样下去，迪森那家伙<br/>迟早要被你抢了风头。<br/>不知咋的……最近和你一起出击，<br/>总是让我想起以前和那家伙<br/>组队的时候。<br/>一开始，就像你一样，<br/>他也是个让人讨厌的家伙……<br/>动不动就吵架。不过，我反倒觉得<br/>那样挺好的。<br/>最近，别说吵架了，<br/></td><td id="TwO~" class="" style="width:229px">M26高<br/>一上来优先击毁R808<br/></td></tr><tr id="11d72ce6-1367-80ce-87ac-d11e647474a3"><td id="Hc;p" class=""></td><td id="JZQ:" class="" style="width:155.546875px"></td><td id="XWFP" class=""></td><td id="uHtM" class="" style="width:317px">話すらもしなくなったからな。<br/>——すまん、なんかジジくさい愚痴だった。<br/>忘れてくれ …… 。<br/></td><td id="rDU`" class="" style="width:285px">我们连话都说不了几句了。<br/>——抱歉，说了些老掉牙的牢骚。<br/>忘了吧……<br/></td><td id="TwO~" class="" style="width:229px"></td></tr><tr id="11d72ce6-1367-8050-866f-dc34ed1d3e29"><td id="Hc;p" class=""></td><td id="JZQ:" class="" style="width:155.546875px">0303_0001_0000_0000</td><td id="XWFP" class=""></td><td id="uHtM" class="" style="width:317px">どうした、相棒。<br/>——何とか始末したな!<br/>この調子ならディジョンも隊長から廃業か?<br/>ま、こんな時に休暇をとる奴の事は忘れて、<br/>俺達だけでやっていこうや。<br/>たまにはそっちからも連絡してくれよ。<br/>飲みにでも行こうぜ。<br/>あ、でも、その時は——<br/>俺の昔話を嫌っていうほど聞かせるから<br/>覚悟しといてくれよな。<br/></td><td id="rDU`" class="" style="width:285px">怎么了，伙计？<br/>——总算是搞定了！照这样下去，<br/>迪森那家伙是不是要被炒鱿鱼了？<br/>算了，别管那个休假的人了，<br/>就我们两个好好干吧。<br/>有空你也联系我一下。<br/>一起去喝一杯怎么样？<br/>啊，不过到时候——<br/>我会把我的过去一股脑儿地讲给你听，<br/>你可要做好心理准备。<br/></td><td id="TwO~" class="" style="width:229px">M26低<br/>让航天飞机着陆<br/></td></tr><tr id="11c72ce6-1367-8071-b22f-f0917328e96a"><td id="Hc;p" class=""></td><td id="JZQ:" class="" style="width:155.546875px">0304_0001_0000_0000</td><td id="XWFP" class="">DISION</td><td id="uHtM" class="" style="width:317px">パーク、か ……<br/>奴の欲深さと身軽さには、<br/>敬服するしかないな。<br/>奴こそ、まさに人間の業そのものだ。<br/>私利私欲–——自分の地位の為なら、<br/>治安維持の名を騙り、<br/>戦争という人殺しですら<br/>喜んで取り引きの材料にする。<br/>ふっふっふっ<br/>人の欲とは、かくも愚かなものだと<br/>思わないか?<br/>しかし、どんな人間も、己の肉体が滅ぶまで<br/></td><td id="rDU`" class="" style="width:285px">朴某人吗……<br/>他那贪婪的嘴脸和卑鄙的手段，<br/>我真是佩服得五体投地，<br/>简直就是人性的完美体现。<br/>为了私利，为了自己的地位，<br/>他竟然可以打着维和的旗号，<br/>把战争这种杀人的勾当<br/>——当作交易的筹码。<br/>呵呵呵呵……<br/>你不觉得人类的欲望<br/>是如此愚蠢吗？<br/>但是，谁都无法摆脱欲望的牢笼，<br/></td><td id="TwO~" class="" style="width:229px">M27</td></tr><tr id="11d72ce6-1367-8005-a701-c96047727cc0"><td id="Hc;p" class=""></td><td id="JZQ:" class="" style="width:155.546875px"></td><td id="XWFP" class=""></td><td id="uHtM" class="" style="width:317px">この欲からは逃れられないのだからな。<br/>まさにこの世は生き地獄としか<br/>言いようがない。<br/>私は、そんな全世界にはびこる<br/>腐りきった連中を目覚めさせて<br/>やらねばならない。<br/>それは、ゼネラルの一社員としての<br/>義務、業務を超越した崇高なる目的である。<br/>キミにこんな事を話すのも、<br/>今の作戦は通常の業務を<br/>逸脱した行動となるからだ。<br/>——近々、ニューコムでロケットの<br/></td><td id="rDU`" class="" style="width:285px">直到肉体毁灭的那一刻。<br/>这个世界简直就是活生生的地狱。<br/><br/>我必须唤醒这世上<br/>所有腐朽堕落的人们。<br/><br/>这不仅仅是作为通用资源员工的义务，<br/>更是超越工作范畴的崇高目标。<br/>之所以跟你说这些，<br/>是因为这次的作战<br/>将脱离常规任务的范畴。<br/>——我得到了情报，Neucom近期<br/><br/></td><td id="TwO~" class="" style="width:229px"></td></tr><tr id="11d72ce6-1367-8008-a5a2-ece15fdb21fe"><td id="Hc;p" class=""></td><td id="JZQ:" class="" style="width:155.546875px">0304_0001_0001_0001</td><td id="XWFP" class=""></td><td id="uHtM" class="" style="width:317px">打ち上げが計画されている情報を掴んだ。<br/>その隙に空挺部隊アントリオンを送り、<br/>ニューコムのテクノロジーをごっそり頂く。<br/>アントリオンの援軍申請に関しても、<br/>上から直に認められている。<br/>——私は信じている。<br/>この目的には、義がある事を!<br/>それでは。<br/></td><td id="rDU`" class="" style="width:285px">计划发射火箭。<br/>我们要趁此机会，派出蚁狮战车空降部队<br/>将Neucom的技术统统夺走。<br/>关于蚁狮战车的增援请求，<br/>高层已经直接批准了。<br/>——我相信，<br/>我们的目标是正义的！<br/>那么，再见。<br/></td><td id="TwO~" class="" style="width:229px"></td></tr><tr id="11d72ce6-1367-806b-bcef-e7cf29e8c616"><td id="Hc;p" class=""></td><td id="JZQ:" class="" style="width:155.546875px">0305_0001_0000_0000</td><td id="XWFP" class="">DISION</td><td id="uHtM" class="" style="width:317px">準備はこれで全てが完了した。<br/>それもキミの力があってこそのものだ。<br/>これまでの活躍、心から感謝している。<br/>すでに時は近い。<br/>この私が秘めたる目的に関しての詳細は、<br/>追って伝える。<br/>今は、短い休息をとってほしい。<br/></td><td id="rDU`" class="" style="width:285px">准备工作至此全部完成。<br/>这多亏了你的帮助。<br/>衷心感谢你一直以来的出色表现。<br/>时机已近，<br/>关于我隐藏的目的，<br/>稍后会详细说明。<br/>现在，先好好休息一下吧。<br/></td><td id="TwO~" class="" style="width:229px"></td></tr><tr id="11d72ce6-1367-8078-8127-e48cb0e2d2fe"><td id="Hc;p" class=""></td><td id="JZQ:" class="" style="width:155.546875px">0306_0001_0000_0000</td><td id="XWFP" class="">KEITH</td><td id="uHtM" class="" style="width:317px">悪いな ···· 緊急出動だ<br/>今回も俺達だけで処理する事になった。<br/>ただ……まぁ、今となっては二人で十分だと<br/>俺は思っている。<br/>しかし、現地は濃霧に<br/>閉ざされているらしい。<br/>互いに連絡をとりながら、任務にあたろう。<br/>では、後でな。<br/><br/><br/></td><td id="rDU`" class="" style="width:285px">抱歉……要紧急出动了。<br/>这次又得我们两个解决了。<br/>不过……嘛，现在我们两个就足够了，<br/>反正我是这么想的。<br/>但是，听说现场<br/>被浓雾所笼罩。<br/>我们任务期间要时刻保持联系。<br/>那么，任务见。<br/></td><td id="TwO~" class="" style="width:229px">M28</td></tr><tr id="11d72ce6-1367-80f4-be30-cb8bc9d64bb2"><td id="Hc;p" class=""></td><td id="JZQ:" class="" style="width:155.546875px">0307_0001_0000_0000</td><td id="XWFP" class="">KEITH</td><td id="uHtM" class="" style="width:317px">いやいや …… 今回はさすがにヤバかったな。<br/>——それにしても、<br/>毎度の事だがオマエの腕には頭が下がる。<br/>もう、この俺がサポートに<br/>回ってるって状態だな。<br/>これからも頼むゼ …… 相棒!<br/></td><td id="rDU`" class="" style="width:285px">哎呀呀……这次真是太危险了。<br/>——话说回来，<br/>你的技术每次都让我佩服不已。<br/>现在已经变成我给你做支援<br/>的状态了。<br/>以后也请多关照……伙计！<br/></td><td id="TwO~" class="" style="width:229px"><br/>直接击毁所有TGT<br/></td></tr><tr id="11d72ce6-1367-80aa-b4f9-ef9c9229ecca"><td id="Hc;p" class=""></td><td id="JZQ:" class="" style="width:155.546875px">0308_0001_0000_0000</td><td id="XWFP" class="">KEITH</td><td id="uHtM" class="" style="width:317px">…… まったく!<br/>ミサイルが飛び出した時は<br/>冷や汗もんだったな。<br/>それでもオマエが、<br/>落としてくれたから助かった。<br/>まだまだ先は長そうだし、またよろしくな。<br/>相棒さんよ!<br/></td><td id="rDU`" class="" style="width:285px">……真是的！<br/>导弹发射出来的时候<br/>我可是吓出了一身冷汗。<br/>多亏你最后把它打下来，<br/>真是帮大忙了。<br/>今后的路还很长，还请多多指教。<br/>我的好伙计！<br/></td><td id="TwO~" class="" style="width:229px">一直等到导弹发射，机炮击落导弹</td></tr><tr id="11d72ce6-1367-805d-aeea-e272e2dc10f1"><td id="Hc;p" class=""></td><td id="JZQ:" class="" style="width:155.546875px">0309_0001_0000_0000</td><td id="XWFP" class="">DISION</td><td id="uHtM" class="" style="width:317px">今、君が見ているこの録画メッセージは、<br/>ゼネラルの上司として伝えるモノではない。<br/>あくまでも個人的なモノだ。<br/>これを見て君が何を判断するのかは、<br/>君次第だ。<br/>私はUPEOから君を誘った事を<br/>今でも誇りに思っている。<br/>君のこれまでの働きには本当に驚かされた。<br/>それは、私の予想を遥かに超えた<br/>モノだった。<br/>君はこの世界で、唯一私を消す事が出来る<br/>可能性を持ったパイロットだろう。<br/></td><td id="rDU`" class="" style="width:285px">你现在看到的这段录像信息，<br/>并非来自通用资源的上级，<br/>而是我个人的意愿。<br/>看完之后你作何判断，<br/>都取决于你自己。<br/>我至今仍为当初把你从UPEO带过来，<br/>感到十分自豪。<br/>你一直以来的表现着实让我惊艳，<br/>远远超出了我的预期。<br/><br/>你可能是这个世界上唯一一个，<br/>有能力击败我的飞行员。<br/></td><td id="TwO~" class="" style="width:229px">M29</td></tr><tr id="11d72ce6-1367-80a6-a76f-d0962dae4623"><td id="Hc;p" class=""></td><td id="JZQ:" class="" style="width:155.546875px"></td><td id="XWFP" class=""></td><td id="uHtM" class="" style="width:317px">だからこそ、私は君が敵となる前に<br/>このメッセージを伝えるワケだ。<br/>——話は極めてシンプルだ。<br/>私と私に賛同する者たちは、<br/>あと数日後に決起し、<br/>この世界に革命による変革を示す。<br/>この決起に賛同するメンバーには、<br/>ゼネラル、ニューコム、UPEOから<br/>選抜されたエースが揃っている。<br/>その誰もが、次の世界を自らの手で<br/>切り開こうと志す頼もしい若き力だ。<br/>君も、この世界を見渡してみるといい。<br/></td><td id="rDU`" class="" style="width:285px">正因为如此，我才要<br/>在你成为我的敌人之前传达这条信息。<br/>——事情很简单。<br/>我和我的支持者们<br/>将在几天后起义，<br/>用革命颠覆这个旧世界。<br/>参与这次起义的成员<br/>都是从通用资源、Neucom和UPEO中<br/>挑选出来的王牌飞行员。<br/>他们都渴望用自己的双手开创新的世界，<br/>是值得信赖的年轻力量。<br/>你不妨也好好看看这个世界。<br/></td><td id="TwO~" class="" style="width:229px"></td></tr><tr id="11d72ce6-1367-8090-92c3-e97182b15fa0"><td id="Hc;p" class=""></td><td id="JZQ:" class="" style="width:155.546875px">0309_0001_0001_0001</td><td id="XWFP" class=""></td><td id="uHtM" class="" style="width:317px">——巨大な富の上で<br/>情眠を貪り続けるゼネラル。<br/>——そのおこぼれで<br/>生き残ろうと必死なUPEO。<br/>–——科学という名の欲で<br/>新たな富を掴もうとするニューコム。<br/>ヤツらの握る経済力という権力を前にして、<br/>鬪いを放棄した政治や司法といった<br/>前時代のルールども。<br/>そして、いつの時代でも<br/>人間は欲の為にしか生きる術を学べない<br/>愚かな生き物でしかないのか。<br/></td><td id="rDU`" class="" style="width:285px">——趴在巨额财富之上，<br/>贪图享乐的通用资源。<br/>——为了些许残羹冷炙，<br/>苟延残喘的UPEO。<br/>——被名为科学的欲望驱使，<br/>贪婪攫取新财富的Neucom。<br/>面对他们手中的经济权力，<br/>政治和司法这些旧时代的规则<br/>都放弃了抵抗。<br/>而人类，无论在哪个时代，<br/>都不过是一群被欲望驱使的愚蠢生物。<br/></td><td id="TwO~" class="" style="width:229px"></td></tr><tr id="11d72ce6-1367-8025-afa7-c8c46587f986"><td id="Hc;p" class=""></td><td id="JZQ:" class="" style="width:155.546875px"></td><td id="XWFP" class=""></td><td id="uHtM" class="" style="width:317px">どんな人間でも、夢が希望となり<br/>理想が現実として叶うと …… 欲が生まれる。<br/>その欲を目の前にしたら夢などは、<br/>捨てられた猫のように同情と慈悲から来る<br/>自己満足でしかない。<br/>しかし、この人間が<br/>全ての欲を捨てる事の出来る<br/>唯一の手段を、私だけが知っている。<br/>–——そう、本当の私には<br/>既に肉体など存在していない。<br/>今、君が見ている私の姿は。<br/>かつて私自身のデータが構築された頃の<br/></td><td id="rDU`" class="" style="width:285px">任何人都会在梦想变成希望，<br/>理想变成现实之时……滋生出欲望。<br/>而当曾经的梦想实现后，<br/>它就会变得像被遗弃的小猫一样，<br/>只剩下出于同情和怜悯的自我满足。<br/>不过，我已经知道了唯一能让人类<br/>彻底打破欲望枷锁的方法。<br/><br/>——没错，<br/>真正的我已经没有肉体了。<br/>你现在看到的我的样子，<br/>只不过是重现了我过去<br/></td><td id="TwO~" class="" style="width:229px"></td></tr><tr id="11d72ce6-1367-8095-b765-cb8e6908d43c"><td id="Hc;p" class=""></td><td id="JZQ:" class="" style="width:155.546875px">0309_0001_0002_0002</td><td id="XWFP" class=""></td><td id="uHtM" class="" style="width:317px">記録を再現しているだけなのだ。<br/>君も電脳化という言葉を知っているだろう。<br/>人間の精神や心、魂といった<br/>物理的な存在ではない情報だけを抽出し、<br/>電子によるネットワーク上で<br/>生命として起動させる技術だ。<br/>そして、この技術によって<br/>肉体を捨てて生まれ変わった今の私には、<br/>確かに欲がない。<br/>——あるのは、<br/>この世界を食い潰そうとしている人類どもに<br/>私と同じ処置を施そうという<br/></td><td id="rDU`" class="" style="width:285px">数据构建时的记录而已。<br/>你应该听说过“电脑化”这个词吧。<br/>这项技术可以提取人类的精神、心灵、<br/>灵魂等非物质存在的信息，<br/>并将它们作为生命<br/>在电子网络中一直运行。<br/>而通过这项技术<br/>舍弃肉体获得新生的我，<br/>的确已经摆脱了欲望的束缚。<br/>——我现在唯一的愿望，<br/>就是对那些正在蚕食这个世界的人类，<br/>施以和我一样的”待遇”。<br/></td><td id="TwO~" class="" style="width:229px"></td></tr><tr id="11d72ce6-1367-8039-8f4c-de6daebe1aea"><td id="Hc;p" class=""></td><td id="JZQ:" class="" style="width:155.546875px"></td><td id="XWFP" class=""></td><td id="uHtM" class="" style="width:317px">革命への意志だけである。<br/>だからこそ私は、私の革命によって<br/>まだ誰も成し得なかった<br/>新世界を築く自信がある。<br/>——私を信じてほしい。<br/>そして、君にもこの来たるべき我々の時代に<br/>参加してほしいと心から願っている。<br/>既に世界は我々の手の内にある。<br/>君からの喜ぶべき回答を待っている。<br/>それでは …… 次は<br/>今という名の未来で会おう。<br/></td><td id="rDU`" class="" style="width:285px">这，就是促使我发动革命的意志。<br/>正因如此，我有信心，<br/>我的革命将创建一个前所未有的新世界，<br/>一个至今无人能够实现的理想世界。<br/>——我希望你能相信我。<br/>并且，我真诚地希望你也能<br/>加入这个属于我们的新时代，<br/>世界已经在我们的掌控之中了。<br/>我期待得到你肯定的答复。<br/>那么……下次再见，<br/>让我们在名为“现在”的未来重逢。<br/></td><td id="TwO~" class="" style="width:229px"></td></tr><tr id="11d72ce6-1367-8096-b727-c7a52a9be180"><td id="Hc;p" class=""></td><td id="JZQ:" class="" style="width:155.546875px">0310_0001_0000_0000</td><td id="XWFP" class="">KEITH</td><td id="uHtM" class="" style="width:317px">なぁ、ナシメントの件<br/>——どっかおかしくないか?<br/>ここ最近、まるで誰かが<br/>俺達とニューコムをどうにかして<br/>全面戦争に持っていきたがっている<br/>としか思えない。<br/>まったく誰が、何の為にこんな事を。<br/>どう考えたってこんな偶然が、<br/>何度も続くなんておかしいんじゃないか。<br/>なあ、そう思うだろ?<br/>もちろん俺たちが、幾らそんな事を言っても<br/>ただの戦闘機乗りにゃ、<br/></td><td id="rDU`" class="" style="width:285px">喂，关于纳西门托的事情……<br/>——你不觉得很奇怪吗？<br/>最近发生的一切，就好像有人<br/>处心积虑地想让我们和Neucom<br/>全面开战一样。<br/><br/>到底是谁，为了什么要这么做？<br/>这种巧合接二连三地发生，<br/>怎么想都很不正常，<br/>你说对吧？<br/>就算我们说的再多，<br/>也不过区区战斗机飞行员，<br/></td><td id="TwO~" class="" style="width:229px"></td></tr><tr id="11d72ce6-1367-806a-9e3e-db855f1f29e4"><td id="Hc;p" class=""></td><td id="JZQ:" class="" style="width:155.546875px"></td><td id="XWFP" class=""></td><td id="uHtM" class="" style="width:317px">世界が変えられるって<br/>ワクでもないだろうけどな。<br/>おう…そうだ、今回の任務は<br/>久しぷりにディジョンもそろって登場だ。<br/>だから、色々あるけど ……<br/>ま、楽しくやろうゼ。<br/></td><td id="rDU`" class="" style="width:285px">改变世界的力量，<br/>我们还没有。<br/>哦……对了，这次的任务<br/>许久不见的迪森也终于要一起出动了。<br/>虽说发生了很多事……<br/>这次还是让我们好好享受任务吧。<br/></td><td id="TwO~" class="" style="width:229px"></td></tr><tr id="11d72ce6-1367-8094-8be4-f37deaee88e8"><td id="Hc;p" class=""></td><td id="JZQ:" class="" style="width:155.546875px">0311_0001_0000_0000</td><td id="XWFP" class="">KEITH</td><td id="uHtM" class="" style="width:317px">くそ …… くそ。<br/>やっぱり、俺の予感が当たっちまった。<br/>それにしてもディジョンの奴、<br/>これからどこへ行くっていうんだ。<br/>まさか、ニューコムにでも<br/>転職する気じゃねえだろうな。<br/>チーム解散とか抜かしやがって<br/>こっちはな、とっくの昔に<br/>そう思ってたってなあ。<br/>——相棒。<br/>くそ …… くそお!<br/>何が起こってんだ!誰か教えてくれ!<br/></td><td id="rDU`" class="" style="width:285px">可恶……可恶！<br/>果然，我的预感是对的。<br/>迪森那家伙，<br/>到底要去哪里？<br/>他该不会是打算<br/>跳槽到Neucom吧？<br/>还说什么队伍解散，<br/>我早就想这么干了！<br/><br/>——伙计。<br/>可恶……可恶！<br/>到底发生了什么？！谁来告诉我！<br/><br/></td><td id="TwO~" class="" style="width:229px">留在GR</td></tr><tr id="11d72ce6-1367-80ad-bfff-dc444b5d21c4"><td id="Hc;p" class=""></td><td id="JZQ:" class="" style="width:155.546875px"></td><td id="XWFP" class=""></td><td id="uHtM" class="" style="width:317px">モヤモヤしてしょうがねえ!</td><td id="rDU`" class="" style="width:285px">我心里烦躁得很！</td><td id="TwO~" class="" style="width:229px"></td></tr><tr id="11d72ce6-1367-802d-975b-e97d53d1efe3"><td id="Hc;p" class=""></td><td id="JZQ:" class="" style="width:155.546875px">0312_0001_0000_0000</td><td id="XWFP" class="">DISION</td><td id="uHtM" class="" style="width:317px">キミの覚悟 ……<br/>このアピサル·ディジョン、<br/>確かに受けとめた。<br/>我らはウロボロス。<br/>その名は自分の尾をかむ蛇を指し、<br/>「我が終わりこそ我が始め」の意。<br/>自分で自分を生み出し<br/>婚姻させ、滅ほす。<br/>そして、我らはまた、<br/>「不死』『永遠』『叡智』を象徴する。<br/>——ようこそウロボロスへ。<br/>このアビサル·ディションと共に<br/></td><td id="rDU`" class="" style="width:285px">你的觉悟……<br/>我，阿比萨尔·迪森，<br/>收到了。<br/>我们即衔尾蛇——Uroboros。<br/>衔尾蛇，意为咬住自己尾巴的蛇，<br/>象征着“我的终结即是我的开始”。<br/>它自我创生，<br/>自我结合，自我毁灭。<br/>同时，我们也象征着<br/>“不死”、“永恒”和“智慧”。<br/>——欢迎加入衔尾蛇。<br/>与我，阿比萨尔·迪森一起，<br/></td><td id="TwO~" class="" style="width:229px">跟迪森走</td></tr><tr id="11d72ce6-1367-80b7-8c1a-cec830df402e"><td id="Hc;p" class=""></td><td id="JZQ:" class="" style="width:155.546875px"></td><td id="XWFP" class=""></td><td id="uHtM" class="" style="width:317px">終わりという名の始まりを目指し、<br/>始まりという名の終わりへと<br/>旅立つ時が来た。<br/></td><td id="rDU`" class="" style="width:285px">向着名为终结的开始，<br/>前往名为开始的终结，<br/>踏上旅程吧。<br/></td><td id="TwO~" class="" style="width:229px"></td></tr><tr id="11e72ce6-1367-8011-b7fb-d4616072e9cd"><td id="Hc;p" class=""></td><td id="JZQ:" class="" style="width:155.546875px">0313_0001_0000_0000</td><td id="XWFP" class="">KEITH</td><td id="uHtM" class="" style="width:317px">いいか、よく聞け。<br/>俺は絶対に認めない。<br/>奴があのディジョンなワケがない。<br/>あれは、俺の知ってる …… 俺の相棒だった。<br/>ゼネラルのエースだった。<br/>俺の親友だった。<br/>俺の、俺の …… 。<br/>——別人だ。<br/>奴はもうどこかで死んだ。<br/>あれは奴じゃない。<br/>だから——俺は、奴の名を語るあれを、<br/>必ずこの手で …… この世から消す。<br/></td><td id="rDU`" class="" style="width:285px">好了，认真听我说。<br/>我绝对不承认。<br/>那个家伙根本不是迪森，<br/>那个人不是我认识的……我的好搭档，<br/>通用资源的王牌，<br/>我的挚友。<br/>我的……我的……<br/>——而是一个冒牌货。<br/>他应该已经死在某个地方了。<br/>那个家伙不是他。<br/>所以——我一定要亲手……将那个<br/>盗用他名义的家伙从这个世界上抹去。<br/></td><td id="TwO~" class="" style="width:229px">M30</td></tr><tr id="11e72ce6-1367-80ff-9f7c-ea06a8018fd5"><td id="Hc;p" class=""></td><td id="JZQ:" class="" style="width:155.546875px"></td><td id="XWFP" class=""></td><td id="uHtM" class="" style="width:317px">必ず——</td><td id="rDU`" class="" style="width:285px">我一定会！</td><td id="TwO~" class="" style="width:229px"></td></tr><tr id="11e72ce6-1367-8078-abe3-ec289bb83415"><td id="Hc;p" class=""></td><td id="JZQ:" class="" style="width:155.546875px">0314_0001_0000_0000</td><td id="XWFP" class="">KEITH</td><td id="uHtM" class="" style="width:317px">さすがだな。<br/>あの戦況で俺よりも撃墜数が勝るとはな。<br/>どうやら、俺も奴の一件で<br/>頭に血が上りすぎたようだしな。<br/>オマエのおかけで、少し冷静になれた。<br/>しかし …… な。<br/>それでも、奴とのケリは俺が必ずつける。<br/>それだけは、覚えておいてくれ。<br/></td><td id="rDU`" class="" style="width:285px">真不愧是你啊。<br/>在那种战况下，击落数都能超过我。<br/>看来是迪森的事情<br/>让我太过冲动了。<br/>多亏有你，让我冷静了不少。<br/>不过啊……<br/>和那家伙的恩怨，我一定要亲手了结。<br/>这一点，你可要记住了。<br/></td><td id="TwO~" class="" style="width:229px">M30<br/>击落敌机比基思多<br/></td></tr><tr id="11e72ce6-1367-80bb-aa6c-c3a62e0191f9"><td id="Hc;p" class=""></td><td id="JZQ:" class="" style="width:155.546875px">0315_0001_0000_0000</td><td id="XWFP" class="">KEITH</td><td id="uHtM" class="" style="width:317px">どうしたんだ …… 何かあったのか?<br/>途中で動きが、ガクッと落ちただろ。<br/>ちゃんと見てたんだからな。<br/>心配させないでくれ。<br/>まったく、オマエのせいで冷静になったよ。<br/>——ディジョン。<br/>奴の息の根は俺が必ず止めてみせる。<br/>それが、パートナーとして<br/>俺が奴にしてやれる最後の事だからな …… 。<br/></td><td id="rDU`" class="" style="width:285px">你怎么了……出什么事了吗？<br/>中途你的动作突然慢了下来吧？<br/>我一直看着呢。<br/>别让我担心。<br/>真是的，多亏了你我才冷静下来。<br/>——迪森。<br/>我一定会干掉他。<br/>这是我作为他的搭档，<br/>能为他做的最后一件事……<br/></td><td id="TwO~" class="" style="width:229px">M30<br/>击落少<br/></td></tr><tr id="11e72ce6-1367-8096-af9a-c3c2b8d5052f"><td id="Hc;p" class=""></td><td id="JZQ:" class="" style="width:155.546875px">0316_0001_0000_0000</td><td id="XWFP" class="">KEITH</td><td id="uHtM" class="" style="width:317px">どうやら奴の空母は、<br/>メガフロートに向かっているらしい。<br/>ただ、今やうちの会社も<br/>指揮系統はまったく機能していない。<br/>これからは俺の独断で<br/>奴らの空母へ向かうつもりでいる。<br/>この目でしっかり、<br/>奴らがこれから何をする気なのか ……<br/>そして、ケリをつける為に。<br/>オマエに無理に来いとは言わない。<br/>だが、いつの間にか<br/>こんなものに巻き込まれた俺たちにとっての<br/></td><td id="rDU`" class="" style="width:285px">看来那家伙的空中航母<br/>正朝着巨浮城前进。<br/>不过，现在我们公司的<br/>指挥系统已经完全瘫痪了。<br/>因此我打算自作主张，<br/>直接去攻击他们的航母。<br/>倒是要亲眼看看，<br/>他们究竟想干什么……<br/>然后，了结这一切。<br/>我不会勉强你跟我一起行动。<br/>但是，对于不知不觉被卷入这场<br/>纷争的我们来说，<br/></td><td id="TwO~" class="" style="width:229px">M31</td></tr><tr id="11e72ce6-1367-8087-bad8-c71b6f090edf"><td id="Hc;p" class=""></td><td id="JZQ:" class="" style="width:155.546875px"></td><td id="XWFP" class=""></td><td id="uHtM" class="" style="width:317px">ケジメだけは、しっかりつけにいこう。<br/>これが最後のメールになるかもしれない。<br/>——だから、相棒。<br/>俺はあっちで待ってるからな!<br/></td><td id="rDU`" class="" style="width:285px">总得有个交代。<br/>这可能是我最后一封邮件了。<br/>——所以，伙计。<br/>我在那边等你！<br/></td><td id="TwO~" class="" style="width:229px"></td></tr><tr id="11e72ce6-1367-80c1-a96e-fbe07744de67"><td id="Hc;p" class=""></td><td id="JZQ:" class="" style="width:155.546875px">0317_0001_0000_0000</td><td id="XWFP" class="">RENA</td><td id="uHtM" class="" style="width:317px">久しぶり …… ですね。<br/>覚えている?<br/>SARFでー緒だった——レナです。<br/>まさか、こんなカタチで<br/>またあなたに会えるなんて ……<br/>でも、どこかで、わたし …… きっとあなたも<br/>この彼の戦いに参加してくれるような<br/>気がしていたのかもしれない。<br/>——ねえ。<br/>私たち二人が似てるって、<br/>あの頃 …… メールで言った事があったよね。<br/>あの時は、何であんな事をって<br/></td><td id="rDU`" class="" style="width:285px">好久不见……呢。<br/>你还记得吗？我是曾经<br/>和你一起在SARF战斗过的，玲名<br/>没想到会以这种方式<br/>再次与你相遇……<br/>但是，我总觉得……或许你也会<br/>加入他的战斗。<br/><br/>——对吧。<br/>我们两个很像，<br/>我以前……在邮件里跟你说过的。<br/>当时，我自己也不明白<br/></td><td id="TwO~" class="" style="width:229px">M35</td></tr><tr id="11e72ce6-1367-806b-84ac-c1f4af9559c6"><td id="Hc;p" class=""></td><td id="JZQ:" class="" style="width:155.546875px"></td><td id="XWFP" class=""></td><td id="uHtM" class="" style="width:317px">自分でもわからなかった。<br/>でも、あの気持ちは、<br/>きっと今日の事を教えてくれていたのかな。<br/>辛い戦いになってしまったけピ<br/>お互い、彼の為に、自分の翼を精一杯<br/>役に立てましょう。<br/></td><td id="rDU`" class="" style="width:285px">为什么会那样想。<br/>但是，那种感觉，<br/>或许就是今天这一切的预兆。<br/>这将会是一场艰难的战斗，<br/>为了他，让我们张开自己的翅膀，<br/>尽情翱翔吧。<br/></td><td id="TwO~" class="" style="width:229px"></td></tr><tr id="11e72ce6-1367-8018-b80e-e428e9ea9afa"><td id="Hc;p" class=""></td><td id="JZQ:" class="" style="width:155.546875px">0318_0001_0000_0000</td><td id="XWFP" class="">DISION</td><td id="uHtM" class="" style="width:317px">我らがウロポロスの意志——。<br/>それは、この世界を繋ぐ<br/>あまたのメティアを使い、<br/>既に十分過ぎるほど告げる事が出来た。<br/>残すは、実践あるのみ …… 。<br/>そう …… 誰の為でもない。<br/>我々自身が、各々の翼によって、<br/>地上から空を見上げる事しか出来ぬ奴等に<br/>知らしめてやろうではないか。<br/>既にナシメントという名の<br/>前時代のルールは、私が葬っておいた。<br/>そして次は、科学という名で新たな富を<br/></td><td id="rDU`" class="" style="width:285px">衔尾蛇的意志——<br/>我们已经通过<br/>遍布世界的信息网络，<br/>向世人做出了充分的宣告。<br/>接下来，就是付诸行动的时刻……<br/>没错……不是为了谁，<br/>而是为了我们自己，用我们各自的翅膀，<br/>让那些只能仰望苍穹的蝼蚁们<br/>好好见识一下。<br/>纳西门托们制定的旧时代规则，<br/>已经被我亲手埋葬。<br/>接下来，就轮到那些妄图假借科学之名，<br/></td><td id="TwO~" class="" style="width:229px"></td></tr><tr id="11f72ce6-1367-806d-ae8b-d826044bca15"><td id="Hc;p" class=""></td><td id="JZQ:" class="" style="width:155.546875px"></td><td id="XWFP" class=""></td><td id="uHtM" class="" style="width:317px">貪ろうとしている輩に …… 制裁を!<br/>君には、最新鋭の戦闘機『グイム』を<br/>用意しておいた。<br/>さあ、飛ベ——ウロボロスのしもべたち。<br/></td><td id="rDU`" class="" style="width:285px">攫取财富的家伙们……接受制裁了！<br/>我已经为你准备好了<br/>最新型的战斗机“斗鸡”。<br/>起飞吧——衔尾蛇的信徒们。<br/></td><td id="TwO~" class="" style="width:229px"></td></tr></tbody></table><h1 id="11b72ce6-1367-80f1-9d82-cb8f51173714" class="">战场对话</h1><table id="11b72ce6-1367-8029-9e61-efc4d2b1c303" class="simple-table"><tbody><tr id="aa87e449-856e-4f82-a520-fbe43c6d1069"><td id="Hc;p" class="block-color-pink">序号</td><td id="JZQ:" class="block-color-pink">文件路径</td><td id="uHtM" class="block-color-pink" style="width:433px">原文</td><td id="rDU`" class="block-color-pink" style="width:310px">译文</td><td id="TwO~" class="block-color-pink" style="width:229px">备注</td></tr><tr id="8869d1a6-d172-4eea-9c87-4bf68c20fbea"><td id="Hc;p" class="">1</td><td id="JZQ:" class="">0025_0015</td><td id="uHtM" class="" style="width:433px">DISION:さぁ、ニューコムの力とやらを<br/>見に行こうか!<br/>指挥官：ニューコム戦開部隊の離陸を確認!<br/>施設を含め、これら全てを破壞せよ。<br/>DISION:UPEOの雑魚など気にするな<br/>…… もう、キミはゼネラルだろう!<br/></td><td id="rDU`" class="" style="width:310px">好了，去见识一下<br/>Neucom的实力吧！<br/>确认Neucom战斗部队已起飞！<br/>摧毁所有目标，包括设施。<br/>不用在意UPEO的杂鱼……<br/>……你现在可是通用资源的人了！<br/></td><td id="TwO~" class="" style="width:229px"></td></tr><tr id="0b453e6d-99cf-42a7-b8d3-392bf912b426"><td id="Hc;p" class="">2</td><td id="JZQ:" class="">0026_0015</td><td id="uHtM" class="" style="width:433px">KEITH:あのデカブツが、科学バ力の 巣だとは、<br/>世も末だな!<br/>DISION:キース、無駄口叩く前に<br/>フロートを叩け!<br/>指挥官：メガフロートから船舶が発進した。<br/>直ちにこれを追撃せよ。<br/>DISION:よし、フロートから逃げた<br/>高速艇も沈める。<br/>KEITH:チョロチョロと出て来たな。<br/>DISION:ん?逃がしたか。<br/></td><td id="rDU`" class="" style="width:310px">那玩意儿居然是那群科学白痴的老巢，<br/>真是世风日下！<br/>基思，少废话，<br/>攻击巨浮城！<br/>巨浮城有船只出动。<br/>立即追击。<br/>好，把从巨浮城逃出来的<br/>高速艇也击沉。<br/>还挺能跑的嘛。<br/>嗯？居然被逃掉了。<br/></td><td id="TwO~" class="" style="width:229px">M21</td></tr><tr id="a68005d3-f1c6-4e21-848d-ec2f324d9be9"><td id="Hc;p" class="">3</td><td id="JZQ:" class="">0027_0015</td><td id="uHtM" class="" style="width:433px">これで私は、キミに一つ借りが出来たな。<br/>このあたりにUPEOの<br/>非公式施設があるはすだ。<br/>偵察ポッドで、可能な限りデータ収集する。<br/>低空で近づきターゲットを捕捉。<br/>ポイントを確認しろ。<br/>雑魚を落とすより<br/>隠蔽された格納庫を探せ。<br/>気付かれたか?！<br/>UPEOから増援部隊が出たようだな。<br/>急げ!<br/>ゼネラルの忌まわしき過去…<br/>ここか?<br/>RENA:こんな場所で、セネラル?<br/>DISION:待て。まさか…、レナか？<br/>RENA:誰？<br/>どうして、ここにあなたがいるの？<br/>DISION:翼がまだ眠っているのを、<br/>確かめに来た。<br/>RENA:……え。まだ、翼があるの？<br/>DISION:まだ、わからん。<br/>しかし、もしそれが事実なら、<br/>時が来たら、お前に届けるつもりだ。<br/>RENA:ディジョン、あなた …… 。<br/>DISION:お前は消えろ!<br/></td><td id="rDU`" class="" style="width:310px">这下我欠你一个人情了。<br/>这附近应该有UPEO的<br/>秘密设施。<br/>用侦察吊舱尽可能多地收集数据。<br/>低空接近并捕捉目标。<br/>确认位置。<br/>别理会那些杂兵，<br/>去找隐藏的机库。<br/>被发现了？！<br/>UPEO好像派出了增援部队。<br/>快！<br/>通用资源不堪回首的过去……<br/>就在这里吗？<br/>在这种地方，通用资源？<br/>等等。难道……是玲名？<br/>谁？<br/>你为什么在这里？<br/>我来确认那个翅膀<br/>是否还在沉睡。<br/>……啊。翅膀，还在吗？<br/>还不清楚。<br/>但是，如果它真的存在，<br/>时机到了，我会将它交给你。<br/>迪森，你……。<br/>你快走！<br/></td><td id="TwO~" class="" style="width:229px">M22</td></tr><tr id="bf79531f-de4a-4da9-90e2-8ae46756a673"><td id="Hc;p" class=""></td><td id="JZQ:" class=""></td><td id="uHtM" class="" style="width:433px">これ以上の接触は危険だ。<br/>はい…。<br/>UPEOから増援部隊が出たようだな。<br/>残らず撃ち落とせ!<br/></td><td id="rDU`" class="" style="width:310px">继续接触下去很危险。<br/>是……<br/>UPEO的增援部队出动了，<br/>不留一架，全部击落！<br/></td><td id="TwO~" class="" style="width:229px"></td></tr><tr id="34d1255e-8fb7-4969-886d-4884cc3ef6ef"><td id="Hc;p" class=""></td><td id="JZQ:" class="">0028_0015</td><td id="uHtM" class="" style="width:433px">KEITH:やはり、ティジョンは参加しない。<br/>初のコンビだ、<br/>この施設にゃミサイルの誘導が効かん。<br/>機銃で撃て!<br/>お、いい調子だな<br/>奴なしでも出来る実力を見せてみろ。<br/>よう、いい出来じゃないか。<br/>帰ったら、放蕩社員に自慢してやれ!<br/>指挥官：目標の破壞に成功<br/>ニューコムの生産ラインを大きく撹乱する事が出来た。<br/></td><td id="rDU`" class="" style="width:310px">果然，迪森没有参加。<br/>咱俩第一次搭档。<br/>这个设施让导弹制导失效，<br/>用机炮攻击！<br/>哦，干得不错嘛，<br/>让我看看没他在你也能行。<br/>哟，表现真不错。回去以后，<br/>跟那个游手好闲的家伙好好炫耀一下！<br/>目标已被击毁，<br/>我们成功地扰乱了Neucom的生产线。<br/></td><td id="TwO~" class="" style="width:229px">M23</td></tr><tr id="c74ae7e4-8ddf-4f2a-a288-a1e76f72ce55"><td id="Hc;p" class=""></td><td id="JZQ:" class="">0029_0015</td><td id="uHtM" class="" style="width:433px">ERICH:セネラルリソース機に告く!<br/>これ以上接近すれば攻擊する。<br/>退去せよ!<br/>DISION:やはり墜とすしかないな。<br/>敵の護衛は少数だ。<br/>手短に決める,<br/>KEITH:寝首をかく様で乘らないがな。<br/>DISION:その甘さが、破滅を招く…。<br/>KEITH:俺は気分じゃない。<br/>……撃てないな。<br/>DISION:では、キミが撃て。<br/>偽りの平和を願う者たち…。<br/>目覚めるがいい!<br/>指挥官：作戦任務終了だ、空中給油を許可する。<br/>給油ブーム接続位置まで<br/>前進してください。<br/></td><td id="rDU`" class="" style="width:310px">警告通用资源的各飞机！<br/>再靠近就攻击了。<br/>立刻退去！<br/>看来只能击落了，<br/>敌人的护卫机很少。<br/>速战速决。<br/>搞偷袭我可不喜欢。<br/>心慈手软只会招致毁灭……<br/>我还是下不去手。<br/>……我做不到。<br/>那么，你来攻击。<br/>那些祈求虚假和平的人……<br/>是时候清醒了！<br/>作战任务结束，允许空中加油。<br/>请前往加油杆连接位置。<br/></td><td id="TwO~" class="" style="width:229px">M24</td></tr><tr id="9faae9c6-f6fe-4864-8d62-8e4d497c8b6f"><td id="Hc;p" class=""></td><td id="JZQ:" class="">0030_0015</td><td id="uHtM" class="" style="width:433px">RF-12A2、射出準備クリア。<br/>射出!<br/>高度50 …… 高度100 …… 高度150 …<br/>高度200 …… 高度250 …… 高度300。<br/>プースター分離 …… 高度350 …… 機体安定確認,<br/>迎擊態勢を取れ!<br/>の乗り心地はどうだ?<br/>DISION:上空からの眺めは、さそかし爽快だろう!<br/>KEITH:ちっ、上をとられた!<br/>まずったか。<br/>くそ。墜ちるかよ。この俺が…。<br/>誰か、…頼む。後ろの…。<br/>うおぉぉぉ<br/>DISION:キース! ブラック·アウトか？<br/>指挥官：高々度攻撃機から子機が発射した。<br/>これらに十分注意し、迎擊態势を取れ。<br/>KEITH:すまん。フォロー頼む！<br/>DISION:いや、駄目だ。自力でなんとか逃げ切れ。キース。<br/>作戦は、あの上空の奴を墜とす事を優先する。<br/>KEITH:んっ、わかったよ。<br/>いや、墜ちる!<br/>KEITH:くっ …… もう大丈夫だ。<br/>すまなかった<br/>オマエに大きな借りが一つ、出来ちまったな。<br/>DISION:これより帰還する。<br/></td><td id="rDU`" class="" style="width:310px">RF-12A2，发射准备完毕。<br/>发射！<br/>高度50……高度100……高度150……<br/>高度200……高度250……高度300。<br/>助推器分离…高度350…机体稳定确认，<br/>进入迎击姿态！<br/>这风筝坐得舒服吗？<br/>从高空看见的景色一定很爽吧！<br/>啧，被抢占高位了！<br/>糟了。<br/>可恶。我居然，要坠机了……<br/>谁……帮帮我。后面的……<br/>呜啊啊啊！<br/>基思！失去意识了吗？<br/>高空攻击机发射了子机。<br/>密切关注，进入迎击姿态！<br/>抱歉。支援一下！<br/>不行，你得自己想办法逃脱，基思。<br/>作战需要优先击落空中的敌人。<br/>嗯，我知道了。<br/>不行，掉下去了！<br/>……已经没事了。<br/>抱歉。<br/>这下我欠你一个大人情了。<br/>开始返航。<br/><br/></td><td id="TwO~" class="" style="width:229px">M25</td></tr><tr id="a88a7631-80d0-474d-a4a0-36221948786b"><td id="Hc;p" class=""></td><td id="JZQ:" class=""></td><td id="uHtM" class="" style="width:433px">キース …… らしくもないな。<br/>KEITH:悪かったな<br/>どうやら自力で生き残らせてもらったようだな。<br/>みんな、すまなかった<br/>らしくないセリフだな、キース。<br/>DISION:これより帰還する。<br/>指挥官：作戦任務終了。<br/>着艦を許可する:<br/>では、着陸する。<br/>ふ……フッフフフハハ!<br/>高度50 …… 高度100 …… 高度150 ……<br/>高度200 …… 高度250 …… 高度300<br/></td><td id="rDU`" class="" style="width:310px">基思……这不像你的作风啊。<br/>不好意思。<br/>看来我的小命是保住了。<br/>各位，抱歉。<br/>真不像你会说的话啊，基思。<br/>开始返航。<br/>作战任务结束。<br/>允许着舰。<br/>好了，开始着陆。<br/>呼……咈咈咈咈哈哈！<br/>高度50 …… 高度100 …… 高度150 ……<br/>高度200 …… 高度250 …… 高度300<br/></td><td id="TwO~" class="" style="width:229px"></td></tr><tr id="11c72ce6-1367-80fb-90e0-dff8550b752c"><td id="Hc;p" class=""></td><td id="JZQ:" class="">0031_0015</td><td id="uHtM" class="" style="width:433px">相棒！<br/>どうやら、白雪姫のお出ましだ!<br/>シャトルの着陸を確認、<br/>積み荷が降ろされる前に、<br/>施設もろとも殲滅せよ!<br/>ちっ!姫がお城に帰っちまった<br/>仕方ねえ……城ごと吹きとばすぞ!<br/></td><td id="rDU`" class="" style="width:310px">伙计！<br/>看来，白雪公主驾到了！<br/>确认航天飞机着陆，<br/>在货物卸下之前，<br/>连同设施一起歼灭！<br/>切！公主回城堡了！<br/>没办法……把城堡也一起炸了吧！<br/></td><td id="TwO~" class="" style="width:229px">M26</td></tr><tr id="11c72ce6-1367-8014-a681-f3f2d8c5a7db"><td id="Hc;p" class=""></td><td id="JZQ:" class="">0032_0015</td><td id="uHtM" class="" style="width:433px">DISION:アントリオンで基地を占拠する。<br/>援護しろ!<br/>运输机：機体損傷！至急、援護を願う!<br/>DISION:アントリオン、基地に侵入。<br/>援護しろ!<br/>空降部队：機体損傷！至急、援護を願う!<br/>援護願います !…… 回避不能っ!<br/>DISION:何っ ?! 全滅か!<br/>DISION:アントリオンの基地占拠は<br/>ほぼ完了した。<br/>ロケットが!<br/>指挥官：緊急事態だ！<br/>あのロケットが軌道に乗ると、<br/>我々は多大なダメージを受ける,<br/>ただちに撃墜せよ!<br/>DISION:迷うな,<br/>追え、擊ち墜とせっ!<br/>しまっだ！間に合わなかったか ……!<br/></td><td id="rDU`" class="" style="width:310px">蚁狮战车正在占领基地。<br/>提供掩护！<br/>机体受损！请求紧急支援！<br/>蚁狮战车，突入基地。<br/>提供掩护！<br/>机体受损！请求紧急支援！<br/>请求支援！……无法躲避！<br/>什么？！全灭了吗？！<br/>蚁狮战车对基地的占领<br/>即将完成。<br/>是火箭！<br/>紧急情况！<br/>如果那枚火箭进入轨道，<br/>我们会遭受巨大损失，<br/>立刻将其击落！<br/>别犹豫，<br/>追上去，把它打下来！<br/>糟糕！没赶上……！<br/></td><td id="TwO~" class="" style="width:229px">M27</td></tr><tr id="11c72ce6-1367-8062-993e-e7d56cef834f"><td id="Hc;p" class=""></td><td id="JZQ:" class="">0033_0015</td><td id="uHtM" class="" style="width:433px">KEITH:まったく、何も見えやしない。<br/>そっちは大丈夫か?<br/>サイロは霧の中だ、<br/>峽谷に潜り込んて叩け!<br/>指挥官：残った施設の一箇所から射出された熱源を確認!<br/>長距離巡航ミサイルだと思われる。<br/>被害が及ぶ前に、大至急ミサイルを擊ち落とせ。<br/>KEITH:くそう、こっちは俺に任せてくれ!<br/>オマエはミサイルを追ってくれ!<br/>おい…マジカっ ?!<br/>くっ、間にあわねえ!<br/></td><td id="rDU`" class="" style="width:310px">真是的，什么都看不见。<br/>你那边还好吗？<br/>发射井藏在浓雾里，<br/>潜入峡谷进行攻击！<br/>确认一处剩余设施中有发射热源！<br/>疑似远程巡航导弹。<br/>在造成损害之前，尽快击落导弹！<br/>可恶，这边交给我！<br/>你去追导弹！<br/>喂……真的假的？！<br/>可恶，追不上了！<br/></td><td id="TwO~" class="" style="width:229px">M28</td></tr><tr id="11c72ce6-1367-8071-9941-db53aa5e1f5e"><td id="Hc;p" class=""></td><td id="JZQ:" class="">0034_0015</td><td id="uHtM" class="" style="width:433px">DISION:先程の返事、…答えを考えておけよ。<br/>KEITH:あ ?! ティジョン!<br/>何、わけのわからない事言ってんだ。<br/>いいから戦鬪に集中しろ!<br/>すぐフィヨルドだ<br/>指挥官：ドックから、潜水艦を含め、<br/>機動艦隊が出 撃した。<br/>早急に目標を撃沈せよ。<br/>DISION:例の答えをここで聞かせてもらう。<br/>いいか。よく聞いてくれ。<br/>これより私は、この戦線から一気に離脱する。<br/>もしも私を信じるのなら、このまま後に付いて来い。<br/>KEITH:何だと! ふざけるな。<br/>貴様、本気でおかしいんじゃないか!<br/>敵前逃亡だぞ……いいのか？<br/>もし離脱するなら、この俺が貴様を墜とすそ。<br/>DISION:キース、すまない。<br/>だが、私は、自分が進むべき道を行く。<br/>ここでお前とのチームは解散だ。<br/>昔は…、楽しかった…<br/>じゃあな、行くぞ！<br/>KEITH:ディジョンのヤツ! ふざけやがって…。<br/>着艦するぞ!<br/>DISION:ありがとう。<br/>だが、必す来てくれると信じていた。<br/></td><td id="rDU`" class="" style="width:310px">关于之前的事情……你考虑好了吗？<br/>啊？！迪森！<br/>你在说什么莫名其妙的话？<br/>赶紧集中精神战斗！<br/>马上就到峡湾了。<br/>包括潜艇在内的敌机动舰队<br/>已从船坞出击。<br/>尽快击沉目标。<br/>现在告诉我，你的答案是什么。<br/>好了，仔细听好。<br/>即刻起，我将脱离战场，<br/>如果你相信我，就跟我来。<br/>你说什么？！开什么玩笑！<br/>你小子，真的疯了吗？！<br/>这可是临阵脱逃……你确定吗？<br/>如果执意要走，我就把你打下来！<br/>基思，抱歉。<br/>但是，自己选择的路，我必须走下去。<br/>我们队伍就此解散吧。<br/>曾经的日子……很快乐……<br/>再见，我走了！<br/>迪森那家伙！混蛋……<br/>准备着舰！<br/>多谢。<br/>我就知道你会来。<br/></td><td id="TwO~" class="" style="width:229px">M29</td></tr><tr id="11d72ce6-1367-8084-9b44-fd6a7e975a06"><td id="Hc;p" class=""></td><td id="JZQ:" class=""></td><td id="uHtM" class="" style="width:433px">あれが我らが母艦、空中空母スフィルナ</td><td id="rDU`" class="" style="width:310px">那就是我们的母舰，空中航母”双髻鲨”</td><td id="TwO~" class="" style="width:229px"></td></tr><tr id="11e72ce6-1367-8062-944b-efaf69158735"><td id="Hc;p" class=""></td><td id="JZQ:" class="">0035_0015</td><td id="uHtM" class="" style="width:433px">何としてても、奴はオレがやるからな!<br/>くそっ! こんな雑魚だらけじゃ<br/>奴にたどり着けん!<br/>こうなりや<br/>撃墜数を競うしかないな!<br/>いいか、俺より先に墜ちるなよ!<br/>メガフロートに<br/>ニューコム艦隊が集結した。<br/>ただちにこれらの機動艦隊を攻撃せよ。<br/>どうしたんだ ?!<br/>もっとしっかり飛ペっ!<br/>死にたいのか ?!<br/></td><td id="rDU`" class="" style="width:310px">无论如何，那家伙必须由我来解决！<br/>可恶！怎么这么多杂兵，<br/>根本飞不到他面前！<br/>既然这样，<br/>那就比比谁击落的敌机更多！<br/>听着，别在我前面坠机！<br/>Neucom舰队<br/>已在巨浮城完成集结，<br/>立刻攻击这支机动舰队。<br/>你怎么了？！<br/>给我好好飞！<br/>活腻了吗？！<br/></td><td id="TwO~" class="" style="width:229px">M30</td></tr><tr id="11e72ce6-1367-801e-8fc0-e453e55ce5cd"><td id="Hc;p" class=""></td><td id="JZQ:" class="">0036_0015</td><td id="uHtM" class="" style="width:433px">相棒!やっはり現れたな。<br/>さぁ、あのバカでかいフロートを<br/>一擊で沈めた化け物でも<br/>見物に行こうゼ。<br/>くそっ、まず空母から沈める!<br/>ディジョン!<br/>さあ、そこから出て来いや!<br/>空中空母からナイトレーベンと<br/>戦闘機が脱出したのを確認した。<br/>直ちにこれを捕捉し、追撃せよ。<br/>くそっ。これがディジョンか?<br/>考えてるヒマねえや。<br/>あの黒いデカブツから墜ちやがれや!<br/>逃げやがった! やつはボロボロだ。<br/>このままー気に追うき!<br/>くそっ。逃げ足だけは速い。<br/>いいか、奴を追うからな!<br/></td><td id="rDU`" class="" style="width:310px">伙计！它果然出现了！<br/>走，去见识见识<br/>那个只用了一击，<br/>就打沉了巨浮城的怪物。<br/>可恶，先把空中航母干掉！<br/>迪森！<br/>快给我滚出来！<br/>确认到敌方“夜鸦”以及另一架战斗机<br/>已从空中航母逃出。<br/>立刻捕捉目标，展开追击。<br/>该死，那里头就是迪森吗？<br/>没时间多想了，<br/>快给我从那黑色大家伙上摔下来！<br/>让他跑了！那家伙已经稀巴烂了。<br/>一口气追上去！<br/>可恶，跑得还挺快。<br/>听着，我要去追他！<br/></td><td id="TwO~" class="" style="width:229px">M31</td></tr><tr id="11e72ce6-1367-804d-abde-ece0dc94e159"><td id="Hc;p" class=""></td><td id="JZQ:" class="">0037_0015</td><td id="uHtM" class="" style="width:433px">コソコソしやがって、<br/>おいっ!奴はジオフロントに逃げたぞ!<br/>ジオフロント内部に設置してある<br/>10個の災害用起爆システムを開放した。<br/>これら全てにミサイルを撃ち込んで<br/>ジオフロントを崩壊させ、<br/>ナイトレーベンを巻き込む作戦を敢行せよ。<br/>俺がヤツを食い止める。<br/>オマエは起爆システムを!<br/>まだ…墜ちないのか…。<br/>なんてヤツを造ったんだ!<br/></td><td id="rDU`" class="" style="width:310px">鬼鬼祟祟的东西，<br/>喂！那家伙逃到地下都市去了！<br/>设置在地下都市内部的10个<br/>灾害应对起爆系统已经被启动。<br/>你的任务是向所有起爆系统<br/>发射导弹，摧毁地下都市，<br/>将夜鸦困在其中。<br/>我来拖住他，<br/>你去攻击起爆系统！<br/>居然……还没被击落……<br/>这到底造了个什么怪物啊！<br/></td><td id="TwO~" class="" style="width:229px">M32</td></tr><tr id="11e72ce6-1367-804d-aa96-d31c957de257"><td id="Hc;p" class=""></td><td id="JZQ:" class="">0038_0015</td><td id="uHtM" class="" style="width:433px">KEITH:どうした? また調子悪いのか?<br/>ナイトレーベンが再び海 上に姿を現した。<br/>動きから判断するに、<br/>相当のダメージを受けているものと思われる。<br/>全機集中攻撃をかけて、<br/>あの有翼の悪魔を叩き落としてもらいたい。<br/>各員の武運を祈る。<br/>これで、成 仏しやがれ!<br/>ディジョ……<br/>指挥官：ナイトレーベンと<br/>一緒に脱 出したと思われる<br/>ディジョンの戦闘機を確認した。<br/>この事件の鎮圧は、<br/>諸君の双肩にかかっている。<br/>何としてでも、<br/>あの悪魔に魂を売った男を、仕留めろ。<br/>KEITH:やはりまだか……奴め、往生際が悪い!<br/>奴を殺る。今、ケリをつけてやる!<br/>その程度でヤラれる俺かよっ !!<br/>ティジョンの擊墜を確認。<br/>困難な作戦をよくぞ遂行してくれた。<br/>諸君の健鬪に対して,栄譽を称える。<br/>RENA:誰? そこてわたしを見ているのは。<br/>まさか……なぜ…。<br/>これはわたしの記憶,<br/></td><td id="rDU`" class="" style="width:310px">咋了？状态又不好了吗？<br/>夜鸦再次出现在海面上，<br/>从它的行动来看，<br/>应该受到了严重的损伤。<br/>全体进行集中攻击，<br/>击落那个长翅膀的恶魔！<br/>祝各位旗开得胜。<br/>这下，给我乖乖受死吧！<br/>迪森……<br/>确认到疑似与夜鸦<br/>一同撤离的<br/>迪森的战斗机。<br/>平息这场事件的重任<br/>就落在各位肩上了。<br/>无论如何，都要干掉<br/>那个将灵魂出卖给恶魔的男人。<br/>他还没完……那家伙，还在垂死挣扎！<br/>我要杀了他。现在就做个了断！<br/>别以为这样就能干掉我！！<br/>确认迪森已被击落。<br/>你们出色地完成了这项艰巨的任务。<br/>为你们的英勇表现致以崇高的敬意。<br/>谁？是谁在那里看着我？<br/>难道……？<br/>这些是我的记忆，<br/></td><td id="TwO~" class="" style="width:229px">顺序是先播放rena的动画，字幕是来自这里而不是24bpp的那种tim。<br/><br/><br/>M33<br/></td></tr><tr id="11e72ce6-1367-80b6-acbd-f3bf9c449c44"><td id="Hc;p" class=""></td><td id="JZQ:" class=""></td><td id="uHtM" class="" style="width:433px">誰も知らない筈の、<br/>わたしが自分でも忘れていた筈…。<br/>なぜ、今になってこんな事思い出させるの？<br/>やめて …… やめて!<br/>あの人 …… ティジョンのために翼を!<br/>だから、もういいの。<br/>さあ、もう消えて。<br/>ここから ……<br/>そう …… これが、わたし。<br/>だがら、もういい?<br/>じゃ …… またどこかて、ね?<br/>今頃あなたがわたしの心で何を!<br/>わたしは、もう決めたんだがら!<br/>これが本当の姿。<br/></td><td id="rDU`" class="" style="width:310px">没有人应该知道的，<br/>连我自己都忘记了的……<br/>为什么，现在又要我想起这些？<br/>不要……不要！<br/>因为那个人……迪森，我得到了翅膀！<br/>所以，已经足够了。<br/>现在，消失吧。<br/>从这里……<br/>没错……这就是我。<br/>所以，可以了吧？<br/>那么……我们会在别处相见，对吧？<br/>你现在在我的心里做什么？！<br/>我已经决定了！<br/>这，才是真正的我。<br/></td><td id="TwO~" class="" style="width:229px"></td></tr><tr id="11e72ce6-1367-80c1-8976-e7a36af11bfc"><td id="Hc;p" class=""></td><td id="JZQ:" class="">0040_0015</td><td id="uHtM" class="" style="width:433px">これから破壞するべき目標を<br/>こちらから指定する。<br/>速やかにこの世界から抹殺せよ!<br/>健鬪を祈る。<br/>レーダーを残らず始末しろ。<br/>橋を落とすんだ、<br/>空中道路を叩け!<br/>ポイントを狙っていけ。<br/>司令部を壞滅させる。<br/>逃がすな!<br/>逃げ惑うへリに<br/>ニューコムの指導者どもがいる。<br/>残らず擊ち墜とせ!<br/>逃がすな!<br/>今こそ膿を出さなくてはいけない ……<br/>どうやら、奴らはメガフロートへ逃げ込んだようだ。<br/>追うぞっ!<br/>これでまた一つ、我々は未来への扉をコジ開けたな。<br/>これより帰還する。<br/>あとはメガフロートを沈めるだけだ。<br/></td><td id="rDU`" class="" style="width:310px">接下来指定<br/>需要摧毁的目标。<br/>迅速将它们从这个世界抹去！<br/>祝旗开得胜。<br/>把所有雷达都干掉。<br/>炸掉桥梁，<br/>攻击空中道路！<br/>瞄准目标攻击。<br/>摧毁司令部。<br/>别让他们跑了！<br/>Neucom的领导层<br/>就在那些四处逃窜的旋翼机里。<br/>一个不留，全部打下来！<br/>别让他们跑了！<br/>现在是时候清除这些毒瘤了……<br/>看来，他们逃到了巨浮城。<br/>追过去！<br/>这样一来，我们又撬开了一扇通向未来之门。<br/>开始返航。<br/>接下来只需击沉巨浮城即可。<br/></td><td id="TwO~" class="" style="width:229px">M35</td></tr><tr id="11f72ce6-1367-8093-bf69-f837de780f18"><td id="Hc;p" class=""></td><td id="JZQ:" class="">0041_0015</td><td id="uHtM" class="" style="width:433px">スフィルナと協力し、<br/>ニューコムの残存兵力を完壁に叩く。<br/>ここで奴らとは決着をつける。<br/>護衛機もあがってきたか。<br/>ふっふっふ …… 奴等も必死だな!<br/>海上の残存艦隊から大型のミサイルが発射された。<br/>映像を送る、墜としてみせろ。<br/>くっ! 駄目か …!<br/>私もキミを過信したものだ。<br/>これで、欲に溺れた<br/>偽りの科学者どもを一掃、だな。<br/></td><td id="rDU`" class="" style="width:310px">与“双髻鲨”协同作战，<br/>彻底歼灭Neucom的残余兵力。<br/>就在这里和他们做最后的了断。<br/>护航机也出动了吗？<br/>呵呵呵……他们还真是拼命啊！<br/>海上残存舰队发射了大型导弹。<br/>传送现场画面，把它击落。<br/>可恶！失败了吗……！<br/>看来我是过于相信你了。<br/>这样一来，那些被贪婪吞噬的<br/>伪科学家们就被铲除了。<br/></td><td id="TwO~" class="" style="width:229px">M36<br/><br/>击坠旋翼机→M37<br/>放走旋翼机→M36<br/></td></tr><tr id="11f72ce6-1367-8011-aaee-e572a5876f6d"><td id="Hc;p" class=""></td><td id="JZQ:" class="">0042_0015</td><td id="uHtM" class="" style="width:433px">DISION:さあ、行くか<br/>お前にとって<br/>始まりであり終わりの場所へ。<br/>UPEOの地下空港に突入し、<br/>パークのいるUPEO本部を潰す!<br/>パークよ、聞こえているか!<br/>この漁夫の利、<br/>高くつくと言っただろう。<br/>PARK:お、お前……<br/>最初からそのつもりだったのか ?!<br/>DISION:そうた、<br/>貴様の命を頂きに来た。<br/>あああああああ!<br/>助けて、でぃじょんっ! 頭に入ってくる人が!<br/>れな …… 今、わかった、そうだったのか。<br/>この接触、そして読みとり。そして、消去だと ?!<br/>オマエ ·· オマエが、最後のテキなのが?<br/>RENA:ここは一体どこ? そこに眠るのは、何?<br/>どこかで見た事のある部屋…<br/>でも、知らない子。<br/>…違う、知っている!<br/>私は、この景色を確かに、見た。<br/>でち、いつ?<br/>そう、知ってる。これは、記憶の記録 …… 。<br/>いつの間にか失われた笞のもの。<br/></td><td id="rDU`" class="" style="width:310px">好了，出发吧，<br/>前往对你来说<br/>既是起点，也是终点的地方。<br/>突入UPEO的地下机场，<br/>摧毁朴所在的UPEO总部！<br/>姓朴的，你听得到吗？<br/>我早就说过，<br/>想坐收渔翁之利，是要付出代价的。<br/>你…你……<br/>你是从一开始就计划好了？！<br/>没错，<br/>我就是来取你性命的。<br/>啊啊啊啊啊啊！<br/>救救我，迪森！有人闯进了我的脑海！<br/>玲名……现在我明白了，原来如此。<br/>这种接触，读取，还有删除？！<br/>你……你才是最后的敌人？！<br/>这里究竟是哪里？沉睡在那里的，又是谁？<br/>这房间……我好像在哪里见过……<br/>但那孩子，我不认识。<br/>……不对，我认识！<br/>我确实见过这景象。<br/>可是，是什么时候？<br/>我知道了，这是记忆的记录……<br/>我知道我失去过一些东西，<br/></td><td id="TwO~" class="" style="width:229px">M37</td></tr><tr id="11f72ce6-1367-8093-b0e6-ef128f53058f"><td id="Hc;p" class=""></td><td id="JZQ:" class=""></td><td id="uHtM" class="" style="width:433px">失われた事は知ってる。<br/>でも、なぜ今、わたしが見る事が出来るの?<br/>そう、確かにわたしの笑顏 ……<br/>ねえ、誰がそこにいるの?<br/>ディジョン……<br/>そう、あなたに会うのが恥ずかしいから、<br/>こんな事したの。<br/>そして、初めての翼。楽しい記憶。<br/>でも何で嬉しい事を忘れてた …… 。<br/>ディジョン……<br/>……翼がわたしに命をくれた。<br/>……あの人の為だったら、何でも出来た。<br/>……いつ滅んでもいいと思っていた肉体なんて、<br/>どんなになっても良かった。<br/>たったそれだけの事で、<br/>彼が特っている翼をわたしも手に出来るのなら。<br/>そして、わたしはまた戾った ……ディジョンの元へ。<br/>でも、この記憶 …… わたしから奪ったのは誰?<br/>あ、そうか……<br/>それよりもこの記憶を蘇らせたのこそ、ダレ?<br/>そこにいるのはダレ?<br/>まさか …… そんな、すべて ……<br/>DISION:よし、ゼネラルも墜ち、ニューコムも沈んだな。<br/>最後は …… わかっているだろう?<br/>あなただったの?<br/></td><td id="rDU`" class="" style="width:310px">可是那部分不知何时失去的记忆，<br/>为什么现在，我又能看到了呢？<br/>没错，那确实是我的笑容……<br/>喂，是谁在那里？<br/>迪森……<br/>对，因为害羞见到你，<br/>我才这么做的。<br/>还有，第一次飞翔。快乐的记忆。<br/>可是为什么，我竟然忘记了这些快乐的事情……<br/>迪森……<br/>……是翅膀给了我生命。<br/>……为了他，我什么都愿意做。<br/>……这副随时都会消逝的躯体，<br/>无论变成什么样，我都无所谓。<br/>只要能够获得<br/>他拥有的翅膀。<br/>然后，我又回到了……迪森的身边。<br/>可是，这段记忆……是谁从我这里夺走的？<br/>啊，我知道了……<br/>真正重要的是，让我想起了这些的，是谁？<br/>在那里的，是谁？<br/>难道说……怎么会，这一切……<br/>好了，通用资源已坠落，Neucom已沉没，<br/>最后……你应该知道怎么做吧？<br/>是你吗？<br/></td><td id="TwO~" class="" style="width:229px"></td></tr><tr id="11f72ce6-1367-8048-83c0-e571d60436df"><td id="Hc;p" class=""></td><td id="JZQ:" class="">0043_0015</td><td id="uHtM" class="" style="width:433px">DISION:レナ!<br/>オマエ、彼女から私のき、記憶を消したなっ!<br/>KEITH:オマエら仲間割れか。<br/>イイタイミンクだったようだな!<br/>ディジョン!<br/>ならば、ここで値のケリをつけさせてもらうぞ。<br/>DISION:キースか! ふさけるな …… 消えろ!<br/>そうだったのか<br/>貴様の目的は最初からコレだったんだな …… 。<br/>なぜだ? 誰なんだ!<br/>KEITH:どこまで俺をナメル気だ!<br/>RENA:わたし、だれなの? たすけて!<br/>わたし、むかし、むかし ·…<br/>ああああああ!<br/>KEITH:邪魔だっ! なんだ ?!<br/>DISION:レナ ……くそ。 <br/>キース!貴様に何がわかる!<br/>KEITH:わかりたくもない ·…<br/>俺は、オマエとオマエの全てにっ!<br/>くそ!<br/>ふっ、ははははは!挟まっちまった!<br/>笑えるしゃねぇか! まったく俺らしいなぁ。<br/>おい、聞こえてるか …… 相棒!<br/>ティジョンの始末は、オマエに托す。<br/>俺を狙え!<br/></td><td id="rDU`" class="" style="width:310px">玲名！<br/>你……是你从她那里抹去了关于我的记忆!?<br/>你们这在是内讧吗？<br/>看来我来的正是时候！<br/>迪森！<br/>就在这里做个了断吧！<br/>基思？！别碍事……滚开！<br/>原来如此……<br/>你从一开始的目的就是这个……<br/>为什么？你到底是谁？！<br/>你当我不存在吗！<br/>我是谁？救救我！<br/>我，以前，以前……<br/>啊啊啊啊啊！<br/>碍事！啥情况？！<br/>玲名……可恶！<br/>基思！你究竟懂什么？！<br/>我才不想懂，<br/>我只想和你，和你的一切……！<br/>可恶！<br/>哈哈哈哈哈！被夹住了吗！<br/>太好笑了！不愧是我啊！<br/>喂，听得到吗……伙计！<br/>迪森就交给你了。<br/>瞄准我！<br/></td><td id="TwO~" class="" style="width:229px">M38</td></tr><tr id="11f72ce6-1367-8037-9530-ec95051c8d8f"><td id="Hc;p" class=""></td><td id="JZQ:" class=""></td><td id="uHtM" class="" style="width:433px">今ならこの化けモノにロックオンできるはずだ!<br/>早くしやがれぇっ!<br/>DISION:レナ……ナイトレーベン。<br/>ウロポロス …… ヨーコ。<br/>全て……<br/>……相棒。<br/>それじゃあ、またな。<br/></td><td id="rDU`" class="" style="width:310px">现在应该能锁定这个怪物了！<br/>快点动手！<br/>玲名……夜鸦<br/>衔尾蛇……洋子<br/>一切……<br/>……伙计<br/>那么就，永别了。<br/></td><td id="TwO~" class="" style="width:229px"></td></tr><tr id="11f72ce6-1367-80e1-8bb4-c850420d2d55"><td id="Hc;p" class=""></td><td id="JZQ:" class="">0044_0015</td><td id="uHtM" class="" style="width:433px">なんの為だ。誰が…こんな。<br/>くそ。あと、少しだった…。<br/>オマエさえ、いなければ<br/>世界は …… 世界は……！<br/>……もう、思い出せない<br/>ならばなぜ、こんな消し方をする。<br/>オマエ、ダレナンダ !!<br/>クソッ!モウ、ここ…ここにはイラレナイ。<br/></td><td id="rDU`" class="" style="width:310px">究竟是为了什么？是谁……这样……<br/>可恶，就差一点了……<br/>如果没有你……<br/>世界将会……世界将会……！<br/>……我已经想不起来了……<br/>既然如此，为什么要用这种方式抹杀一切。<br/>你究竟！是谁？！<br/>可恶！我、我不能再留在这里了……<br/></td><td id="TwO~" class="" style="width:229px">M39<br/>后续还有一段对话在0063<br/></td></tr><tr id="11f72ce6-1367-8093-b1b4-dc7d99dc9d4b"><td id="Hc;p" class=""></td><td id="JZQ:" class="">0062_0015</td><td id="uHtM" class="" style="width:433px">よし、ゼネラルも墜ち、ニューコムも沈んだな。<br/>最後は …… わかっているだろう?<br/>どうした …… 大丈夫が?<br/>混乱したUPEOを叩くぞ!<br/>YOKO:とりあえず、完成。 <br/>……ねえ、もういいわよ。<br/>ねえ、もういいわよ。<br/>おい、君、本当に寝ちゃったの?<br/>おはよう。<br/>DISION:終わったのか?<br/>YOKO:成功よ<br/>DISION:だったら …… 早いとこ頭についてる<br/>この邪魔なやつを取ってくれ。<br/>ハイハイ。<br/>YOKO:キミのコビーはもうあっちで起動してる。<br/>ほら …… 見て、このカメラ。こっちを見てる。<br/>ダレダ、<br/>ヨーコ、もう、終わったんだろ?<br/>YOKO:ちょっとまじめに! 後にしなさい!<br/>电脑化的DISION:ヨーコ!<br/>オレハココニイルゾ!キコエナイノカ?<br/><br/>ソイツハオレジャナイ! ヨーコォーツ!<br/>ココは?<br/>ナンダ、コイツラは?<br/></td><td id="rDU`" class="" style="width:310px">好了，通用资源已坠落，Neucom已沉没，<br/>最后……你应该知道怎么做吧？<br/>怎么了……还好吗？<br/>去攻击已经乱成一团的UPEO！<br/>现在看来，完成了。<br/>……喂，已经可以了哦。<br/>喂，已经可以了哦。<br/>喂，你真的，睡着了吗？<br/>早上好。<br/>弄完了吗？<br/>成功了。<br/>那就……快把头上这烦人的<br/>玩意儿取下来吧。<br/>好好好。<br/>你的复制体已经在那边启动了。<br/>看……你看这摄像头，它正在看着这边。<br/>是谁？<br/>洋子，已经做完了吧？<br/>正经点！待会儿再说！<br/>洋子！<br/>我在这里！你听不到吗？<br/>快停下！<br/>那家伙不是我！洋子！<br/>这是哪里？<br/>他们想干什么？<br/></td><td id="TwO~" class="" style="width:229px">M37开场期间包含一段动画字幕，再通用资源和neucom线都有这段动画，提前翻了</td></tr><tr id="11f72ce6-1367-804e-9118-f0aa8d0c17e3"><td id="Hc;p" class=""></td><td id="JZQ:" class=""></td><td id="uHtM" class="" style="width:433px">爆破する気が?<br/>防卫队指挥官：ターグットは確認したか?<br/>士兵：ニ人しかいません<br/>よし、巻き添えはあの男だけで十分。<br/>あと …… 30秒。<br/>撤収!<br/>テロか!<br/>ヨーコ、逃げろ!ヨーコォ!<br/>くっ,ダメだっ!キコエテない!<br/>ヨーコ!ヨーコ!<br/>はやくっ !!<br/>ハヤクキツイテくれ!<br/>ミーコ! ヨーコお!<br/>ヨーコォオオオオオツ!<br/>ナゼ、オレはまだシンデいないんだ ……<br/>ヨーコ……<br/>おまえはオレにナニをしたんだ …… 。<br/>ん?<br/>そうか<br/></td><td id="rDU`" class="" style="width:310px">搞爆炸？<br/>目标确认好了吗？<br/>里头就两个人。<br/>好，只要有那个男的就足够了。<br/>还有……30秒。<br/>撤退！<br/>是恐怖袭击！<br/>洋子，快逃！洋子！<br/>可恶，不行！她听不见！<br/>洋子！洋子！<br/>快啊！！<br/>快点逃出去！<br/>洋子！洋子！<br/>洋子————！<br/>为什么，我还没死……<br/>洋子……<br/>你对我做了什么……<br/>嗯？<br/>哦哦<br/></td><td id="TwO~" class="" style="width:229px"></td></tr><tr id="11f72ce6-1367-8060-afc5-e616c26f46c7"><td id="Hc;p" class=""></td><td id="JZQ:" class="">0063_0015</td><td id="uHtM" class="" style="width:433px">なにが、もくてきで……<br/>だれが、こんなものをおれに<br/>いまさら…。<br/>そうか …! <br/>オマエは、さいもん !… だったのか!<br/></td><td id="rDU`" class="" style="width:310px">你的目的，是什么？<br/>是谁……让我……<br/>现在……<br/>原来如此…！<br/>所以……你是……西蒙？！<br/></td><td id="TwO~" class="" style="width:229px"></td></tr></tbody></table><p id="11b72ce6-1367-8038-8b52-cece1a90190a" class="">
+</p><h1 id="11b72ce6-1367-8032-8581-cd5b360d3364" class="">文字放送</h1><table id="11b72ce6-1367-8005-8786-e65a791a80ef" class="simple-table"><tbody><tr id="64d71fde-1b67-463b-a882-4ea3e4e4e1e3"><td id="Hc;p" class="block-color-pink">序号</td><td id="JZQ:" class="block-color-pink">文件路径</td><td id="uHtM" class="block-color-pink" style="width:317px">原文</td><td id="rDU`" class="block-color-pink" style="width:306px">译文</td><td id="TwO~" class="block-color-pink" style="width:229px">备注</td></tr><tr id="536bb0dd-446d-4ef9-81b0-e649d48e4cd7"><td id="Hc;p" class="">1</td><td id="JZQ:" class="">0389_0001_0000_0000</td><td id="uHtM" class="" style="width:317px">先日アクセル·バイで発生した<br/>飛行船による無差別テロに関して<br/>一部では犯行声明が『グローバル<br/>ウェイ』の過激派グループによる<br/>ものであると報道されていたが、<br/>後の調べで、それが誤報であった<br/>可能性が強まっている。<br/>クローバルウェイ事務局の<br/>スポークスマンの発表や地元警察<br/>ゼネラルリソース、ニューコム両<br/>社の調査委員会が独自に行った調<br/></td><td id="rDU`" class="" style="width:306px">关于前几日在阿克赛尔湾<br/>发生的飞艇无差别恐怖袭击<br/>事件，一部分报道称犯行<br/>声明是由寰球之路的极端<br/>派别发表的，但根据后续调查，<br/>这很有可能是误报。<br/><br/>寰球之路秘书处的发言人，<br/>以及当地警方、通用资源<br/>和Neucom两家公司的调查<br/>委员会分别进行的调查报告<br/></td><td id="TwO~" class="" style="width:229px"></td></tr><tr id="0c03c83a-5222-40fa-ad2d-f8f4614ec968"><td id="Hc;p" class="">2</td><td id="JZQ:" class=""></td><td id="uHtM" class="" style="width:317px">査の報告書からも、『グローバル<br/>ウェイ』内部に過激派組織の存在<br/>は浮がび上がってこなかった。<br/>この事実から、未確認の新たな<br/>テロ組織による犯罪であるとの見<br/>方も強まり、事件の解明は困難を<br/>きわめている。<br/></td><td id="rDU`" class="" style="width:306px">均显示，寰球之路内部<br/>并不存在极端组织。<br/>因此，更多的观点趋向于<br/>这是一个未确认的新恐怖<br/>组织发动的袭击。<br/>案件侦破的难度也随之加大。<br/></td><td id="TwO~" class="" style="width:229px"></td></tr><tr id="7898838e-f5f1-47fd-be2b-4c3d271f5cf6"><td id="Hc;p" class="">3</td><td id="JZQ:" class=""></td><td id="uHtM" class="" style="width:317px"></td><td id="rDU`" class="" style="width:306px"></td><td id="TwO~" class="" style="width:229px"></td></tr><tr id="c6951f53-e228-415b-a2fe-db458ab81d34"><td id="Hc;p" class=""></td><td id="JZQ:" class=""></td><td id="uHtM" class="" style="width:317px"></td><td id="rDU`" class="" style="width:306px"></td><td id="TwO~" class="" style="width:229px"></td></tr></tbody></table><p id="11b72ce6-1367-80d4-a987-fd4cb0524541" class="">
+</p><h1 id="11b72ce6-1367-80a9-a393-dc7dc5b043c0" class="">动画字幕</h1><table id="11b72ce6-1367-8046-91d9-d376221f6a60" class="simple-table"><tbody><tr id="3d7927b1-2e03-494a-8f25-56aafb57446c"><td id="Hc;p" class="block-color-pink">序号</td><td id="JZQ:" class="block-color-pink">文件路径</td><td id="uHtM" class="block-color-pink" style="width:386px">原文</td><td id="rDU`" class="block-color-pink" style="width:424px">译文</td><td id="TwO~" class="block-color-pink" style="width:229px">备注</td></tr><tr id="a6d4dcc6-b926-49d3-84bf-cd7e3c34f027"><td id="Hc;p" class="">1</td><td id="JZQ:" class="">0407_0001_0000_0000</td><td id="uHtM" class="" style="width:386px">我がゼネラルグループへの入社を心から歡迎する。<br/>これからの君には、この地球で最も巨大な<br/>多国籍複合企業体ゼネラルグループのー員としての<br/>誇りを胸に刻み、これまで以上の活曜をしてほしい。<br/>我々のグループは…<br/></td><td id="rDU`" class="" style="width:424px">衷心欢迎你加入通用资源集团。<br/>从现在起，你已经成为这个星球上<br/>最庞大的跨国企业集团的一员，<br/>请牢记这份荣耀，期待你有更出色的表现。<br/>我们的集团……<br/></td><td id="TwO~" class="" style="width:229px"></td></tr><tr id="fc20df32-52ce-42ca-8639-8892b750573a"><td id="Hc;p" class="">2</td><td id="JZQ:" class="">0110_0000_0000</td><td id="uHtM" class="" style="width:386px">ゼネラルリソースの英雄によって镇圧された<br/>この事件には、未だに多くの謎が残されたままです。<br/>中でも、ニューコムでもテロリスト側でもない<br/>所属不明の機体、<br/>既に移籍したと思われるパイロットについても。<br/>ゼネラルリソースからの発表は何もありません…。<br/></td><td id="rDU`" class="" style="width:424px">虽然这场事件已经被通用资源的英雄们平息，<br/>但仍留下了许多未解之谜。<br/>其中，包括既不属于Neucom也不属于恐怖分子的<br/>不明身份的战斗机，<br/>以及某位改换门庭的飞行员。<br/>通用资源方面对此没有任何说明……<br/></td><td id="TwO~" class="" style="width:229px">A路线ed</td></tr><tr id="47b62777-8066-43b1-bcdf-f3cc454a00d4"><td id="Hc;p" class="">3</td><td id="JZQ:" class="">0111</td><td id="uHtM" class="" style="width:386px">現場では現在、クーデター側の戦闘機が<br/>墜落した周辺を中心に<br/>生存者の捜索が続けられています。<br/>しかし、墜落した機体の回収が<br/>ほぼ終 了しているにも関わらず、未だに生存者、<br/>並びに遺体などの発見に至っておりません。<br/>事件の首謀者が搭乗していたと見られる機体の<br/>フライトレコーダーの発見と分析結果によって、<br/>事件の詳細についての何か新しい情報が得られるまで、<br/>この戦闘の謎は解決されそうにはありません…。<br/></td><td id="rDU`" class="" style="width:424px">目前，搜救人员仍在以政变一方的<br/>坠机现场为中心的地区<br/>……搜寻生还者。<br/>尽管坠毁的机体已基本回收完毕，<br/>但仍未发现生还者，<br/>也没有找到任何遗体。<br/>在找到并分析<br/>疑似主谋所驾驶飞机的飞行记录仪，<br/>并获得相关新信息之前，<br/>这场战斗的真相恐怕难以解开……<br/></td><td id="TwO~" class="" style="width:229px">前两行不会实际显示</td></tr><tr id="2cebf5e5-15f2-457d-8939-a2f1f3da3624"><td id="Hc;p" class=""></td><td id="JZQ:" class=""></td><td id="uHtM" class="" style="width:386px"></td><td id="rDU`" class="" style="width:424px"></td><td id="TwO~" class="" style="width:229px"></td></tr><tr id="0cf68f78-a692-4ae2-b57f-e61f24a19b42"><td id="Hc;p" class=""></td><td id="JZQ:" class=""></td><td id="uHtM" class="" style="width:386px"></td><td id="rDU`" class="" style="width:424px"></td><td id="TwO~" class="" style="width:229px"></td></tr><tr id="d6583e12-4c90-4e29-b758-155c1379cd66"><td id="Hc;p" class=""></td><td id="JZQ:" class=""></td><td id="uHtM" class="" style="width:386px"></td><td id="rDU`" class="" style="width:424px"></td><td id="TwO~" class="" style="width:229px"></td></tr><tr id="7082ba0a-65ad-4bda-ab6f-0b5bfc36da55"><td id="Hc;p" class=""></td><td id="JZQ:" class=""></td><td id="uHtM" class="" style="width:386px"></td><td id="rDU`" class="" style="width:424px"></td><td id="TwO~" class="" style="width:229px"></td></tr><tr id="108d4a7e-d565-495c-a6a0-1012ea381790"><td id="Hc;p" class=""></td><td id="JZQ:" class=""></td><td id="uHtM" class="" style="width:386px"></td><td id="rDU`" class="" style="width:424px"></td><td id="TwO~" class="" style="width:229px"></td></tr></tbody></table><p id="11b72ce6-1367-80c1-873a-d84457fcdb46" class="">
+</p><p id="11b72ce6-1367-803f-ba4d-c6ad55e11a0f" class="">
+</p><p id="11b72ce6-1367-80d6-95b7-d2a391c09fec" class="">0 test map<br/>1 Awakening<br/></p><p id="11c72ce6-1367-806b-bf3a-f24215556420" class="">2 Bravado</p><p id="11c72ce6-1367-80de-ae70-d785c5875d24" class="">3 Enter Dision</p><p id="11c72ce6-1367-8015-8f4d-f69922de2fa7" class="">4 Paper Tiger</p><p id="11c72ce6-1367-8015-b983-c76505a7eb33" class="">5 Broken Truce<br/>6 Ghosts of the Past<br/></p><p id="11c72ce6-1367-809a-925c-c23bb33b585f" class="">7 No Clearance<br/>8 Fragile Cargo<br/>9 Scylla and Charybdis<br/>10 Fates Intertwined<br/>11 Reaching for Stars<br/>12 One-Way Ticket<br/>13 Bug Hunt<br/>14 Pawns in the Game<br/>15 Damage Control<br/>16 Broken Wings<br/>17 Sphyrna<br/>18 A Canopy of Stars<br/>19 ----<br/>20 Soldier of Fortune<br/>21 Megafloat<br/>22 Target Acquisition<br/>23 Partners<br/>24 Tainted Peace<br/>25 Stratosphere<br/>26 Welcoming Committee<br/>27 Technology Transfer<br/>28 Claustrophobia<br/>29 Dilemma<br/>30 Betrayal<br/>31 Heart of the Serpent<br/>32 Geofront Attack<br/>33 Casualties of War<br/>34 Geopelia<br/>35 The Orientation<br/>36 Liquidation<br/>37 Archnemesis<br/>38 Memory Error<br/>39 Electrosphere<br/>40 Power for Life<br/>41 Guardian Angel<br/>42 Zero Gravity<br/>43 The Prize<br/>44 Utopian Dreams<br/>45 Reality Distortion<br/>46 Counterrevolution<br/>47 Pursuit<br/>48 Self Awareness<br/>49 Expo City Beta<br/>50 Resistance<br/>51 Radio Silence<br/>52 Revenge<br/>53 Sole Survivor<br/>54 geopelia#1 end-a<br/>55 Tunnel Vision<br/>56 outer space#0<br/>57 last enemy m3#0<br/>58 electrosphere#1 end-b<br/>59 Expo City Alpha<br/>60 Megafloat Beta<br/><br/></p><p id="11b72ce6-1367-8081-ae81-d47475af0666" class="">
+</p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

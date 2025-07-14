@@ -1,0 +1,688 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>AC3 CHINESELIZATION - NEUCOM Route</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(50, 48, 44, 1);
+}
+.highlight-gray {
+	color: rgba(115, 114, 110, 1);
+	fill: rgba(115, 114, 110, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(205, 60, 58, 1);
+	fill: rgba(205, 60, 58, 1);
+}
+.highlight-default_background {
+	color: rgba(50, 48, 44, 1);
+}
+.highlight-gray_background {
+	background: rgba(248, 248, 247, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(248, 243, 252, 1);
+}
+.highlight-pink_background {
+	background: rgba(252, 241, 246, 1);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(115, 114, 110, 1);
+	fill: rgba(115, 114, 110, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(205, 60, 58, 1);
+	fill: rgba(205, 60, 58, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(248, 248, 247, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(248, 243, 252, 1);
+}
+.block-color-pink_background {
+	background: rgba(252, 241, 246, 1);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-default { background-color: rgba(84, 72, 49, 0.08); }
+.select-value-color-gray { background-color: rgba(84, 72, 49, 0.15); }
+.select-value-color-brown { background-color: rgba(210, 162, 141, 0.35); }
+.select-value-color-orange { background-color: rgba(224, 124, 57, 0.27); }
+.select-value-color-yellow { background-color: rgba(236, 191, 66, 0.39); }
+.select-value-color-green { background-color: rgba(123, 183, 129, 0.27); }
+.select-value-color-blue { background-color: rgba(93, 165, 206, 0.27); }
+.select-value-color-purple { background-color: rgba(168, 129, 197, 0.27); }
+.select-value-color-pink { background-color: rgba(225, 136, 179, 0.27); }
+.select-value-color-red { background-color: rgba(244, 171, 159, 0.4); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="11f72ce6-1367-805b-9822-c9b0ca0b66f2" class="page sans"><header><div class="page-header-icon undefined"><span class="icon">💫</span></div><h1 class="page-title">AC3 CHINESELIZATION - NEUCOM Route</h1><p class="page-description"></p></header><div class="page-body"><p id="11f72ce6-1367-803e-a687-cbf84b4c5102" class="">
+</p><p id="11f72ce6-1367-80f7-adca-fb48ace305d1" class="">
+</p><h1 id="11f72ce6-1367-80f3-9e24-cd9802ec5373" class="">新闻</h1><table id="11f72ce6-1367-808e-b6ff-c4e11a23c24b" class="simple-table"><tbody><tr id="8407bdb3-3d80-4c00-94e5-731b933424cb"><td id="Hc;p" class="block-color-pink" style="width:64px">序号</td><td id="JZQ:" class="block-color-pink" style="width:165px">文件路径</td><td id="uHtM" class="block-color-pink" style="width:317px">原文</td><td id="rDU`" class="block-color-pink" style="width:306px">译文</td><td id="TwO~" class="block-color-pink" style="width:229px">备注</td></tr><tr id="f79fd039-e6a2-4629-9f19-80618bcb40ae"><td id="Hc;p" class="" style="width:64px">1</td><td id="JZQ:" class="" style="width:165px">0394_0001_0000_0000</td><td id="uHtM" class="" style="width:317px">——まず最初に<br/>今回、私たちの無作法な訪問にもかかわらず<br/>嫌な顔一つせず扉を開け、<br/>暖かく迎えてくれた<br/>ニューコムのみなさんに感謝を。<br/>一人のパイロットと<br/>あなた達の勇気ある決断が、<br/>私たちを救ったのです。<br/>そして、私は今日の出来事を<br/>忘れることはないでしょう。<br/>本日午後3時をもって、<br/>UPEO代表議員<br/></td><td id="rDU`" class="" style="width:306px">——首先，<br/>我要感谢Neucom的各位，<br/>尽管我们这次的来访有些唐突，<br/>但你们仍然敞开大门，<br/>热情地接纳了我们。<br/>是一位飞行员<br/>以及你们勇敢的决定，<br/>拯救了我们。<br/>我永远也不会忘记<br/>今天发生的一切。<br/>从今天下午3点起，<br/>UPEO代表议员<br/></td><td id="TwO~" class="" style="width:229px"></td></tr><tr id="165b23b5-7557-400d-bc41-77a066a4e9af"><td id="Hc;p" class="" style="width:64px">2</td><td id="JZQ:" class="" style="width:165px"></td><td id="uHtM" class="" style="width:317px">ガブリエル·W·クラークソンは、<br/>私の部下と<br/>私の専用機乗務員38名と共に,<br/>ニューコムグループへの移籍を宣言します!<br/>この決意に至るまで……<br/>はい …… えー、クラークソン代表議員による<br/>緊急記者会見をお送りしていますが、<br/>どうやら中継の音声が途切れた模様です。<br/>中継の回線が繫がり次第、<br/>会場の映像に戻りますが、<br/>それまで、もう一度今回の移籍劇についての<br/>現在までにわかっている情報を<br/></td><td id="rDU`" class="" style="width:306px">加布里埃尔·W·克拉克森，<br/>以及我的部下和<br/>我专机的38名机组人员，<br/>正式宣布加入Neucom集团！<br/>做出这个决定……<br/>好的……呃，我们正在直播<br/>克拉克森代表议员的紧急记者招待会，<br/>但现在信号似乎中断了。<br/>一旦线路恢复，<br/>我们将立即回到现场画面，<br/>在此期间，我们再来回顾一下目前<br/>已知的关于此次“改换门庭”事件的信息。<br/></td><td id="TwO~" class="" style="width:229px"></td></tr><tr id="638edc5d-7afc-46eb-875c-bc206f51e39f"><td id="Hc;p" class="" style="width:64px">3</td><td id="JZQ:" class="" style="width:165px">0394_0001_0001_0001</td><td id="uHtM" class="" style="width:317px">整理したいと思います。<br/>代表を乗せたUPEO専用機からの無線を<br/>ニューコムが受けたのが、<br/>本日の午前11時頃。<br/>同機は、明日からレイニー岬で<br/>開催される<br/>メリトン地域緊張緩和協議会へ<br/>出席する代表を乗せ、<br/>ケイプ·レイニー空港へ向かう途中、<br/>ランバート山脈地区上空で<br/>ゼネラルリソース所属と思われる<br/>戦闘機からの攻撃を受け、<br/></td><td id="rDU`" class="" style="width:306px"><br/>Neucom在今天上午11点左右<br/>接收到了UPEO专机的无线电通讯。<br/><br/>该专机载着将出席<br/>明日在雷尼角举行的<br/>梅里顿地区紧张局势缓和会议的<br/>克拉克森代表，<br/>专机在前往雷尼角机场途中，<br/>于兰伯特山脉地区上空<br/>遭到疑似通用资源所属<br/>战斗机的攻击，<br/></td><td id="TwO~" class="" style="width:229px"></td></tr><tr id="fa27d7ed-85c6-441b-ae98-56225244dc93"><td id="Hc;p" class="" style="width:64px"></td><td id="JZQ:" class="" style="width:165px"></td><td id="uHtM" class="" style="width:317px">同機の護衛機と交戦状態に。<br/>その直後、同機は続いてあらわれた<br/>UPEO所属らしい別部隊からも<br/>攻撃された模様 ……<br/>そして、同機と護衛機は<br/>コースをニューコム制空権へと変更。<br/>午後4時、デニス空港に<br/>緊急着陸したのです。<br/>ニューコム側の情報筋ではこの事件を、<br/>かねてから穏健派として<br/>ニューコムとも友好関係にあった<br/>クラークソン代表を暗殺する目的で<br/></td><td id="rDU`" class="" style="width:306px">并与该专机的护航战机发生交火。<br/>紧接着，该专机似乎又遭到<br/>疑似UPEO所属的另一支部队的袭击……<br/><br/>随后，该专机及其护航机<br/>改变航向，飞往Neucom的制空圈。<br/>下午4点，飞机在德尼斯机场紧急着陆。<br/><br/>Neucom方面的消息人士称，<br/>此次事件是通用资源和部分UPEO势力<br/>为了暗杀向来温和、<br/>与Neucom保持友好关系的克拉克森代表，<br/></td><td id="TwO~" class="" style="width:229px"></td></tr><tr id="11f72ce6-1367-8053-b5d5-de73f5932d8f"><td id="Hc;p" class="" style="width:64px"></td><td id="JZQ:" class="" style="width:165px">0394_0001_0002_0002</td><td id="uHtM" class="" style="width:317px">ゼネラルリソースと一部のUPEOが<br/>共謀したものと、判断している模様です。<br/>そして、ニューコムガ今回、<br/>事実上クラークソン代表の移籍を<br/>受け入れた事で、今後のゼネラルリソースと<br/>ニューコムの關係に<br/>大きな緊張を生むのは避けられない …… 。<br/></td><td id="rDU`" class="" style="width:306px">而精心策划的阴谋。<br/><br/>Neucom此次实际上接受了<br/>克拉克森代表的“转会”，<br/>这将不可避免地导致通用资源和<br/>Neucom之间的关系进一步紧张……<br/></td><td id="TwO~" class="" style="width:229px"></td></tr><tr id="12072ce6-1367-803e-8536-ee668f503bc9"><td id="Hc;p" class="" style="width:64px"></td><td id="JZQ:" class="" style="width:165px">0395_0001_0000_0000</td><td id="uHtM" class="" style="width:317px">長年に渡って我々は、情報を伝えるため、<br/>自らの注む世界を犧牲にしてきました。<br/>しかし、現在、<br/>情報はコンピュータによって<br/>ネットワーク化され、<br/>光となって私たちのもとへ。<br/>「エレクトロスフィア」<br/>それは、地球にやさしい<br/>メディアのネットワーク。<br/>ニューコムの目指す進化は、<br/>人間と地球の明日を早く<br/>そして、しなやかに変えていくカです。<br/></td><td id="rDU`" class="" style="width:306px">多年来，为了传播信息，<br/>我们一直在牺牲我们所居住的世界。<br/>但是现在，<br/>信息通过计算机<br/>实现了网络化，<br/>并以光速传递到我们身边。<br/>电脑空间“Electrosphere”，<br/>这是一个对地球友好的<br/>媒体网络。<br/>Neucom所追求的进化，<br/>将快速而灵活地<br/>改变人类和地球的未来。<br/></td><td id="TwO~" class="" style="width:229px">M41<br/><br/>第一层游戏未使用<br/></td></tr><tr id="12072ce6-1367-8021-a197-c8bcf7c80dd4"><td id="Hc;p" class="" style="width:64px"></td><td id="JZQ:" class="" style="width:165px"></td><td id="uHtM" class="" style="width:317px">というワケで、続いての話題は、<br/>ニューコムのみならず<br/>他社でも注目の新技術。<br/>電脳化による人間の意識の複製。<br/>まずは、実際に現場で指揮をとって<br/>開発を進めていらっしゃる<br/>ニューコムのサイモン博士と<br/>テータースワローで繋がっておりますので、<br/>そちらから。<br/>こんにちは。<br/>あ …… もう、しゃべっていい?<br/>じゃ …… ま、歴史についてから話そうか。<br/></td><td id="rDU`" class="" style="width:306px">接下来我们要讨论的话题，<br/>是Neucom以及其他公司<br/>都非常关注的新技术——<br/>通过电脑化复制人类意识。<br/>首先，我们通过Data Swallow<br/>与在Neucom负责这项技术研发的<br/><br/>西蒙博士进行连线。<br/>好，让我们开始，<br/>您好。<br/>啊……我可以开始说了吗？<br/>那么……先从历史说起吧。<br/></td><td id="TwO~" class="" style="width:229px"></td></tr><tr id="12072ce6-1367-80de-b5ba-d31059a83622"><td id="Hc;p" class="" style="width:64px"></td><td id="JZQ:" class="" style="width:165px">0395_0001_0001_0001</td><td id="uHtM" class="" style="width:317px">まだ政治が権力を握っていた頃の<br/>コンピュータ技術は、<br/>人間の道具にすぎなかった。<br/>そして、私たちはSF小説や映画、<br/>テレビ·グームといった空想の中だけで、<br/>コンピュータや機械に人格を持たせて<br/>ロボットやサイボーグといった<br/>夢を見ていた。<br/>しかし、未だに人間の複雑な感情を持った<br/>賢いコンピュータや人工生命には<br/>私、お目にかかった事がない。<br/>それはなせか?<br/></td><td id="rDU`" class="" style="width:306px">在政治力仍然掌握权力的时代，<br/>计算机技术不过是<br/>人类的常规工具而已。<br/>我们只能在科幻小说、电影、<br/>电子游戏之类的虚构作品中，<br/>赋予计算机和机器以人格，<br/>梦想存在着机器人和半改造人。<br/><br/>但是，现实中拥有像人类一样<br/>复杂情感的智能计算机或人工生命，<br/>我从来没见过。<br/>这是为什么呢？<br/></td><td id="TwO~" class="" style="width:229px"></td></tr><tr id="12072ce6-1367-803a-acb1-fcfe0d9d6589"><td id="Hc;p" class="" style="width:64px"></td><td id="JZQ:" class="" style="width:165px"></td><td id="uHtM" class="" style="width:317px">もともとの発想が間違ってた。<br/>——そう。まだ無から生命を創るのは、<br/>神だけが出来る事。<br/>そうではなく、私たち人間の方が<br/>機械やコンピュータになるのなら<br/>可能性がある。<br/>——例えばだ<br/>私はメガネをかけていますが、<br/>これも考え方によっては<br/>一部を機核化したサイボーグともいえる。<br/>こうした人間の能力を補う為の機械料。<br/>その延長にある究極の世界が、<br/></td><td id="rDU`" class="" style="width:306px">因为一开始的的想法就错了。<br/>——没错，无中生有创造生命，<br/>那是神才能做到的事情。<br/>与其那样，不如把我们人类<br/>自身变成机器或计算机，<br/>这样才有可能梦想成真。<br/>——举个例子，<br/>我现在戴着眼镜，<br/>那么我也可以说自己是一位<br/>将部分身体机械化的改造人。<br/>这种用来弥补人类能力不足的<br/>机械装置，其终极形态就是：<br/></td><td id="TwO~" class="" style="width:229px"></td></tr><tr id="12072ce6-1367-80f2-9bb1-c81db3881a40"><td id="Hc;p" class="" style="width:64px"></td><td id="JZQ:" class="" style="width:165px">0395_0001_0002_0002</td><td id="uHtM" class="" style="width:317px">人間の脳を構成している人格を<br/>そのままデータとして数値化し<br/>コンピュータ上にコピーする、<br/>いわば、脳のデッドコピー開発。<br/>それが私の研究です。<br/>——いいですか?<br/>これは、かつての夢物語ではありません。<br/>実際、この計画に賛同し、<br/>実験参加希望者もニューコムから続々と<br/>申し出があるくらいで ……<br/>一部のマスコミが、私と私の実験の事を<br/>叩いておりますがね ……<br/></td><td id="rDU`" class="" style="width:306px">将构成人类大脑人格的部分<br/>转化成计算机数据，<br/>并复制到计算机上运行，<br/>这就是，大脑的DEAD COPY复制技术。<br/>也就是我正在进行的研究项目。<br/>——懂了没？<br/>这和曾经那些天方夜谭不同，<br/>实际上，此计划拥护者很多，<br/>Neucom内部甚至有很多人主动报名<br/>成为实验志愿者……<br/>虽然有些媒体<br/>一直在抨击我和我的实验……<br/></td><td id="TwO~" class="" style="width:229px"></td></tr><tr id="12072ce6-1367-805d-a1a3-cad63e758c03"><td id="Hc;p" class="" style="width:64px"></td><td id="JZQ:" class="" style="width:165px"></td><td id="uHtM" class="" style="width:317px">そりゃ昔の人が、飛行機の姿を見て<br/>あんなに重い鉄の塊が空を飛ぶのかと<br/>非難していたようなもんで<br/>真是一群鼠目寸光的家伙。<br/>主持人：あっ、すいません。<br/>何か回線の状態が悪いようですね。<br/>博土、聞こえますか?<br/>ではここで一度CMに。<br/></td><td id="rDU`" class="" style="width:306px">那就像古人看到飞机时，<br/>质疑那么重的铁块<br/>怎么可能飞上天一样，<br/>真是鼠目寸光的家伙——。<br/>啊，真是抱歉。<br/>线路状态似乎不太好。<br/>博士，您听得见吗？<br/>那么，我们先插播一段广告。<br/></td><td id="TwO~" class="" style="width:229px"></td></tr><tr id="12072ce6-1367-8043-bb4a-d64dab4d4060"><td id="Hc;p" class="" style="width:64px"></td><td id="JZQ:" class="" style="width:165px">0396_0001_0000_0000</td><td id="uHtM" class="" style="width:317px">「トップ·ニュース7』の時間です。<br/>まず始めに、フェイス·パーク紛争以後<br/>緊張状態が続いているゼネラル、<br/>ニューコム情勢について<br/>新たな動きがありました。<br/>ゼネラルリソース広報部で行われた<br/>緊急記者会見によりますと、<br/>ゼネラルリソースの人工衛星が<br/>ニューコムの攻撃によって<br/>破壊された模様です。<br/>ゼネラルリソース側の発表は、<br/>「この衛星はもともと民間利用目的で<br/></td><td id="rDU`" class="" style="width:306px">欢迎收看“焦点新闻7”节目。<br/>首先，关于菲斯 · 帕克冲突之后<br/>持续紧张的<br/>通用资源和Neucom局势，<br/>出现了新的进展。<br/>通用资源公关部举行的<br/>紧急记者招待会公布的消息显示，<br/>通用资源的部分人造卫星<br/>似乎遭到了Neucom的攻击，<br/>并被摧毁。<br/>通用资源方面宣称，<br/>“这些卫星原本用于民用目的，<br/></td><td id="TwO~" class="" style="width:229px">M43<br/><br/><br/></td></tr><tr id="12072ce6-1367-80dc-a707-f332d9b7c3df"><td id="Hc;p" class="" style="width:64px"></td><td id="JZQ:" class="" style="width:165px"></td><td id="uHtM" class="" style="width:317px">使われていたものであり、<br/>今回の攻撃は、ニューコムのー方的な<br/>破壞行為である。」<br/>と、激しく非難しました。<br/>しかし、この会見に答えるカタチで<br/>続いて行われたニューコム側の会見では、<br/>攻撃に開しては認めたものの<br/>この衛星は軍事目的で<br/>使われていたものだったとしており、<br/>両社の発表には大きな食い違いが見られ、<br/>今後の同社の動向が注目されます。<br/></td><td id="rDU`" class="" style="width:306px">此次攻击是Neucom的单方面破坏行为。”<br/><br/><br/>并对此表示强烈谴责。<br/>然而，在随后举行的<br/>Neucom方面的记者招待会上，<br/>他们承认了攻击卫星一事，<br/>但声称是由于这些卫星<br/>被用于军事目的。<br/>两家公司的说法存在严重分歧，<br/>今后的动向值得关注。<br/></td><td id="TwO~" class="" style="width:229px"></td></tr><tr id="12072ce6-1367-80f9-afef-eb06b9fb77c2"><td id="Hc;p" class="" style="width:64px"></td><td id="JZQ:" class="" style="width:165px">0397_0001_0000_0000</td><td id="uHtM" class="" style="width:317px">続いて、本日の未明に<br/>ワイアポロ山脈にある<br/>ニューコム航空基地で起きた<br/>爆発事故の続報です。<br/>原因については、<br/>現在もニューコム·インフォと<br/>現地警察による共同調査が<br/>続いている状況です。<br/>死亡が建認された方の氏名が、<br/>ニューコム·インフォから<br/>発表になっています。<br/>その氏名は次のとおり。<br/></td><td id="rDU`" class="" style="width:306px">接下来，播报今天凌晨发生在<br/>位于外亚波罗山脉的<br/>Neucom航空基地的<br/>爆炸事故的最新消息。<br/>关于事故原因，<br/>目前Neucom Info和<br/>当地警方正在进行联合调查。<br/><br/>Neucom Info已公布<br/>确认遇难者的名单。<br/><br/>名单如下：<br/></td><td id="TwO~" class="" style="width:229px">M45</td></tr><tr id="12172ce6-1367-80ed-9b74-c13f3246d1c0"><td id="Hc;p" class="" style="width:64px"></td><td id="JZQ:" class="" style="width:165px"></td><td id="uHtM" class="" style="width:317px">——NEU所属<br/>整備士、ロバート·サンダーソンさん、<br/>ジョージ·トムソンさん。<br/>コム運送のタドコロさん<br/>……まだ名前がわかっていません。<br/>同じく、コム運送のスタークさん<br/>まだ名前がわかっていません。<br/>NEU所属パイロット、<br/>フィオナ·C·フィッツジェラルドさん。<br/>同じくパイロット、<br/>クヴィン·ジョーンズさん。<br/>え …… あ、あ …… はい、はい、そうですか。<br/></td><td id="rDU`" class="" style="width:306px">——NEU所属<br/>机械师，罗伯特 · 桑德森，<br/>乔治 · 汤姆森。<br/>科姆运输公司的田所，<br/>……姓名待确认。<br/>同样是科姆运输公司的斯塔克，<br/>……姓名待确认。<br/>NEU所属飞行员，<br/>菲奥娜 · C · 菲茨杰拉德。<br/>以及飞行员，<br/>凯文 · 琼斯。<br/>啊……啊……好的，好的，我知道了。<br/></td><td id="TwO~" class="" style="width:229px"></td></tr><tr id="12172ce6-1367-8059-aad8-e4d192dff5d9"><td id="Hc;p" class="" style="width:64px"></td><td id="JZQ:" class="" style="width:165px">0397_0001_0001_0001</td><td id="uHtM" class="" style="width:317px">えー、ニュースの途中ですが、<br/>たった今、先程まで不通だった<br/>衛星回線が繋がったようです。<br/>それでは、<br/>軍事クーデターが発生したと見られる<br/>現地近くの空港からと、<br/>現場周辺に向かった特派員からの<br/>中継をご覧ください。<br/></td><td id="rDU`" class="" style="width:306px">呃，插播一条紧急新闻，<br/>就在刚才，之前中断的卫星线路恢复了。<br/><br/>接下来，请收看<br/>据信发生军事政变的事发地附近机场，<br/><br/>以及前往现场的特派员<br/>发回的现场报道。<br/></td><td id="TwO~" class="" style="width:229px"></td></tr><tr id="12272ce6-1367-80dd-be5a-c53c9e1f3c7c"><td id="Hc;p" class="" style="width:64px"></td><td id="JZQ:" class="" style="width:165px">0399_0001_0000_0000</td><td id="uHtM" class="" style="width:317px">——この声明は、<br/>ウロボロスと名乗る組織から<br/>出されたものです。<br/>このウロボロスに関して、<br/>詳細な情報はわかっていませんが、<br/>ゼネラルリソース、ニューコム、<br/>UPEOに所属していた隊員が<br/>多数参加しているという情報が<br/>入ってきています。<br/>彼らは全人類のコンピュータを使った<br/>データ化を要求しており、<br/>首謀者の中には既に電脳化した者もいると<br/></td><td id="rDU`" class="" style="width:306px">——这份声明，<br/>是由一个自称“衔尾蛇”的组织<br/>发布的。<br/>关于这个衔尾蛇组织，<br/>我们还没有掌握详细的信息，<br/>但有消息称，<br/>通用资源、Neucom和UPEO<br/>的大量成员参与其中。<br/><br/>他们要求将全人类<br/>转化为计算机使用的电子数据，<br/>据说其领导者中<br/></td><td id="TwO~" class="" style="width:229px">M49</td></tr><tr id="12272ce6-1367-80db-999f-ec7b591e4f15"><td id="Hc;p" class="" style="width:64px"></td><td id="JZQ:" class="" style="width:165px"></td><td id="uHtM" class="" style="width:317px">ご覧のように、各部隊から<br/>エリート社員が参加しているようです。<br/>中でもニューコム側からの参加者が多く、<br/>特徴としては、<br/>革新的な実験の被験者リストにも<br/>名前が挙がっている人が多いようです。<br/>実際に彼らが肉体を捨てて<br/>電脳化しているのか、詳細は不明ですが、<br/>このテロ集団の目的は、<br/>ハッキリしてきました。<br/>言われています。<br/></td><td id="rDU`" class="" style="width:306px">正如大家所看到的，<br/>参与者似乎都是各部队的精英成员。<br/>其中，Neucom的参与者最多，<br/>他们的特点是，<br/>许多人的名字都出现在了<br/>某个创新实验的志愿者名单上。<br/>他们是否真的抛弃了肉体，<br/>进行了电脑化，目前尚不清楚，<br/>但这个恐怖组织的目的，<br/>已经非常明确了。<br/>已经有人进行了电脑化。<br/></td><td id="TwO~" class="" style="width:229px"></td></tr><tr id="12272ce6-1367-80c1-bf0b-dcad3e036924"><td id="Hc;p" class="" style="width:64px"></td><td id="JZQ:" class="" style="width:165px">0399_0001_0001_0001</td><td id="uHtM" class="" style="width:317px">クーデターの参加者たちのリストも、<br/>電脳空間で公開されています。<br/></td><td id="rDU`" class="" style="width:306px">目前政变参与者的名单，<br/>已在电子空间公开。<br/></td><td id="TwO~" class="" style="width:229px"></td></tr><tr id="12272ce6-1367-80c0-91ae-d693f9657b84"><td id="Hc;p" class="" style="width:64px"></td><td id="JZQ:" class="" style="width:165px"></td><td id="uHtM" class="" style="width:317px"></td><td id="rDU`" class="" style="width:306px"></td><td id="TwO~" class="" style="width:229px"></td></tr></tbody></table><p id="11f72ce6-1367-8026-a248-c07cbb016409" class="">
+</p><h1 id="11f72ce6-1367-8013-99f8-c1f991598883" class="">角色对话</h1><table id="11f72ce6-1367-8068-a6b7-c7920e05ce48" class="simple-table"><tbody><tr id="07a8aef3-8014-4fd1-84c1-2d68e30cd2cb"><td id="Hc;p" class="block-color-pink" style="width:58px">序号</td><td id="JZQ:" class="block-color-pink" style="width:217px">文件路径</td><td id="G?;;" class="block-color-pink">角色</td><td id="uHtM" class="block-color-pink" style="width:317px">原文</td><td id="rDU`" class="block-color-pink" style="width:306px">译文</td><td id="TwO~" class="block-color-pink" style="width:229px">备注</td></tr><tr id="f187323f-7616-499c-8f60-e9493f764454"><td id="Hc;p" class="" style="width:58px">1</td><td id="JZQ:" class="" style="width:217px">0355_0001_0000_0000</td><td id="G?;;" class="">FIONA/CYNTHIA</td><td id="uHtM" class="" style="width:317px">FIONA:あっ、いたいた!<br/>ちゃんとニューコムに転職出来たみたいね。<br/>それで、こっちでもワタシ達<br/>また同じチームに決まったから。<br/>——よろしく!<br/>まあ、とりあえず …… それだけ。<br/>あイタっ!<br/>わかってる!ちゃんと言いますから。<br/>えっと …… まぁ、<br/>さっき議員から聞いたんだけど<br/>も、ワあっ!<br/>从后面走过来的Cynthia：じれったい。<br/></td><td id="rDU`" class="" style="width:306px">啊，抓到你了！<br/>看来你真的转到Neucom了。<br/>然后，我们在这里<br/>又分到了同一个队伍，<br/>——请多关照！<br/>总之……就这些。<br/>啊，痛！<br/>我知道了！我会好好说的！<br/>呃……那个，<br/>我刚从议员那里听说……<br/>又来、哇！<br/>真是磨叽。<br/></td><td id="TwO~" class="" style="width:229px">M40</td></tr><tr id="201d9946-5667-40bf-a7a6-c8397da5cc1d"><td id="Hc;p" class="" style="width:58px">2</td><td id="JZQ:" class="" style="width:217px"></td><td id="G?;;" class=""></td><td id="uHtM" class="" style="width:317px">ありがとう …… 心から感謝するわ。<br/>あなたの決断が、<br/>議員とフィーの命を救ってくれた。<br/>その決断と行動力に<br/>これからも期待してる。<br/>あ、そうそう …… ワタシはシンシア。<br/>NEU——<br/>チーフ·コンサルティング·パイロット。<br/>つまりあなたの上司です。<br/>始めまして、よろしく。<br/>FIONA:もう、姉さん!代わってよ …… ねえ!<br/>CYNTHIA:それからフィーはね、<br/></td><td id="rDU`" class="" style="width:306px">谢谢……由衷地感谢你。<br/>你的决断，<br/>拯救了议员和小菲的性命。<br/>希望你今后也能<br/>保持这样的决断力和行动力。<br/>啊，对了……我是辛西娅。<br/>NEU——<br/>首席顾问飞行员。<br/>换句话说，就是你的上司。<br/>初次见面，请多关照。<br/>姐！让我说……喂！<br/>还有，小菲呢，<br/></td><td id="TwO~" class="" style="width:229px"></td></tr><tr id="c260aefa-9de8-48b2-8f5c-14c31efa08ea"><td id="Hc;p" class="" style="width:58px">3</td><td id="JZQ:" class="" style="width:217px">0355_0001_0001_0001</td><td id="G?;;" class=""></td><td id="uHtM" class="" style="width:317px">私にとってたった一人の妹でもあるの。<br/>だから、個人的にもあなたには、<br/>すごく感してる<br/>それじゃあ、次は任務でね。<br/>——パイ!<br/>FIONA:何で切るの ……!<br/></td><td id="rDU`" class="" style="width:306px">是我唯一的妹妹。<br/>所以，就个人而言，<br/>我也非常感激你。<br/>那么，下次任务再见吧。<br/>——拜！<br/>干嘛挂掉……！<br/></td><td id="TwO~" class="" style="width:229px"></td></tr><tr id="1215ed42-5088-4b66-926d-684a5325aabb"><td id="Hc;p" class="" style="width:58px"></td><td id="JZQ:" class="" style="width:217px">0321_0001_0000_0000</td><td id="G?;;" class="">CYNTHIA</td><td id="uHtM" class="" style="width:317px">初出撃、ご苦労さまでした。<br/>慣れない環境やこっちのコフィンに<br/>とまどう事もあるだろうけど、<br/>私たちのメンバーとなったからには<br/>これから良い結果を期待しています。<br/>それでは<br/>次こそキミの実力を見せてください。<br/></td><td id="rDU`" class="" style="width:306px">第一次出击，真是辛苦了。<br/>新环境和我们的COFFIN系统，<br/>你可能还不习惯，<br/>但既然已经加入我们了，<br/>我们都期待着你以后能取得好成绩。<br/>那么，下次再见，<br/>期待你展现出更杰出的实力。<br/></td><td id="TwO~" class="" style="width:229px">M40，<br/>达成低<br/>摧毁少于6个雷达站或油罐<br/>分歧到42<br/></td></tr><tr id="12072ce6-1367-8015-87e6-e4e0fde3d389"><td id="Hc;p" class="" style="width:58px"></td><td id="JZQ:" class="" style="width:217px">0322_0001_0000_0000</td><td id="G?;;" class="">FIONA</td><td id="uHtM" class="" style="width:317px">いませんか?<br/>フィーです。<br/>今日、大変だったけど、<br/>二人とも無事で良かったと思って。<br/>ただ …… なんか、ニューコムには<br/>まだ慣れなくて。<br/>助けてもらった私が、<br/>こんな事言うのはアレだけど、<br/>やっぱり姉さんたちが<br/>ここで何を目指してるのかって考えると<br/>だからって、ゼネラルが良いとも<br/>思えないんだけど。<br/></td><td id="rDU`" class="" style="width:306px">有人在吗？<br/>我是菲。<br/>今天真是惊险，<br/>不过大家都平安无事，真是太好了。<br/>只是……我还是<br/>不太适应Neucom。<br/>由于受了很多帮助，<br/>我说这些可能有点不太好。<br/>但是，一想到姐姐她们<br/>在这里的目的是什么，<br/>我就……<br/>虽然我也觉得通用资源不怎么样。<br/></td><td id="TwO~" class="" style="width:229px"></td></tr><tr id="12072ce6-1367-80ce-a015-f1200a4f91b0"><td id="Hc;p" class="" style="width:58px"></td><td id="JZQ:" class="" style="width:217px"></td><td id="G?;;" class=""></td><td id="uHtM" class="" style="width:317px">この戦いを誰が望んだのかって。<br/>何か大きな力に、<br/>いつの間にか巻き込まれて<br/>しまったみたいで<br/>いつも、なんか愚痴が多くてごめん。<br/>じゃ、また。<br/></td><td id="rDU`" class="" style="width:306px">这场战争究竟是谁想要的呢？<br/>感觉我们不知不觉间<br/>被卷入了一股巨大的力量之中，<br/>身不由己……<br/>总是发牢骚，真是抱歉。<br/>那，回见。<br/></td><td id="TwO~" class="" style="width:229px"></td></tr><tr id="12072ce6-1367-80ae-8497-e6721770393c"><td id="Hc;p" class="" style="width:58px"></td><td id="JZQ:" class="" style="width:217px">0319_0001_0000_0000</td><td id="G?;;" class="">CYNTHIA</td><td id="uHtM" class="" style="width:317px">今日はお疲れさま。<br/>新しい環境にもすぐに慣れてほしいと思う。<br/>キミには期待している。<br/>今回の転職は、<br/>言わば巻き込まれたカタチでの結果だけど<br/>ここは、ゼネラルやUPEOと<br/>根本的な考え方の違う組織だから、<br/>私たちニューコムが<br/>目指している新しい世界を<br/>自由に自分の目で確かめてほしい。<br/>そして、早くニューコムのー员に<br/>なってほしい。<br/></td><td id="rDU`" class="" style="width:306px">今天真是辛苦了。<br/>希望你能尽快适应新环境。<br/>我们很看好你。<br/>这次的“转会”，<br/>虽然你多少有些身不由己，<br/>但Neucom相较于通用资源和UPEO<br/>在根本理念上是截然不同的。<br/>我们希望你能够<br/>亲眼见证我们Neucom<br/>所追求的新世界，<br/>并早日融入Neucom，<br/>成为我们的一员。<br/></td><td id="TwO~" class="" style="width:229px">M40达成高<br/>狂轰地上的设施就行。先无视TGT。<br/><br/>分歧到42 打卫星<br/></td></tr><tr id="12072ce6-1367-808d-a4d8-fbf3d3fd30d0"><td id="Hc;p" class="" style="width:58px"></td><td id="JZQ:" class="" style="width:217px"></td><td id="G?;;" class=""></td><td id="uHtM" class="" style="width:317px">これから一緒に行動する事が増えると思う。<br/>今日の活躍、今後の力になるはず。<br/>では!<br/></td><td id="rDU`" class="" style="width:306px">今后我们一起行动的机会应该会很多。<br/>今天的出色表现，对以后一定大有帮助。<br/>下次再见。<br/></td><td id="TwO~" class="" style="width:229px"></td></tr><tr id="12072ce6-1367-8001-adf9-e6d2f77c41fb"><td id="Hc;p" class="" style="width:58px"></td><td id="JZQ:" class="" style="width:217px">0320_0001_0000_0000</td><td id="G?;;" class="">FIONA</td><td id="uHtM" class="" style="width:317px">あっと …… フィーです。<br/>もうニューコムには慣れた?<br/>私はずっとこっちの考え方を<br/>姉から聞かされてたから。<br/>その反発もあったからナカナカね …… 。<br/>まあ、あんな事があって<br/>戻る場所なんてなくなっちゃったんだから、<br/>やるしかないよね。<br/></td><td id="rDU`" class="" style="width:306px">啊……我是菲。<br/>你已经习惯Neucom了吗？<br/>我一直听姐姐<br/>讲Neucom的理念，<br/>所以多少有些抵触情绪，很难接受……<br/>不过，发生了那样的事，<br/>我也没地方可去了，<br/>只能努力适应了。<br/></td><td id="TwO~" class="" style="width:229px"></td></tr><tr id="12072ce6-1367-80ac-be1f-f6b7690d44f1"><td id="Hc;p" class="" style="width:58px"></td><td id="JZQ:" class="" style="width:217px">0356_0001_0000_0000</td><td id="G?;;" class="">CYNTHIA</td><td id="uHtM" class="" style="width:317px">割り込みで失礼。<br/>出動要請です。詳しくはプリーフィングで。<br/>新しいRナンバーも配備してあります。<br/>自分にあったコフィンを見つける為にも<br/>色々と試して。<br/>では、上空て会いましょう。<br/></td><td id="rDU`" class="" style="width:306px">抱歉打扰了。<br/>有出动请求，详情请查看简报。<br/>新的R系列战机也已经配发给你了。<br/>为了找到适合你的COFFIN系统，<br/>请多尝试不同的机型。<br/>那么，空中再见。<br/></td><td id="TwO~" class="" style="width:229px">M41</td></tr><tr id="12072ce6-1367-8030-8491-c93b1e01c50f"><td id="Hc;p" class="" style="width:58px"></td><td id="JZQ:" class="" style="width:217px">0323_0001_0000_0000</td><td id="G?;;" class=""></td><td id="uHtM" class="" style="width:317px">まず、このメールは個人的なものです。<br/>で…そうそう、<br/>シャトルの連中も感謝してた。<br/>宇宙での実験結果も無駄にならなかったし。<br/>私もキミがニューコムに来てくれた事を<br/>感謝してる。<br/>その腕があれば、<br/>きっとどんな新しいRナンバーとも<br/>シンクロ出来るはず。<br/>まるで翼の先でも<br/>風を感じてるみたいだって思った。<br/>——それだけです。<br/></td><td id="rDU`" class="" style="width:306px">首先，这是一封私人邮件。<br/>对了……<br/>航天飞机上的人都很感谢你，<br/>是你让大家的太空实验没有白费。<br/>我也很感谢你<br/>能来到Neucom。<br/>以你的技术，<br/>一定能与任何新型R系列战机<br/>完美同步。<br/>仿佛你能用翅膀的末梢，<br/>去感受风的律动。<br/>就这样，<br/></td><td id="TwO~" class="" style="width:229px">M41达成高<br/>航天飞机成功着陆<br/></td></tr><tr id="12072ce6-1367-8072-8c16-ef1272e79cc4"><td id="Hc;p" class="" style="width:58px"></td><td id="JZQ:" class="" style="width:217px"></td><td id="G?;;" class=""></td><td id="uHtM" class="" style="width:317px"></td><td id="rDU`" class="" style="width:306px">再会。</td><td id="TwO~" class="" style="width:229px"></td></tr><tr id="12072ce6-1367-80b6-b3c4-fcfde5ebebd4"><td id="Hc;p" class="" style="width:58px"></td><td id="JZQ:" class="" style="width:217px">0324_0001_0000_0000</td><td id="G?;;" class="">FIONA</td><td id="uHtM" class="" style="width:317px">今日、あれから<br/>シャトルの人だちと会いました。<br/>宇宙から空に降りてくる時の感じって、<br/>肉体で知る重力の再発見だって<br/>言ってました<br/>私たちは空より上には<br/>上がれないんだって事……<br/>彼らと会って感じました。<br/>こういう人たちとの出会いがあると<br/>ニューコムの新しさにも<br/>慣れる事ができそう。<br/>キミはどうですか?<br/></td><td id="rDU`" class="" style="width:306px">今天任务结束之后，<br/>我和航天飞机上的人聊上了。<br/>他们说，从宇宙返回大气层的感觉，<br/>就像是用身体<br/>重新发现了重力。<br/>也让我意识到……<br/>我们无法飞得比天空更高。<br/>聊过之后我觉得，<br/>通过和他们这样的人接触，<br/>我也开始渐渐适应<br/>Neucom的新事物了。<br/>你呢？<br/></td><td id="TwO~" class="" style="width:229px"></td></tr><tr id="12072ce6-1367-80da-9d78-e3992ab690cf"><td id="Hc;p" class="" style="width:58px"></td><td id="JZQ:" class="" style="width:217px"></td><td id="G?;;" class=""></td><td id="uHtM" class="" style="width:317px">もう慣れましたか?<br/>ーフィーでした。<br/></td><td id="rDU`" class="" style="width:306px">已经习惯了吗？<br/>下次见。<br/></td><td id="TwO~" class="" style="width:229px"></td></tr><tr id="12072ce6-1367-80ab-ab64-c29c1e1e7753"><td id="Hc;p" class="" style="width:58px"></td><td id="JZQ:" class="" style="width:217px">0325_0001_0000_0000</td><td id="G?;;" class="">CYNTHIA</td><td id="uHtM" class="" style="width:317px">まだ、帰ってませんか。<br/>シャトルの件<br/>何とか彼らが降りられてよかった。<br/>これでニューコムが続けてきた<br/>宇由での実験は無駄にならなかったし、<br/>ただゼネラルの始末にちょっと<br/>モタついたのは、残念。<br/>今日のフライト·データを私なりに考えて<br/>今度、伝えます。<br/>次の出撃時に参考にして。<br/></td><td id="rDU`" class="" style="width:306px">没回来吗？<br/>关于航天飞机的事，<br/>幸好他们都安全着陆了。<br/>这样一来，Neucom长期以来<br/>在宇宙进行的实验就没有白费。<br/>只是，没能及时处理掉通用资源，<br/>还是有些遗憾。<br/>我会仔细分析你今天的飞行记录，<br/>之后告诉你我的看法，<br/>供你下次出击参考。<br/></td><td id="TwO~" class="" style="width:229px">M41达成低<br/>第一波攻击不要打完，等着第二波攻击出现。<br/></td></tr><tr id="12072ce6-1367-80d9-b99e-efabbc086b6c"><td id="Hc;p" class="" style="width:58px"></td><td id="JZQ:" class="" style="width:217px">0357_0001_0000_0000</td><td id="G?;;" class="">SIMON</td><td id="uHtM" class="" style="width:317px">私だ …… サイモンだ。<br/>オマエ、ちゃんとそこにいるのか?<br/>まあいい。<br/>いやいや …… なぁ、それにしてもだ。<br/>オマエの今までの働きには、<br/>正直、感心してるぞ。<br/>——大体からしてだな。<br/>UPEOから移籍した後も<br/>オマエが何者なのか、わからなかったぞ。<br/>何といってもこの私自身が、<br/>気が付かなかったぐらいなんだからな。<br/>しかし、それでいい。それでいいんだ。<br/></td><td id="rDU`" class="" style="width:306px">是我……西蒙。<br/>你在吗？<br/>算了。<br/>哎呀呀……话说回来，<br/>你一直以来的表现，<br/>说实话，真让我刮目相看。<br/>——毕竟，<br/>你从UPEO转投过来之后，<br/>我一直都没搞清楚你的情况。<br/>有些东西就连我都没能察觉到，<br/>真是有点出乎意料了。<br/>不过，这样也好，这样就好。<br/></td><td id="TwO~" class="" style="width:229px">M42<br/>台本P21，删除了一大段新闻对谈节目内容，关于电脑化。<br/></td></tr><tr id="12072ce6-1367-80ff-84ed-f770388029dc"><td id="Hc;p" class="" style="width:58px"></td><td id="JZQ:" class="" style="width:217px"></td><td id="G?;;" class=""></td><td id="uHtM" class="" style="width:317px">オマエはそのままでいいのだ。<br/>オマエは誰にも気づかれず、<br/>何も知らずにいればいい。<br/>その為にオマエは……<br/></td><td id="rDU`" class="" style="width:306px">继续保持这样就好。<br/>你不需要被任何人注意到，<br/>也不需要知道任何事。<br/>因为你……<br/></td><td id="TwO~" class="" style="width:229px"></td></tr><tr id="12072ce6-1367-8028-9f19-dab3f024aff9"><td id="Hc;p" class="" style="width:58px"></td><td id="JZQ:" class="" style="width:217px">0326_0001_0000_0000</td><td id="G?;;" class="">SIMON</td><td id="uHtM" class="" style="width:317px">どうした …… またいないのか。<br/>それとも居留守か。<br/>まあ、いい。<br/>——それにしてもだ。<br/>もしかしたら、私の見当違いなのか。<br/>あ …… この質問にオマエが<br/>答える必要はないそ。<br/>ただな、もし再び私が<br/>必要になったのならば、<br/>その時、考える事にしよう。<br/>——では、ごきげんよう。<br/></td><td id="rDU`" class="" style="width:306px">怎么了……又不在吗？<br/>还是故意的？<br/>算了。<br/>——话说回来，<br/>或许是我想多了。<br/>呃……你不用回答<br/>这个问题。<br/>只是，如果我再次需要你，<br/><br/>到时候再考虑吧。<br/>——那么，再会。 <br/></td><td id="TwO~" class="" style="width:229px">M42  台本P27，虽然分为评价高低有两个对话，但是只保留了一个对话。</td></tr><tr id="12072ce6-1367-8095-90c7-d68e7719451f"><td id="Hc;p" class="" style="width:58px"></td><td id="JZQ:" class="" style="width:217px">0327_0001_0000_0000</td><td id="G?;;" class="">FIONA</td><td id="uHtM" class="" style="width:317px">ニュース見た?<br/>もう誰にも止められないところまで<br/>来てる気がする<br/>結局、どっちも自分たち以外を<br/>認めたくないってことしかわからないし。<br/>UPEOもクラークソン代表がいなくなって<br/>ただのゼネラル関連企業って感しで…<br/>今、国っていうものや<br/>取治っていうものが力をなくして、<br/>経済がゼネラルを巨大な力にして、<br/>今度は経済を科学が否定しようとして——。<br/>いつになっても戦いはなくならない。<br/></td><td id="rDU`" class="" style="width:306px">你看新闻了吗？<br/>感觉这事态已经发展到<br/>谁也无法控制的地步了。<br/>说了半天，结果还是双方<br/>谁都不服谁。<br/>UPEO在没有克拉克森代表后，<br/>感觉就像变成了<br/>通用资源的附属企业……<br/>现在，国家和政治都失去了力量，<br/>经济造就了通用资源的强大，<br/>而这次，科学又试图否定经济——<br/>战争看来永远不会停止，<br/></td><td id="TwO~" class="" style="width:229px">M43</td></tr><tr id="12072ce6-1367-80f5-b160-e3def5ceafc6"><td id="Hc;p" class="" style="width:58px"></td><td id="JZQ:" class="" style="width:217px"></td><td id="G?;;" class=""></td><td id="uHtM" class="" style="width:317px">SARFにいた時には、自分が戦う目的が!<br/>戦いをやめさせる為にあったけど ……<br/>ニューコムの科学が——ここの科学者たちが<br/>言うような素情らしい未来をつくるとも<br/>…… 私には、思えない<br/>——それでも自分がここにいるのは、<br/>さんやキミと飛びたいって事しか<br/>なくなってるのに …… 気がついたんた。<br/></td><td id="rDU`" class="" style="width:306px">以前在SARF的时候，<br/>自己的战斗目标就是为了阻止战争……<br/>现在Neucom的科技，<br/>或者说这里的科学家所描绘的<br/>那个美好未来，我认为并不会实现。<br/>尽管如此，我发现自己留在这里的理由，<br/>仅仅只是想和姐姐，<br/>还有你一起飞行……<br/></td><td id="TwO~" class="" style="width:229px"></td></tr><tr id="12072ce6-1367-802b-af9d-fbe0e323d110"><td id="Hc;p" class="" style="width:58px"></td><td id="JZQ:" class="" style="width:217px">0328_0001_0000_0000</td><td id="G?;;" class="">FIONA</td><td id="uHtM" class="" style="width:317px">えー、また居ないみたいなので<br/>メールで残します。<br/>実は、相談したい事があって …… 。<br/>といっても、いつもの事なんだけど。<br/>シンシア姉さんの事で ……<br/>実は、電腦化の被験者リストに<br/>彼女の名前を偶然見つけたんだけど。<br/>科学やコンピュータの世界に対して<br/>夢を持つのは、別に悪いことじゃないし。<br/>だから、ニューコムを彼女が<br/>選んだのも知っている。<br/>だけど …… まだ実験段階の技術を<br/></td><td id="rDU`" class="" style="width:306px">呃……看来你不在，<br/>我就留言了。<br/>其实，我有件事想和你商量……<br/>虽然一直以来都是我在唠叨。<br/>关于辛西娅姐姐的事……<br/>我偶然在电脑化实验的<br/>被实验者名单上发现了她的名字。<br/>对科学和计算机的世界<br/>怀有梦想并没有什么错，<br/>所以，我知道姐姐<br/>选择Neucom的理由。<br/>但是……为什么姐姐要<br/></td><td id="TwO~" class="" style="width:229px">M43任务后</td></tr><tr id="12072ce6-1367-8097-98fd-ded94ed9ec64"><td id="Hc;p" class="" style="width:58px"></td><td id="JZQ:" class="" style="width:217px"></td><td id="G?;;" class=""></td><td id="uHtM" class="" style="width:317px">なんでわざわざ姉さんが受ける必要が<br/>あるのって<br/>––どうしたらいい?<br/></td><td id="rDU`" class="" style="width:306px">接受还在实验阶段的技术呢？<br/>——我该怎么办？<br/></td><td id="TwO~" class="" style="width:229px"></td></tr><tr id="12072ce6-1367-8013-87ce-e3ef7284b17f"><td id="Hc;p" class="" style="width:58px"></td><td id="JZQ:" class="" style="width:217px">0329_0001_0000_0000</td><td id="G?;;" class="">CYNTHIA</td><td id="uHtM" class="" style="width:317px">もしかしたら、もうフィーから<br/>何か言ってきたかもしれないけど、<br/>彼女の相談にのってあけてほしい。<br/>——もう私から彼女に<br/>してあげられる事って、少ないから。<br/>なんか姉妹ゲン力に<br/>巻き込んじゃったみたいになってて、<br/>ごめん……<br/>ただ正直な話、<br/>途中からこっちに来たから、<br/>相談出来るような人は<br/>キミぐらいしかいないと思うし。<br/></td><td id="rDU`" class="" style="width:306px">小菲可能已经<br/>跟你说过些什么了，<br/>希望你能开导开导她一下。<br/>——我现在已经没什么<br/>能为她做的了。<br/>感觉像是把你<br/>卷入了我们姐妹的矛盾，<br/>真是抱歉……<br/>说实话，<br/>我也是中途才加入这里，<br/>能商量事情的，<br/>也就只有你了。<br/></td><td id="TwO~" class="" style="width:229px"></td></tr><tr id="12072ce6-1367-80ce-bccb-e8d58f782997"><td id="Hc;p" class="" style="width:58px"></td><td id="JZQ:" class="" style="width:217px">0330_0001_0000_0000</td><td id="G?;;" class="">FIONA</td><td id="uHtM" class="" style="width:317px">さっき、またケンカしちゃった。<br/>なんか駄目……<br/>どうしても、姉さんが言葉にする<br/>科学の力でこの世界を変えるみたいな話って<br/>……信じられないし。<br/>それでも、自分がここにいるのは<br/>姉さんが心配だからだって言ったら、<br/>すごく怒られて。<br/>自分のしたい事をしろって。<br/>でも、ずっと自由に育ってきた<br/>姉さんの後姿を見てきた私には ……<br/>——ねえ、キミは……<br/></td><td id="rDU`" class="" style="width:306px">刚才，我又和姐姐吵架了。<br/>我真是没用……<br/>我始终没办法相信<br/>姐姐说的用科学的力量改变世界<br/>之类的话…<br/>然后，我说我留在这里<br/>是因为担心她，<br/>结果她很生气，<br/>说让我去做自己想做的事。<br/>但是，对一直仰慕可以<br/>自由成长的姐姐的我来说……<br/>——呐，你……<br/></td><td id="TwO~" class="" style="width:229px">M44</td></tr><tr id="12172ce6-1367-8017-b986-dad24f2a4ef3"><td id="Hc;p" class="" style="width:58px"></td><td id="JZQ:" class="" style="width:217px"></td><td id="G?;;" class=""></td><td id="uHtM" class="" style="width:317px">何の為に戦っているの?</td><td id="rDU`" class="" style="width:306px">是为了什么而战斗的呢？</td><td id="TwO~" class="" style="width:229px"></td></tr><tr id="12172ce6-1367-80d7-9b50-f3352169833c"><td id="Hc;p" class="" style="width:58px"></td><td id="JZQ:" class="" style="width:217px">0331_0001_0000_0000</td><td id="G?;;" class="">CYNTHIA</td><td id="uHtM" class="" style="width:317px">これは、個人的なメールです。<br/>閉じたら消去されるようになってますので。<br/>実は、私 ……<br/>ニューコムが行う人格のコピー実験に<br/>被験者として参加しようと思って<br/>登録したんだけど<br/>会社から止められちゃってて。<br/>それは、立場的な問題とか、<br/>人間関係的な部分で良く考えろなんて<br/>上司に言われたんだけど、<br/>私には 、その発想が既にゼネラル的<br/>じゃないかって。<br/></td><td id="rDU`" class="" style="width:306px">这封邮件是私人邮件，<br/>之后会自动删除。<br/>其实，我……<br/>之前报名参加了<br/>Neucom的人格复制实验，<br/>想成为志愿者，<br/>但是被公司拒绝了。<br/>上司让我好好考虑考虑<br/>我的处境和人际关系方面的问题，<br/>但我觉得这种想法<br/>本身就很“通用资源”。<br/><br/></td><td id="TwO~" class="" style="width:229px"></td></tr><tr id="12172ce6-1367-8080-9393-cf9b2c997ed4"><td id="Hc;p" class="" style="width:58px"></td><td id="JZQ:" class="" style="width:217px"></td><td id="G?;;" class=""></td><td id="uHtM" class="" style="width:317px">立場とか人間関係なんて事を<br/>超えてわかりあう為に、<br/>人間の電脳化があるはずなのに。<br/>そういう意味では、<br/>ニューコムもまだまだなのかって。<br/>それがショックだったけど ……<br/>でも、私は締めてないから。<br/>自分でチャンスをつくる!<br/>そんな計画にも、誘われてるし。<br/>その時が来たらちゃんとキミにも話すし。<br/>もしも …… キミが望むなら、<br/>私と一緒にチャンスを手にしてほしいとも<br/></td><td id="rDU`" class="" style="width:306px">超越这些所谓处境或者人际关系，<br/>实现真正的理解和沟通，<br/>这不正是，人类进行电脑化的目的吗？<br/>从这方面来说，<br/>我觉得Neucom还是不够进步。<br/>这让我很受打击……<br/>但是，我不会放弃。<br/>我要自己创造机会！<br/>正好有人邀请我参加一个计划，<br/>时机成熟时，我会把一切都告诉你。<br/>如果……你愿意的话，<br/>我希望你能和我一起抓住这个机会。<br/></td><td id="TwO~" class="" style="width:229px"></td></tr><tr id="12172ce6-1367-80d2-8e74-cb0d0ba28d06"><td id="Hc;p" class="" style="width:58px"></td><td id="JZQ:" class="" style="width:217px">0331_0001_0001_0001</td><td id="G?;;" class=""></td><td id="uHtM" class="" style="width:317px">思ってる。<br/>ただ、その時にフィーの事だけは心配だから<br/>……· 最初、キミに話しておこうと思って。<br/>すごく個人的なお願いで申し訳ないけど<br/>頼みます。<br/>——では。<br/>あっ、そうそう …… この話、<br/>まだフィーには言わないで。<br/></td><td id="rDU`" class="" style="width:306px"><br/>只是，到时候我有点担心小菲……<br/>所以……我想先告诉你这件事，<br/>很抱歉提出这么私人的请求，<br/>但还是拜托你了。<br/>——就这样。<br/>啊，对了……这件事，<br/>先不要告诉小菲。<br/></td><td id="TwO~" class="" style="width:229px"></td></tr><tr id="12172ce6-1367-80b8-8b1a-ead257e0bcd5"><td id="Hc;p" class="" style="width:58px"></td><td id="JZQ:" class="" style="width:217px">0332_0001_0000_0000</td><td id="G?;;" class="">FIONA</td><td id="uHtM" class="" style="width:317px">今日、報告書で<br/>シンシアは撃墜された事にしました。<br/>だから、あなたも、<br/>彼女は死んだ事にしてください。<br/>お願いします。<br/>これが、バ力な姉を持った妹にとって<br/>出来る最後の事なんです。<br/>でも私が··· 今度会ったら、<br/>撃ち落としますから!<br/>それだけです。<br/>お願い ……!<br/><br/><br/></td><td id="rDU`" class="" style="width:306px">今天，我在报告书上<br/>写辛西娅被击落了。<br/>所以，你也把她当做<br/>是已经死去的人吧。<br/>拜托了。<br/>这是作为笨蛋姐姐的妹妹，<br/>我能为她做的最后一件事了。<br/>但是……下次见面，<br/>我会把她击落！<br/>就这些。<br/>拜托了……！<br/></td><td id="TwO~" class="" style="width:229px">M49</td></tr><tr id="12172ce6-1367-8039-8c5b-f75c15be4c0f"><td id="Hc;p" class="" style="width:58px"></td><td id="JZQ:" class="" style="width:217px">0333_0001_0000_0000</td><td id="G?;;" class="">CYNTHIA</td><td id="uHtM" class="" style="width:317px">ニューコムの事故、ニュースを見た?<br/>あれ、あれ …… 絶対に陰謀だわ。<br/>フィーが …… だから言ったのに!<br/>誘ったのに、ウロポロスに …… 。<br/>ずっとずっと言ってたのに<br/>いつも意地張って、<br/>馬鹿な、馬鹿な事ばっかり!<br/>–——肉体に固執するから。<br/>死んだら何も残らなくなっちゃうのに。<br/>私と一緒にここで電脳化しようって言った。<br/>私の言う事を聞いてれば、<br/>こんな事にはならなかった!<br/></td><td id="rDU`" class="" style="width:306px">你看Neucom爆炸事故的新闻了吗？<br/>那……那种事……绝对是阴谋！<br/>小菲……我早对她就说过！<br/>我邀请她加入衔尾蛇……<br/>我一直一直都在劝她，<br/>可她总是那么固执，<br/>尽做些傻事！<br/>——都是因为她执着于肉体。<br/>这下死了什么都没了。<br/>我让她和我一起来这里进行电脑化，<br/>当初要是听了我的话，<br/>怎么会发生今天这种事！<br/></td><td id="TwO~" class="" style="width:229px">M45</td></tr><tr id="12172ce6-1367-80db-96e5-f3d3956149ca"><td id="Hc;p" class="" style="width:58px"></td><td id="JZQ:" class="" style="width:217px"></td><td id="G?;;" class=""></td><td id="uHtM" class="" style="width:317px">ニューコムの奴ら ……<br/>結局、ゼネラルと変わらない!<br/>やはり革命はしなければ、いけない。<br/>この世界は駄目になる。<br/>ねえ …… キミと私の二人で<br/>ディジョンの革命を完成させて、<br/>肉体を捨てて——電脳空間の海で<br/>人の新しい在り方を手に入れましょう。<br/></td><td id="rDU`" class="" style="width:306px">Neucom的那些人……<br/>到头来和通用资源没什么两样！<br/>果然，只有革命才能改变这一切。<br/>这个世界真的没救了。<br/>呐……你和我一起，<br/>一定要完成迪森的革命，<br/>抛弃肉体——在电脑空间的海洋中，<br/>去寻找人类新的存在方式吧。<br/></td><td id="TwO~" class="" style="width:229px"></td></tr><tr id="12172ce6-1367-8055-940f-dbf6ba2a2bb6"><td id="Hc;p" class="" style="width:58px"></td><td id="JZQ:" class="" style="width:217px">0334_0001_0000_0000</td><td id="G?;;" class="">DISION</td><td id="uHtM" class="" style="width:317px">久しぷりだな。<br/>キミがUPEOにいた頃に<br/>一度、誘った事を覚えているだろう?<br/>——よく来てくれた<br/>実はあの頃から、<br/>この革命は計画されていた。<br/>その時から、キミは<br/>もう私の手の中にいたというワケだ。<br/>キミもわかっただろう。<br/>UPEOもニューコムも、<br/>所詮は同じ穴のムジナだった<br/>——という事なのだよ。<br/></td><td id="rDU`" class="" style="width:306px">好久不见。<br/>你还记得在UPEO的时候，<br/>我曾经邀请过你吗？<br/>——欢迎你的到来。<br/>其实从那时起，<br/>这场革命就已经在计划之中了。<br/>当然从那时起，<br/>你就已经落入我的掌中了。<br/>现在你也应该明白了吧<br/>UPEO和Neucom，<br/>不过是五十步笑百步。<br/>——就这么回事。 <br/></td><td id="TwO~" class="" style="width:229px"></td></tr><tr id="12172ce6-1367-8017-898f-e695af561245"><td id="Hc;p" class="" style="width:58px"></td><td id="JZQ:" class="" style="width:217px"></td><td id="G?;;" class=""></td><td id="uHtM" class="" style="width:317px">治安維持だの、科学選民だのと<br/>色々と御託だけは並べるが、<br/>実行力のない臆病な連中。<br/>だがな、私は違う。<br/>私には恐れるものなど、何もない。<br/>くっ …… くっくっくっ!<br/>世界は既に私を認めたようなものだ。<br/>さあ、世間を見返してやろう。<br/>今まで私を馬鹿にしてきた奴らを<br/>血祭りにあげてやろうじゃないか。<br/>——肉体に固執した人類など滅びてしまえ!<br/></td><td id="rDU`" class="" style="width:306px">什么维护和平，什么科学精英，<br/>他们只会夸夸其谈，<br/>就一群毫无执行力的无能之辈。<br/>但是，我不一样。<br/>我无所畏惧。<br/>哼…哼哼哼哼！<br/>这个世界已经认可我了。<br/>来吧，让我们一起颠覆这个世界。<br/>把所有曾经嘲笑过我的人，<br/>都献祭给新的时代！<br/>所有执着于肉体的人类，都给我毁灭吧！<br/></td><td id="TwO~" class="" style="width:229px"></td></tr><tr id="12172ce6-1367-8033-aef9-d302809c42a9"><td id="Hc;p" class="" style="width:58px"></td><td id="JZQ:" class="" style="width:217px">0335_0001_0000_0000</td><td id="G?;;" class="">CYNTHIA</td><td id="uHtM" class="" style="width:317px">ごめん.<br/>もう …… 私<br/>どこにも行くとこなくなっちゃった。<br/>ここは、私の思っていた場所だと<br/>信じてたのに<br/>いろいろ無くしちゃった。<br/>何だか馬鹿なのは、<br/>フィーじゃなくて私だったみたい。<br/>——それでも、私は私。<br/>自分自身とフィーの為、<br/>この戦いにケリをつけるつもりで。<br/>それから、キミの事も必ず。<br/></td><td id="rDU`" class="" style="width:306px">抱歉。<br/>我已经……<br/>无处可去了。<br/>我一直相信这里<br/>是我理想中的地方，<br/>结果却失去了一切。<br/>到头来，愚蠢的人<br/>不是小菲，而是我自己。<br/>——即便如此，我还是我。<br/>为了我自己，也为了小菲，<br/>一定要了结这场战争。<br/>还有，我也不会丢下你。<br/></td><td id="TwO~" class="" style="width:229px"></td></tr><tr id="12172ce6-1367-80bc-bf2f-d5b276ac582a"><td id="Hc;p" class="" style="width:58px"></td><td id="JZQ:" class="" style="width:217px"></td><td id="G?;;" class=""></td><td id="uHtM" class="" style="width:317px">だから、私の最後のわがままを許して。<br/>——ここから、消える。<br/>そして、何がこの戦いの真実だったのか、<br/>それだけは自分の目で見るまで戦う。<br/>そのつもり。<br/>だから、私を信じて、お願い …… だから。<br/>それじゃあ。<br/></td><td id="rDU`" class="" style="width:306px">所以，请原谅我最后的任性。<br/>——我要离开这里。<br/>不过，我会战斗到最后一刻，<br/>直到我亲眼见证这场战争的真相。<br/>我一定会的，<br/>所以，请相信我，拜托了……所以……<br/>再会。<br/></td><td id="TwO~" class="" style="width:229px"></td></tr><tr id="12272ce6-1367-809e-8ba6-e52fe4135c62"><td id="Hc;p" class="" style="width:58px"></td><td id="JZQ:" class="" style="width:217px">0336_0001_0000_0000</td><td id="G?;;" class="">Fiona</td><td id="uHtM" class="" style="width:317px">今のニュース …… ウロボロスって、<br/>姉さんの言ってた奴なの?<br/>まさか本当に、こんな事始めるなんて。<br/>確かに私もニューコムだけじゃなくて、<br/>ゼネラルもUPEOだって<br/>信じられないけど……<br/>だからって、こんなテロもどきの戦いで<br/>この世界が、歴史が本気で変わるとでも<br/>思ってるの !?<br/>——馬鹿みたい!<br/>私、姉さんと一緒にいたかったから<br/>ここに残ってたのに。<br/></td><td id="rDU`" class="" style="width:306px">刚才的新闻……衔尾蛇，<br/>就是姐姐之前提到的那个组织吗？<br/>没想到她真的会做出这种事。<br/>的确，我也觉得不只是Neucom，<br/>通用资源和UPEO也一样<br/>让人无法信任……<br/>但是，她真的以为加入衔尾蛇，通过<br/>类似恐怖袭击的战争就能改变这个世界，<br/>改变历史吗？！<br/>——太愚蠢了！<br/>我留在这里，<br/>就是因为我想和姐姐在一起。<br/></td><td id="TwO~" class="" style="width:229px">M49</td></tr><tr id="12272ce6-1367-80e9-913a-ec6ae064cd1d"><td id="Hc;p" class="" style="width:58px"></td><td id="JZQ:" class="" style="width:217px"></td><td id="G?;;" class=""></td><td id="uHtM" class="" style="width:317px">私、 必ず彼女を連れ戻すつもり!<br/>あなたにも助けてほしい。<br/>きっとわかってくれるって<br/>今でも信じてる。<br/></td><td id="rDU`" class="" style="width:306px">我一定要把她带回来！<br/>也希望你能帮我。<br/>我相信你一定能理解我的。<br/></td><td id="TwO~" class="" style="width:229px"></td></tr><tr id="12272ce6-1367-8079-b7a4-d030735fbe68"><td id="Hc;p" class="" style="width:58px"></td><td id="JZQ:" class="" style="width:217px">0337_0001_0000_0000</td><td id="G?;;" class="">FIONA</td><td id="uHtM" class="" style="width:317px">こんなに朝早くから、ごめん。<br/>でも、ニュースをスワローで追ってたから、<br/>ぜんぜん眠れなくて …·<br/>電腦化の希望者のリストに姉さんの名前、<br/>見つけちゃったときから、<br/>何がいけなかったんだろうって、<br/>ずっと考えてる。<br/>もう、止められないのかな。<br/>でも、姉さんにもうー度会って<br/>ちゃんと伝えたい。<br/>自分の気持ち。<br/>もう止められなくてもいい。<br/></td><td id="rDU`" class="" style="width:306px">这么早打扰你，真是抱歉。<br/>但是，我一直在Data Swallow上<br/>关注新闻，完全睡不着……<br/>自从我在电脑化志愿者名单上<br/>看到姐姐的名字之后，<br/>就一直在想，<br/>我到底做错了什么。<br/>已经……无法阻止她了吗？<br/>但是，我想再见姐姐一面，<br/>好好地告诉她……<br/>我的想法。<br/>就算无法阻止她也没关系。<br/></td><td id="TwO~" class="" style="width:229px"> resistance后</td></tr><tr id="12272ce6-1367-8083-8835-ea444d0ca3e0"><td id="Hc;p" class="" style="width:58px"></td><td id="JZQ:" class="" style="width:217px"></td><td id="G?;;" class=""></td><td id="uHtM" class="" style="width:317px">ただ、もう一度 …… 。</td><td id="rDU`" class="" style="width:306px">只要能再见一面……</td><td id="TwO~" class="" style="width:229px"></td></tr><tr id="12272ce6-1367-80bc-9029-e99e7aab38fa"><td id="Hc;p" class="" style="width:58px"></td><td id="JZQ:" class="" style="width:217px">0338_0001_0000_0000</td><td id="G?;;" class="">FIONA</td><td id="uHtM" class="" style="width:317px">ね …… 元気?<br/>——私達、シンシア …… 殺しちゃった。<br/>あんまり馬鹿だから、<br/>しょうがないでしょ …… ね?<br/>私が悪いんじゃないでしょ !?<br/>ね …… そうだって答えて!<br/>もう、これからどうしたらいいんだろう。<br/>でもーつだけはっきりしてる事がある。<br/>私、あの男––ウロボロスの<br/>ディジョンを倒す!<br/>姉さんの夢をもて遊んで騙した、アイツ!<br/>それだけは、わかってる!<br/></td><td id="rDU`" class="" style="width:306px">呐……你还好吗？<br/>——我们……杀了辛西娅。<br/>她太傻了，<br/>我们别无选择……对吧？<br/>不是我的错，对吧？！<br/>呐……告诉我，事情是这样的！<br/>我不知道以后该怎么办。<br/>但是，有一件事我很清楚。<br/>我一定要打倒那个男人——<br/>衔尾蛇的迪森！<br/>就是那个混蛋，玩弄并欺骗了姐姐的梦想！<br/>这一点，我很确定！<br/></td><td id="TwO~" class="" style="width:229px"></td></tr><tr id="12272ce6-1367-80c8-b0e7-d63e7ae6ae81"><td id="Hc;p" class="" style="width:58px"></td><td id="JZQ:" class="" style="width:217px">0339_0001_0000_0000</td><td id="G?;;" class="">SIMON</td><td id="uHtM" class="" style="width:317px">やっと、また会えたな。<br/>どうだ。<br/>もう、気がついているのかもしれないが、<br/>オマエは私によって造られた<br/>プログラムだったのだ。<br/>そして、これまで、オマエが見てきた<br/>全ての出来事。<br/>この私が、オマエをAIとして<br/>プログラムした全ての可能性、<br/>それが私に答えを教えてくれた。<br/>ここまで迎りついたオマエは、<br/>多くのパターンによって<br/></td><td id="rDU`" class="" style="width:306px">终于，又见面了。<br/>怎么样？<br/>你可能已经察觉到了，<br/>你其实是由我<br/>创造的程序。<br/>而你至今为止<br/>所经历的一切，<br/>都是我为你——一个AI，<br/>预设好的各种可能性。<br/>而这些可能性，已经给了我答案。<br/>发展到这一步的你，<br/><br/></td><td id="TwO~" class="" style="width:229px"></td></tr><tr id="12272ce6-1367-80df-b318-c4847dc11cac"><td id="Hc;p" class="" style="width:58px"></td><td id="JZQ:" class="" style="width:217px"></td><td id="G?;;" class=""></td><td id="uHtM" class="" style="width:317px">変化し続ける全ての世界で<br/>あの男を完璧に抹殺することが<br/>出来たはずだ。<br/>私からヨーコを奪ったあの男、<br/>複製として自分だけは抜け抜けと生き残った<br/>あの男、ディジョン!<br/>奴の思考を複製した<br/>プログラムの總てを完全に消去してやった。<br/>可能性は、全て見せてもらった。<br/>それでは、これから真実の世界へ<br/>オマエを放つ事にしよう。<br/>さあ、今までの出来事、記憶を全て忘れ、<br/></td><td id="rDU`" class="" style="width:306px">被放到各种变化无常的世界中，<br/>应该都能完美抹杀掉那个男人了。<br/><br/>那个从我身边夺走洋子的男人，<br/>那个以复制体的身份苟且偷生的男人，<br/>迪森！<br/>我已经彻底清除了<br/>所有复制了他思维的程序。<br/>所有的可能性，我已经一一见证。<br/>那么，也是时候让你<br/>去看看真实的世界了。<br/>来吧，忘记你至今为止的经历和记忆，<br/></td><td id="TwO~" class="" style="width:229px"></td></tr><tr id="12272ce6-1367-8014-ae78-dbd817c603b2"><td id="Hc;p" class="" style="width:58px"></td><td id="JZQ:" class="" style="width:217px">0339_0001_0001_0001</td><td id="G?;;" class=""></td><td id="uHtM" class="" style="width:317px">その目で、この世界の現実を<br/>しっかりと知るかいい!<br/>この世界が、<br/>誰が何の為に造ったものなのか …… 。<br/></td><td id="rDU`" class="" style="width:306px">用你自己的眼睛，<br/>去好好看看这个世界的现实吧！<br/>去看看这个世界，<br/>究竟是谁，又是为了什么而创造的……<br/></td><td id="TwO~" class="" style="width:229px"></td></tr></tbody></table><p id="11f72ce6-1367-801b-bd50-e5f451061ecb" class="">
+</p><h1 id="11f72ce6-1367-803f-ae7d-c8c5fb8b0161" class="">战场对话</h1><table id="11f72ce6-1367-8068-8053-c69a3540ff13" class="simple-table"><tbody><tr id="eeccad20-768b-4cb0-881d-bc3c10336a3e"><td id="Hc;p" class="block-color-pink" style="width:58px">序号</td><td id="JZQ:" class="block-color-pink" style="width:214px">文件路径</td><td id="uHtM" class="block-color-pink" style="width:387px">原文</td><td id="rDU`" class="block-color-pink" style="width:342px">译文</td><td id="TwO~" class="block-color-pink" style="width:229px">备注</td></tr><tr id="ce351fb1-4db9-49de-affa-2999b680ec02"><td id="Hc;p" class="" style="width:58px">1</td><td id="JZQ:" class="" style="width:214px">0045_0015</td><td id="uHtM" class="" style="width:387px">CYNTHIA:UPEOのエース! うちの新型、乗り心地はどう?<br/>さぁ、実力みせてもらいましょうか。<br/>FIONA:さすが新機種!。<br/>張りコのトラとは違う!<br/>CYNTHIA:アタリマエ、<br/>これがニューコムの力でしょ。<br/>本気? 判断が遲い!<br/>時間 ……リミット、考えて擊つ。<br/>燃料タンクをやる!<br/>レーダーを狙う!<br/>FIONA:やっぱり、<br/>こっちは戦い方も変わってる。<br/>CYNTHIA:すく慣れなさい<br/>腕だけじゃ残れないって事、覚える!<br/>指挥官：レモラ、モビュラから切り離します。<br/>リリース!<br/></td><td id="rDU`" class="" style="width:342px">UPEO的王牌！觉得我们Neucom的新机型怎么样？<br/>来，让我见识见识你的实力吧。<br/>不愧是新机型！<br/>和那些老古董可不一样！<br/>那是当然，<br/>这可是Neucom的技术力。<br/>真的假的？反应太慢了！<br/>时间……有限，谨慎射击。<br/>攻击燃料箱！<br/>瞄准雷达！<br/>果然，<br/>这边的战斗方式也不一样。<br/>尽快适应吧。<br/>光有技术可活不下去，记住这点！<br/>“鮣鱼”已经与“蝠鲼”分离<br/>进行释放！<br/></td><td id="TwO~" class="" style="width:229px">M40</td></tr><tr id="da6b07ea-da0b-47e9-858b-2a4bbf6daf3b"><td id="Hc;p" class="" style="width:58px">2</td><td id="JZQ:" class="" style="width:214px"></td><td id="uHtM" class="" style="width:387px"></td><td id="rDU`" class="" style="width:342px">敌增援部队已接近。<br/>继续清除残余兵力。<br/></td><td id="TwO~" class="" style="width:229px"></td></tr><tr id="258e8dfe-5a39-488e-aa9d-eb5c0347bf27"><td id="Hc;p" class="" style="width:58px">3</td><td id="JZQ:" class="" style="width:214px">0046_0015</td><td id="uHtM" class="" style="width:387px">CYNTHIA起飞前:シャトルには当然、武器がないので<br/>我々が盾になるつもりて。<br/>出ます！<br/>FIONA起飞前:横にだけじゃ対くて、<br/>縱にも展開して護衛しましよ。<br/>行きます！<br/>CYNTHIA:シャトルを肉眼でも確認。<br/>あっちのお出迎えも上がってきた!<br/>指挥官：大至急、救援を請うっ!<br/>エンジン部直擊!<br/>着陸不能、墜落するうっ!<br/>（任务失败）CYNTHIAl盾になると言っだてしょう……<br/>指挥官：護衛に成功しました<br/>引き続き残存兵力を掃討してください。<br/>CYNTHIA:さあ、でしゃばりどもの始末。<br/>FIONA:後は蹴散らすだけ!<br/>任務完了，我々も歸還する。<br/>シャトルに続いて着陸。<br/></td><td id="rDU`" class="" style="width:342px">航天飞机当然没有武器，<br/>但我们就是它的护盾。<br/>出发！<br/>不光横向，<br/>纵向也要展开护卫。<br/>起飞！<br/>已目视确认航天飞机。<br/>看来对方也来迎接了！<br/>情况紧急！请求支援！<br/>引擎部位被击中！<br/>无法着陆，即将坠毁！<br/>不是说要做护盾吗……<br/>护卫成功。<br/>接下来请扫荡残余敌军。<br/>来吧，收拾这些多管闲事的家伙。<br/>把他们全部打爆！<br/>任务完成，我们也该返航了。<br/>跟随航天飞机着陆。<br/></td><td id="TwO~" class="" style="width:229px">M41</td></tr><tr id="7c6d1af6-f69b-4f5d-8786-f6cfa4ee7e8a"><td id="Hc;p" class="" style="width:58px"></td><td id="JZQ:" class="" style="width:214px">0047_0015</td><td id="uHtM" class="" style="width:387px">航行時間は三分間です。<br/>衛星をすべて破壞してください。<br/>大気圈に再突入します。<br/>機体を安定させてください。<br/>レーダーで大気圈突入成功を確認しました。<br/>そのまま帰還してください。<br/>機首を上げた状態で<br/></td><td id="rDU`" class="" style="width:342px">有效航行时间为三分钟。<br/>摧毁所有敌方卫星。<br/>即将重返大气层。<br/>确保机体稳定。<br/>雷达确认已成功进入大气层。<br/>请返航。<br/>保持机头上扬姿态。<br/></td><td id="TwO~" class="" style="width:229px">M42</td></tr><tr id="12072ce6-1367-8064-b230-d44dddea6acf"><td id="Hc;p" class="" style="width:58px"></td><td id="JZQ:" class="" style="width:214px">0048_0015</td><td id="uHtM" class="" style="width:387px">CYNTHIA:目標の位置を目視！<br/>まず、セネラルを阻止!<br/>FIONA:黙って見てるわけにはいかないよね!<br/>回收部队通讯员：回収部隊より …… 援護願います!<br/>NEUへ! 任務続行不可能!<br/>次、急いでっ!<br/>トロい ··<br/>指挥官：敵の增援部隊が迫っています。<br/>至急、これらの機動艦隊を<br/>擊沈してください<br/>CYNTHIA:じゃあ、処分するまでっ!<br/>FIONA:姉さん、<br/>せっかちな性分なんだから!<br/>回收部队通讯员：第二陣、出動します!<br/>動力部被弾 …… 航行不能!<br/>CYNTHIA:…弱すぎる<br/>通讯员：NEUへ!目標位置へ到達!<br/>貴君の健鬪に感謝します。<br/></td><td id="rDU`" class="" style="width:342px">目视确认目标位置！<br/>先阻止通用资源！<br/>我们不能袖手旁观！<br/>这里是回收部队……请求支援！<br/>呼叫NEU！任务无法继续！<br/>下一个，赶快！<br/>没赶上……<br/>敌方增援部队正在逼近。<br/>情况紧急，<br/>立即击沉这些机动舰队。<br/>好，把他们全部消灭！<br/>姐姐，<br/>你也太性急了！<br/>第二波回收部队，出动！<br/>动力部分中弹……无法航行！<br/>……太弱了。<br/>呼叫NEU！已抵达目标位置！<br/>感谢你们的出色表现。<br/></td><td id="TwO~" class="" style="width:229px">M43</td></tr><tr id="12172ce6-1367-80dc-abe7-f6fcb5348cc5"><td id="Hc;p" class="" style="width:58px"></td><td id="JZQ:" class="" style="width:214px">0049_0015</td><td id="uHtM" class="" style="width:387px">CYHTHIA:いよいよ向こうさんも<br/>本気になってきた!<br/>FIONA:姉さん …… 熱くなりすまないで<br/>CYNTHIA:作戦中は姉さんと呼ばないっ!<br/>いつも言ってるはず!<br/>FIONA:すいません。<br/>CYNTHIA:甘い! 高度には気をつけるっ!<br/>指挥官：正体不明の空中空母が出現し、<br/>軍事クーテターが勃発しました!<br/>ただちに帰還してください<br/>CYNTHIA:まさか ?! 予定よりずっと早いじゃない!<br/>なんでこんなタイミング!<br/>FIONA:何、どうしたの?<br/>CYNTHIA:ごめん、フィー<br/>私、やっばり自分の世じる道を行く。<br/>FIONA:…… どういう意味? 何が ?!<br/>CYNTHIA:ごめん …… 説明する時間がなかったけど、<br/>(对主角说)私はクーテターに参加する<br/>反対するならば、ニューコムへ戾りなさい!<br/>もしも、私を信じる気があるのなら、<br/>キミにはこのままついて来てほしい。<br/>事情は後で説明します!<br/>FIONA:ふざけないで姉さん!<br/>彼女についていっては駄目!<br/>戾りなさい …… 戾って!<br/></td><td id="rDU`" class="" style="width:342px">看来对方也要来真的了！<br/><br/>姐姐……别太冲动。<br/>作战期间不许叫我姐姐！<br/>不是说过很多次了吗！<br/>对不起。<br/>别大意！注意飞行高空！<br/>出现不明空中航母，<br/>已爆发军事政变！<br/>请立刻返航！<br/>什么？！比预定的时间早太多了！<br/>怎么会在这个时候？！<br/>怎么了？发生什么事了？<br/>抱歉，小菲。<br/>我……我还是要走自己的路。<br/>……什么意思？怎么了？！<br/>抱歉……没时间解释了。<br/>我将加入政变。<br/>如果你反对，就回Neucom去吧！<br/>如果，你相信我的话，<br/>就继续跟着我。<br/>之后我会解释清楚！<br/>别开玩笑了，姐姐！<br/>不要跟着她！<br/>回来……快回来！<br/></td><td id="TwO~" class="" style="width:229px">M44</td></tr><tr id="12172ce6-1367-8074-9a00-cc976154ac32"><td id="Hc;p" class="" style="width:58px"></td><td id="JZQ:" class="" style="width:214px"></td><td id="uHtM" class="" style="width:387px">CYNTHIA:……来てくれた!<br/>これより、ウロボロスに合流します。<br/>フィー、帰りなさい!<br/>FIONA:姉さん、ダメ!<br/>CYNTHIA:ティジョン、約束どおり来た!<br/>シンシアです!<br/>DISION:了解、ニューコム機、空母への着艦を許可する。<br/>CYNTHIA:あれが空中空母スフィルナ ……<br/>なんて大きさ!<br/>FIONA:姉さん、何で…….？！<br/>空母に、着艦します<br/>指挥官：貴君の活躍により、ゼネラルリソースの妨害を<br/>食い止める事が出来ました。<br/>なお、クーテターに関する詳細は不明です。<br/>私を信じてくれてありがとう。<br/>緊急事態発生。<br/></td><td id="rDU`" class="" style="width:342px">……你来了！<br/>现在，我们去和衔尾蛇会合。<br/>小菲，你回去吧！<br/>姐姐，不要！<br/>迪森，我按照约定来了！<br/>我是辛西娅！<br/>了解，Neucom的飞机，允许进入航母。<br/>那就是空中航母“双髻鲨”，<br/>好大！<br/>姐姐，为什么……？！<br/>进行着舰。<br/>多亏了你的活跃表现，<br/>才得以阻止通用资源的侵扰，<br/>但关于政变的详情尚不清楚。<br/>谢谢你相信我。<br/>发生紧急情况。<br/></td><td id="TwO~" class="" style="width:229px"></td></tr><tr id="12172ce6-1367-8008-8a80-e3cf94fa6155"><td id="Hc;p" class="" style="width:58px"></td><td id="JZQ:" class="" style="width:214px">0050_0015</td><td id="uHtM" class="" style="width:387px">CYNTHIA:ありがとう<br/>キミは説明もしてなかったのに<br/>私を信じてくれた<br/>だから、どんな事があっても<br/>キミの事を守る。<br/>DISION:我々の革命に必要な最終兵器<br/>ナイトレーバンのパイロットを<br/>UPEOから救出する。<br/>まずUPEO基地を襲擊し、<br/>地上部隊を排除,<br/>救出機が滑走路に着陸。<br/>出来るようにするのがキミの任務だ。<br/>なお、キミには<br/>ニューコムの新生コフィンを<br/>用意しておいた.<br/>健鬪を祈る。<br/>CYNTHIA:邪魔をする奴だけを叩いて!<br/>DISION:どうだ …… 自分の古巣や<br/>元同僚を叩く気分は。<br/>さそや爽快だろう。<br/>CYNTHIA:着陸した!<br/>これよりバイロット救出に向かいます。<br/>上空がら援護しなさい!<br/>バイロット救出に成功!<br/>離陸できるように進路を確保!<br/></td><td id="rDU`" class="" style="width:342px">谢谢你。<br/>你什么都没问，<br/>就选择相信我。<br/>所以，无论发生什么事，<br/>我都会保护你。<br/>为了救出我们革命所需的最终兵器——<br/>夜鸦NIGHT RAVEN的<br/>飞行员。<br/>我们需要先攻击UPEO基地，<br/>清除地面部队，<br/>确保救援机能够降落在跑道上。<br/>这就是你的任务。<br/>另外，<br/>我为你准备了<br/>Neucom的新型COFFIN系统。<br/>祝一切顺利。<br/>攻击挡路的敌人！<br/>感觉如何……攻击自己的老巢<br/>和曾经的同僚，<br/>一定很痛快吧？<br/>降落了！<br/>现在去营救飞行员。<br/>从空中掩护我！<br/>成功救出飞行员！<br/>确保起飞路线安全！<br/></td><td id="TwO~" class="" style="width:229px">M45</td></tr><tr id="12172ce6-1367-80bb-b6b8-cb84c5f45266"><td id="Hc;p" class="" style="width:58px"></td><td id="JZQ:" class="" style="width:214px"></td><td id="uHtM" class="" style="width:387px"> さあ、空母に戾ろう。<br/>早くしないと逃げ切れない!<br/>DISION:シンシア機をやらせるな!<br/>大事なバイロットがいる<br/>どうしても必要なのだ。<br/>CYNTHIA:まさか、UPEOのアイドルが<br/>相手とは …!<br/>そうだ、レナは無事だな。<br/>救出ご苦労だった。<br/>帰還するぞ。<br/></td><td id="rDU`" class="" style="width:342px">好了，回航母。<br/>动作快点，不然就跑不掉了！<br/>保护好辛西娅的飞机！<br/>上面有重要的飞行员！<br/>我们绝对需要她。<br/>没想到，营救对象居然是UPEO的<br/>明星偶像……！<br/>对了，玲名没事吧？<br/>营救行动辛苦了。<br/>返航吧。<br/></td><td id="TwO~" class="" style="width:229px"></td></tr><tr id="12172ce6-1367-803e-9448-e4e1af4bc781"><td id="Hc;p" class="" style="width:58px"></td><td id="JZQ:" class="" style="width:214px">0051</td><td id="uHtM" class="" style="width:387px">CYNTHIA:ティジョン …… あの男<br/>レナをナイトレーバンに乗せ、<br/>メガフロートを沈めるって言ってた。<br/>これ以上、誰の好きにもさせない。<br/>さあ、追うからね!<br/>メガフロートが …… 燃えてる<br/>ゼネラルは、まだレナの事を知らないはず。<br/>早く化け物こうもりを探して!<br/>雑魚どもが、チョロチョロっ!<br/>相手はセネラルじゃない ……<br/>敵は、ディジョンだけ!<br/>あ、あれは何 ?!<br/>淒い威力 ！<br/>あ、あれの母艦 …… スフィルナをやらなきゃ<br/>クーテターを止められない!<br/>叩くから！<br/>ティジョン!<br/>あんたのエゴに騙されて<br/>死んだ人々の酬いを受けろっ!<br/>DISION:騙されただと ?!<br/>オマエは、オマエの幼稚な夢を<br/>見てただけのくせに。<br/>都合のいい!<br/>CYNTHIA:それはこっちのセリフッ!<br/>やったの ?!<br/></td><td id="rDU`" class="" style="width:342px">迪森……那个男人<br/>说要让玲名驾驶夜鸦，<br/>击沉巨浮城。<br/>我不会再让他为所欲为了。<br/>来吧，追上去！<br/>巨浮城……在燃烧……<br/>通用资源应该还不知道玲名的事，<br/>快找到那只蝙蝠怪物！<br/>杂兵真多，烦死了！<br/>对手不是通用资源……<br/>敌人只有迪森一个！<br/>那、那是什么？！<br/>好可怕的威力！<br/>必须摧毁那东西的母舰……双髻鲨，<br/>政变才能被阻止！<br/>上吧！<br/>迪森！<br/>为那些被你的自私自利所欺骗<br/>而丧命的人偿命吧！<br/>被骗？！<br/>你居然，<br/>还在做你那幼稚的梦！<br/>真是自以为是！<br/>这话应该由我来说才对！<br/>成功了吗？！<br/></td><td id="TwO~" class="" style="width:229px">M46</td></tr><tr id="12272ce6-1367-807d-9097-d120092674f3"><td id="Hc;p" class="" style="width:58px"></td><td id="JZQ:" class="" style="width:214px"></td><td id="uHtM" class="" style="width:387px">フィー、見てだ?<br/>見つけた!<br/>…… ディジョン。<br/>あ …… 見つけた! 追いかけるっ!<br/></td><td id="rDU`" class="" style="width:342px">小菲，你看到了吗？<br/>看到你了！<br/>……迪森。<br/>啊……看到了！追上去！<br/></td><td id="TwO~" class="" style="width:229px"></td></tr><tr id="12272ce6-1367-80de-b6c9-f79c08068ea1"><td id="Hc;p" class="" style="width:58px"></td><td id="JZQ:" class="" style="width:214px">0052</td><td id="uHtM" class="" style="width:387px">逃げたコウモリを追う!<br/>これで終わりにする。<br/>また、素早くなった?!<br/>何処…?!<br/></td><td id="rDU`" class="" style="width:342px">追击那只逃跑的蝙蝠！<br/>就在这里了结一切吧。<br/>速度又变快了？！<br/>在哪……？！<br/></td><td id="TwO~" class="" style="width:229px"></td></tr><tr id="12272ce6-1367-8090-a875-eb204254614f"><td id="Hc;p" class="" style="width:58px"></td><td id="JZQ:" class="" style="width:214px">0053</td><td id="uHtM" class="" style="width:387px">CYNTHIA:見づけだ!近いかけるっ!<br/>SIMON:シンシア …… 聞こえるか?<br/>私だ、ニューコムのサイモンだ<br/>その化け物を止めるつもりなら応えろ。<br/>協力するぞ。<br/>CYNTHIA:何で今頃 ?!<br/>SIMON:私もこの件には責任を感じてるんでね。<br/>才マ工達、早く倒せ、<br/>ナイトレーバンを。<br/>CYNTHIA:チョロチョロとっ!<br/>SIMON:あれは都市のイーオン·ジェネレーターで<br/>機動性を得ている。<br/>それを全て破壞すれば、あれは羽を毟られた<br/>カラス同然だ、<br/>CYNTHIA:情報は確認した。<br/>SIMON:早くやれ!<br/>また逃げるそ…<br/>CYNTHIA:よし!動きが止まった!<br/>一気に叩く!<br/>……サイモン<br/>どういうつもりか知らないけど<br/>感謝してる。<br/>SIMON:いや、私は大事な実験の被験者を<br/>失いたくはないがらな。<br/>オマエ達、ニューコムに戾れ。<br/></td><td id="rDU`" class="" style="width:342px">找到你了！靠上去！<br/>辛西娅……听得见吗？<br/>我是Neucom的西蒙。<br/>如果你想阻止那个怪物，就回答我。<br/>我会协助你。<br/>为什么现在会出现？！<br/>我也对这件事负有责任。<br/>你们，快点干掉它，<br/>夜鸦。<br/>烦人的家伙！<br/>它靠利用城市的伊翁离子发生器<br/>来提高机动性。<br/>只要把发生器全部破坏，<br/>它就和拔了毛的乌鸦没什么两样。<br/>已确认情报。<br/>快点动手！<br/>它又要逃了……<br/>好了！它飞不动了！<br/>一口气解决它！<br/>……西蒙，<br/>虽然不知道你有什么目的，<br/>但还是要谢谢你。<br/>没什么，我只是不想<br/>失去重要的实验对象而已。<br/>你们回Neucom吧。<br/></td><td id="TwO~" class="" style="width:229px"></td></tr><tr id="12272ce6-1367-807a-be22-c7c5102a84a5"><td id="Hc;p" class="" style="width:58px"></td><td id="JZQ:" class="" style="width:214px"></td><td id="uHtM" class="" style="width:387px">手は打っておいた。<br/>じゃあな。<br/>シンシア、実験室で待っている。<br/>CYNTHIA:ねえ、聞こえてる?<br/>最後までつきあってくれて、ありがとう<br/>…… ね、今度は、私があなたに付き合うから<br/>行き先を決めてくれる?<br/>ニューコムに戾っても、どこか知らない国でもいい<br/>ね、答えて …… 聞こえてないの?<br/></td><td id="rDU`" class="" style="width:342px">我已经安排好了。<br/>就这样，<br/>辛西娅，我在实验室等你。<br/>喂，听得见吗？<br/>你陪我走到了最后……谢谢，<br/>……呐，这次，换我陪你了，<br/>你想去哪里？<br/>回Neucom也好，去某个不知名的国家也罢，<br/>呐，回答我……听不见吗？<br/></td><td id="TwO~" class="" style="width:229px"></td></tr><tr id="12272ce6-1367-809d-8930-ea7cb6507590"><td id="Hc;p" class="" style="width:58px"></td><td id="JZQ:" class="" style="width:214px">0055</td><td id="uHtM" class="" style="width:387px">お願い …… 姉さんを見つけて。<br/>行きます!<br/>ウロポロスの中枢である<br/>空中空母スフィルナが出現。<br/>全力でこれを破壞してください!<br/>あれがスフィルナ ……<br/>なんて大きさ!<br/>くっ、歯が立たない!<br/>姉さん …… お願いっ!<br/>戾ってきて!<br/>くっ …… 待って! 姉さんっ!<br/>もう一息がもしれないのに …… 逃げられた!<br/>あそこに …… 姉さんが!<br/>電脳化の希望者リストに姑さんの名前、<br/>見つけちゃった時がら、<br/>何がいけなかったんだろうって、ずっと考えている。<br/>もう …… 止められないのかな?<br/>でも、姉さんにもうー度会って、ちゃんと伝えたい。<br/>……自分の気持ち。<br/>もう止められなくてもいい。ただ、もう一度!<br/></td><td id="rDU`" class="" style="width:342px">求你了……找到我姐姐。<br/>出发！<br/>衔尾蛇的核心——<br/>空中航母“双髻鲨”已出现。<br/>全力摧毁它！<br/>那就是“双髻鲨”……<br/>居然这么大！<br/>可恶，根本打不动！<br/>姐姐……求你了！<br/>回来吧！<br/>可恶……等等！姐姐！<br/>就差一点了……让它逃了！<br/>姐姐在那里！<br/>自从我在电脑化志愿者名单上<br/>看到姐姐的名字之后，<br/>就一直在想，我究竟做错了什么？<br/>已经……无法阻止她了吗？<br/>但是，我想再见姐姐一面，好好地告诉她……<br/>……我的真实想法。<br/>就算阻止不了也没关系，只要能再见一面就好！<br/></td><td id="TwO~" class="" style="width:229px"><br/><br/><br/><br/><br/><br/><br/>M50<br/><br/><br/><br/><br/><br/>这一行开始是评价高现实的文本<br/></td></tr><tr id="12272ce6-1367-8025-bc5b-ebca0c0ec6e0"><td id="Hc;p" class="" style="width:58px"></td><td id="JZQ:" class="" style="width:214px">0056</td><td id="uHtM" class="" style="width:387px">ニューコムとセネラルも<br/>戦ってるってのに!<br/>あんな空母どうやって ?!<br/>スフィルナが戦線を脱离し始めました。<br/>護衛しているウロボロス機を<br/>全滅してください<br/>姉さん! そうてしょ ?!<br/>聞いて …… 私が見えないの ?!<br/>シンシア!<br/>もう、擊たないでっ。<br/>姉さん !!…… 答えて!<br/></td><td id="rDU`" class="" style="width:342px">Neucom和通用资源<br/>也在交战！<br/>那个航母究竟怎么……？！<br/>“双髻鲨”开始脱离战场。<br/>把护航的衔尾蛇战机<br/>全部歼灭！<br/>姐姐！是你吧？！<br/>听我说……你难道看不见我吗？！<br/>辛西娅！<br/>别打了。<br/>姐姐！！……回答我！<br/></td><td id="TwO~" class="" style="width:229px">M51？</td></tr><tr id="12272ce6-1367-8079-be01-e1570f6e3fbe"><td id="Hc;p" class="" style="width:58px"></td><td id="JZQ:" class="" style="width:214px">0057</td><td id="uHtM" class="" style="width:387px">メガフロート…を沈めた化け物に、<br/>どう戦うって…。<br/></td><td id="rDU`" class="" style="width:342px">能把巨浮城击沉的怪物，<br/>到底该怎么打…<br/></td><td id="TwO~" class="" style="width:229px"></td></tr><tr id="12272ce6-1367-8075-a6c6-e5b57f74ccda"><td id="Hc;p" class="" style="width:58px"></td><td id="JZQ:" class="" style="width:214px">0058</td><td id="uHtM" class="" style="width:387px">FIONA:見つけた! …… 速い！<br/>指挥官：例の機体はジオフロント内の<br/>イーオン·ジェネレーターによって<br/>性能を高めている事が判明しました。<br/>そこで、研究員サイモンの提案により<br/>イーオン·ジェネレーターにハッキングを仕掛けます。<br/>このタイミングで例の機体を强度 ……<br/>タイミングはHUDにて指示を出します。<br/>これが成功すれば、ウロポロスは鎮圧できると<br/>確信しています。<br/>貴君の戦果に期待します。<br/>FIONA:まだ? ハッキングっ!<br/>SIMON:準備完了。<br/>カウントダウンする<br/>指挥官:ジオフロント内に逃げたもう一機は<br/>ティジョン機と判明。<br/>追擊してください!<br/>FIONA:了解っ!ディジョン ! …… 悪夢!！<br/>死になさい …… さっさと!<br/>どうせもう肉体もないくせに!<br/>SIMON:確實に息の根を止めろ!<br/>奴が電脳空間に逃げ込む前に!<br/>DISION:オマエら雑魚どもに<br/>わたしの何がわかる!<br/>助けてえええ<br/></td><td id="rDU`" class="" style="width:342px">看到了！……好快！<br/>我们发现那架机体是通过<br/>地下都市内部的伊翁离子发生器<br/>来提升性能的。<br/>因此，根据研究员西蒙的建议，<br/>我们将对离子发生器进行远程破解攻击。<br/>届时那架机体的强度将会……<br/>具体时机将通过HUD指示。<br/>我们相信，只要这次行动成功，<br/>就能彻底瓦解衔尾蛇组织。<br/>期待你的出色表现。<br/>还没好吗？破解攻击！<br/>准备完毕。<br/>开始倒计时。<br/>确认逃入地下都市的另一架机体<br/>是迪森的座机。<br/>请立即追击！<br/>了解！迪森！……噩梦！！<br/>去死吧……赶紧！<br/>你这个连肉体都没有的东西！！<br/>在他逃进电脑空间之前，<br/>彻底干掉他！<br/>你们这些杂鱼<br/>懂什么？！<br/>救救我————<br/></td><td id="TwO~" class="" style="width:229px">M54 <br/> Sole Survivor<br/></td></tr><tr id="12272ce6-1367-8066-9816-d549579b188a"><td id="Hc;p" class="" style="width:58px"></td><td id="JZQ:" class="" style="width:214px"></td><td id="uHtM" class="" style="width:387px">ヨーコおおおおお。<br/>FIONA:……帰ろう。もう、ここには何もない。<br/>この空には<br/>私達ずっと一緒だったね。今までありがとう。<br/>こんな私の事、何度も助けてくれて。<br/>私、ニューコム辞める。<br/>だがら、このランデブーが最後のフライト。<br/>この空とキミをにれ忘ない。<br/>それから、シンシアのいた空 …… 。<br/>SIMON:ハッキング再開<br/>カウントダウンを開始する。<br/></td><td id="rDU`" class="" style="width:342px">洋子————！<br/>……我们回去吧。这里已经什么都没有了。<br/>这片天空……<br/>我们一直在一起呢，谢谢你。<br/>谢谢你一次又一次地帮助我。<br/>我准备，离开Neucom了。<br/>所以，这次的相会，将是我们最后一次飞行。<br/>我会永远珍藏这片天空，还有你。<br/>以及……辛西娅曾经翱翔过的天空……<br/>破解攻击重启，<br/>开始倒计时。<br/></td><td id="TwO~" class="" style="width:229px"></td></tr><tr id="12272ce6-1367-80ea-987b-e637cada267d"><td id="Hc;p" class="" style="width:58px"></td><td id="JZQ:" class="" style="width:214px">0060</td><td id="uHtM" class="" style="width:387px">指挥官：擊墜したスフィルナがら脱出する機影を二機<br/>確認しました<br/>一機は例の正体不明機です!<br/>ジオフロントの通路へ逃げ込んだ二機を<br/>追擊してください。<br/>FIONA:姉さんが出て来ない ……<br/>私達が殺したの? シンシアを<br/>私、何も出来ながった。まだ信じられない·<br/>何であの時、何も言ってくれなかったのかって。<br/>こんな事が彼女の夢だったとでもいうの ?!<br/>私は信じない …… 騙されてた!<br/>彼女のメーリング·リストに<br/>ディジョンの名前見つけたの。<br/>覚えてるてしょ?<br/>一度、あなたの事をゼネラルに誘っていた……<br/>私、確かめたい。あの男とウロポロスを叩く!<br/>あのどちらかに…<br/>絶対、ティジョンが乗っている。<br/>元凶め！<br/>何処へ行ったの ?! アイツ ……!<br/></td><td id="rDU`" class="" style="width:342px">确认到两架从被击落的&quot;双髻鲨&quot;上<br/>逃出的飞机。<br/>其中一架是那架不明机型！<br/>请追击逃入地下都市通道的<br/>两架敌机。<br/>姐姐没有出来……<br/>是我们杀了她吗？杀了辛西娅？<br/>我……我什么都做不了。我仍然无法相信……<br/>为什么她当时什么都没告诉我？<br/>难道这就是她所追求的梦想？！<br/>我不相信……她肯定被骗了！<br/>我在她的邮件列表里<br/>发现了迪森的名字。<br/>你还记得吧？<br/>他曾经邀请过你加入通用资源……<br/>我一定要弄清楚真相。我要打倒那个男人和衔尾蛇！<br/>其中一架……<br/>迪森一定在上面。<br/>那个罪魁祸首！<br/>他去哪了？！那个混蛋……！<br/></td><td id="TwO~" class="" style="width:229px">M52 revenge<br/>M53 tunel vision<br/><br/><br/><br/>这里Fiona的对话需要在resistance中90秒内不对航母造成大伤害，会跳过radio silence，<br/>在钻隧道前看到这段对话。<br/></td></tr><tr id="12272ce6-1367-80cf-b1d8-d9c1e7b51cf9"><td id="Hc;p" class="" style="width:58px"></td><td id="JZQ:" class="" style="width:214px"></td><td id="uHtM" class="" style="width:387px">擊墜したスフィルナがら脱出する機影を二機<br/>確認しました<br/>一機は例の正体不明機です!<br/>ジオフロントの通路へ逃げ込んだ二機を<br/>追擊してください。<br/></td><td id="rDU`" class="" style="width:342px">确认到两架从被击落的&quot;双髻鲨&quot;上<br/>逃出的飞机。<br/>其中一架是那架不明机型！<br/>请追击逃入地下都市通道的<br/>两架敌机。<br/></td><td id="TwO~" class="" style="width:229px"></td></tr><tr id="12272ce6-1367-8095-8797-c5fe54c0c959"><td id="Hc;p" class="" style="width:58px"></td><td id="JZQ:" class="" style="width:214px"></td><td id="uHtM" class="" style="width:387px"></td><td id="rDU`" class="" style="width:342px"></td><td id="TwO~" class="" style="width:229px"></td></tr></tbody></table><p id="11f72ce6-1367-8079-a9c9-d4250aa71857" class="">
+</p><h1 id="11f72ce6-1367-809f-88e3-dfce132afcaf" class="">动画字幕</h1><table id="11f72ce6-1367-808c-a406-f19ec47ca9fa" class="simple-table"><tbody><tr id="98d2316d-aa8b-441f-96f3-fa8d111ee033"><td id="Hc;p" class="block-color-pink">序号</td><td id="JZQ:" class="block-color-pink" style="width:155.546875px">文件路径</td><td id="uHtM" class="block-color-pink" style="width:473px">原文</td><td id="rDU`" class="block-color-pink" style="width:377px">译文</td><td id="TwO~" class="block-color-pink" style="width:229px">备注</td></tr><tr id="07dc0a92-97a7-4ddd-b5bf-feda39564722"><td id="Hc;p" class="">1</td><td id="JZQ:" class="" style="width:155.546875px">0408_0001_0000_0000</td><td id="uHtM" class="" style="width:473px">ようこそ、ニューコムへ<br/>我は明日の世界を創造するソフトウェアの供給を<br/>目的に活動を続ける複合企業です。<br/>ニューコムグループは、コンピュータ関連での<br/>環境開発を中心とした<br/>情報環境開発事業部「ニューコム·インフォ」を軸に、<br/>宇由環境開発事業部「ニューコム·スペース」<br/>生命環境開発事業部「ニューコム·バイオ」<br/>通信環境開発事業部「ニューコム·スフィア」<br/>広報外務部「ニューコム·パプリッシング」<br/>という大きな五つのセクションに分かれ …… 。<br/></td><td id="rDU`" class="" style="width:377px">欢迎来到Neucom。<br/>我们是一家致力于创造未来世界，<br/>提供软件支持的综合性企业。<br/>Neucom集团以信息环境开发事业部——<br/>“Neucom Info”为核心，<br/>专注于计算机相关的环境开发。<br/>旗下还拥有宇宙环境开发事业部“Neucom Space”，<br/>生命环境开发事业部“Neucom Bio”，<br/>通信环境开发事业部“Neucom Sphere”，<br/>以及宣传外务部“Neucom Publishing”<br/>这五大核心部门……<br/><br/></td><td id="TwO~" class="" style="width:229px"></td></tr><tr id="7020df43-6118-483c-9325-75f0184e0706"><td id="Hc;p" class="">2</td><td id="JZQ:" class="" style="width:155.546875px">0061_0015_0015_01</td><td id="uHtM" class="" style="width:473px">セネラルリゾースの空挺部隊が当基地の占拠を目的に<br/>侵攻中です。<br/>攻擊を受ける前に打ち上げを開始します!<br/>カウントダウン … 10 … 9·<br/>8…7…6 …5…4 …… エンジン点火!<br/>2 .. 1 …… 発射!<br/>ブースター部を分離，大気圈を離脱。<br/>軌道に乘りました。<br/></td><td id="rDU`" class="" style="width:377px">通用资源的空降部队正试图占领基地，<br/>目前正在进攻中。<br/>在遭受攻击之前，开启发射程序！<br/>倒计时……10……9……<br/>8……7……6……5……4……引擎点火！<br/>2……1……发射！<br/>助推器分离，脱离大气层。<br/>进入预定轨道。<br/></td><td id="TwO~" class="" style="width:229px">M42</td></tr><tr id="45a9a759-722d-4b4d-a2b0-dd3dc302a869"><td id="Hc;p" class="">3</td><td id="JZQ:" class="" style="width:155.546875px">0106_0000_0000</td><td id="uHtM" class="" style="width:473px">FIONA:姉さん!<br/>ニューコムで実験を予定している<br/>電脳化の被験者に姉さんの名前が……<br/>CYNTHIA:ああ、その事?<br/>志願したの。何の為に私が今まで<br/>ニューコムにいたと思ってたの?<br/>FIONA:——いつまでも姉さんは同じ。<br/>夢を見るなら眠ってる時だけにしてよ!<br/>CYNTHIA:夢？ ただの夢扱いする気 !?<br/>あなた私の何をどう知っているつもり?<br/>——誰にも口出しさせない。<br/>たとえ、たったー人の妹にも。<br/>FIONA:姉さんは身体や心まで<br/>捨てようとしているんじゃないの?<br/>また実験も成功していない電脳化なんて …… 無茶よ!<br/>一体、何が知りたいの?<br/>CYNTHIA:——誰もが進むべき次なる世界。<br/>そう、まだ誰も体験した事のない、すべてが新しく<br/>未知の知覚や感覚によって構成されている<br/>宇宙を知りたい。<br/>生きる物が必す持つ肉体が精神や魂といった<br/>未知の可能性を秘める存在にまで<br/>限界を作っているのよ。<br/>FIONA:たとえそうだとしても、姉さんが望んでいるのは、<br/>自然がら与えられた人の力を超えてる。<br/>それは …… 危険なカだわ。<br/>CYNTHIA:そう、その通りよ!私が欲しいのは、<br/>選ばれた者が手にする事の出来る<br/>新しい世界への扉をこじ開けるカよ!<br/>FIONA：——人間は、けして神にはなれないのよ。<br/></td><td id="rDU`" class="" style="width:377px">姐姐！<br/>我在Neucom电脑化实验<br/>的志愿者名单上看到了你的名字……<br/>啊，你说那件事啊？<br/>是我自己报名的。不然我待在Neucom，<br/>是为了什么？<br/>——姐姐你总是这样。<br/>要做梦也要等睡着以后再做啊！<br/>梦？你居然觉得这只是个梦？！<br/>你以为你对我有多了解？<br/>——任何人都不能干涉我的决定，<br/>即使是我唯一的亲妹妹也不行。<br/>姐姐，你想连自己的身体和心灵都<br/>舍弃掉吗？<br/>而且电脑化技术还没实验成功……这太乱来了！<br/>你究竟想了解什么？<br/>——我想了解每个人都应该前往的下一个世界。<br/>没错，那是一个谁也未曾体验的，<br/>一个由前所未有的感知和感觉<br/>构成的宇宙。<br/>所有生物都拥有肉体，<br/>而肉体限制了精神或灵魂等<br/>未知的可能性。<br/>即使如此，姐姐你渴望的东西，<br/>已经超越了自然赋予人类的力量。<br/>那是……非常危险的。<br/>没错，你说得对！我想要的是，<br/>就是那种只有被选中的人才能拥有的，<br/>撬开新世界大门的力量！<br/>——人类，绝不可能成为神。<br/></td><td id="TwO~" class="" style="width:229px">M44 ，24bpp</td></tr><tr id="b6f010e3-2a6e-4682-83a9-fc1150231cf2"><td id="Hc;p" class=""></td><td id="JZQ:" class="" style="width:155.546875px">107</td><td id="uHtM" class="" style="width:473px">DISION:よく戾って来たな、レナ。待っていたそ。<br/>全てはこれから始まる。<br/>そして、この世界を変えるために<br/>生まれたナイトレーパンで,<br/>レナが秘めた真実の力を<br/>じっくりと見せてやろうじゃないか<br/>この世界を変えるのは、このような戦いではなく、<br/>ティション …… あなた自身の姿であり、<br/>人々の電脳化ではないのですが?<br/>ナイトレーベンなど使わなくても、あなたが自らの手で<br/>人々に電脳空間の素晴らしさを説くべきです。<br/>DISION:いや、違うな<br/>力とは、人に見せる為にあるものだ。<br/>今のお前に、私の姿が見えるが?<br/>CYNTHIA:いいえ、でも、肉体として見える姿に<br/>意味なんてあるのですか?<br/>DISION:今のお前に何がわかる!<br/>何も知らずこの世界に縛られ、<br/>一瞬にしてすべてを失った者の気持ち。<br/>この俺がこの姿を望んだとでも思っているのか?<br/>CYNTHIA:電脳化を望んでいなかったなんて ……<br/>——私が、この私がニューコムを裏切り、<br/>たったー人の妹までも裏切り、<br/>すべてを捨ててまで参加したこのあなたの革命に<br/>私が望んでいるのは …… あなたの、その姿でした。<br/>DISION:この姿だと? それこそお前が私を使って<br/>見ようとしているのは、<br/>無意味な夢に過ぎないという事だ。<br/>お前の現実から逃げる為のな。<br/>電脳空間で一体何が見えると思っている。<br/>お前の話は、電脳空間の世界が、<br/>天国だとでち言いたいようにしか聞こえない。<br/>そんなに天国へ逃げたいのなら、<br/>妹の後でも追えばいい。<br/>CYNTHIA:フィーは ·…<br/>夢なら寝てる時にでも見ろと。<br/>でも、あなたのおかげでわかった。<br/>——寝覚めの悪い夢。<br/>フィーは、こんな私にいつも言ってた。<br/></td><td id="rDU`" class="" style="width:377px">你终于回来了，玲名。我一直在等你。<br/>一切才刚刚开始。<br/>用这架为了<br/>改变世界而生的夜鸦，<br/>让我好好见识一下<br/>你隐藏的真正力量吧。<br/>改变世界的，不光是靠这样的战斗，<br/>迪森……难道不是应该依靠你自身的存在，<br/>以及人们的电脑化吗？<br/>就算不使用夜鸦，也应该用你自己的方式，<br/>向人们展示电脑空间的伟大之处。<br/>不，你错了。<br/>力量，就是要用来展现给世人看的。<br/>现在的你，能看到我的样子吗？<br/>看不到，但是，肉眼可见的形态<br/>真的有意义吗？<br/>你什么都不知道！<br/>你根本就不明白，<br/>一个被束缚在这个世界，瞬间失去一切的人的感受。<br/>你以为我想变成这副模样吗？<br/>你居然不希望被电脑化……<br/>——我，我背叛了Neucom，<br/>背叛了我唯一的妹妹，<br/>放弃了一切加入你的革命，<br/>我所追求的……就是你，你这样的存在。<br/>我这样的存在？<br/>你只是想利用我来实现<br/>你那毫无意义的梦想罢了。<br/>你只是想逃避现实。<br/>你以为在电脑空间能看到什么？<br/>你的话听起来就像是在说，<br/>电脑空间就是天堂一样。<br/>如果你那么想去天堂，<br/>就去追随你妹妹吧。<br/>小菲……<br/>“要做梦也要等睡着以后再做。”<br/>多亏了你，我终于明白了，<br/>——那只是一场噩梦。<br/>小菲总是这样对我说：<br/></td><td id="TwO~" class="" style="width:229px"></td></tr><tr id="12272ce6-1367-801a-ab84-cf2f4dd9fba0"><td id="Hc;p" class=""></td><td id="JZQ:" class="" style="width:155.546875px">108</td><td id="uHtM" class="" style="width:473px">新闻主持人：本日の午後には、ニューコム、セネラルリソース、<br/>UPEOの三組織間で停戦の合意、<br/>そして,互いの組機が抱える内部反乱分子の<br/>搜索と検挙を目的とした短期の業務提攜が<br/>結ばれるとの発表がありました。<br/>この異例の是提攜劇が実現した背景には、<br/>事件の首謀者がセネラルリソースのメンパーだった事、<br/>そして、ニューコムからも<br/>数名のクーテター参加者がいたとの報告もあり ……<br/>换个场景，Simon：…よーし、よし、いいコだ、いいコだ<br/></td><td id="rDU`" class="" style="width:377px">今天下午，Neucom、通用资源和UPEO<br/>三方已达成停战协议，<br/>并宣布将进行短期业务合作，<br/>以搜捕和抓获各自组织内部的<br/>叛乱分子。<br/>促成此次罕见合作背景是，<br/>事件的主谋为通用资源的成员，<br/>并且有报告称Neucom也有<br/>数人参与了政变……<br/>好、好，乖孩子，真是乖孩子……<br/></td><td id="TwO~" class="" style="width:229px">M48</td></tr><tr id="12272ce6-1367-8067-8bc3-c95a323b64d5"><td id="Hc;p" class=""></td><td id="JZQ:" class="" style="width:155.546875px">109</td><td id="uHtM" class="" style="width:473px">电视台主持人：信じられません!<br/>これがティジョンと名乗る<br/>元ゼネラルリソースのエース·パイロットと、<br/>その仲間が引き起こした事件の結末です。<br/>そして、彼らは我々に大きな疑問と謎を残したまま<br/>消えてしまったのてす。<br/>彼は、果たして本当に<br/>電脳化された人聞だったのでしょうか。<br/>しかし、今……<br/>FIONA:姉さん ……<br/>バカな人。<br/>CYNTHIA:はい、フィーを<br/>FIONA:姉さん!<br/>CYNTHIA:きっとあなたの事だから、今ごろは私の事で<br/>ひどく落ち込んでるんでしょうね。<br/>——でも、あの時は仕方ながった。<br/>誰が悪いワケでもない。<br/>むしろ、感謝してる。<br/>あなたが、私の肉体を消してくれたから。<br/>私は私の夢だったこっちの世界に来れたんだし。<br/>——あなたは多分<br/>これを聞いても信じないかもしれない。<br/>でも、電脳空間は確かにある。<br/>そして …… 素晴らしい<br/></td><td id="rDU`" class="" style="width:377px">真是难以置信！<br/>这就是自称迪森的<br/>前通用资源王牌飞行员<br/>及其同伙所引发的事件的结局。<br/>他们就这样消失了，<br/>但给我们留下了巨大的疑问和谜团。<br/>他……真的是<br/>一个电脑化的人吗？<br/>然而，现在……<br/>姐姐……<br/>你这个傻瓜。<br/>嗨，小菲<br/>姐姐！<br/>你一定因为我的事<br/>非常难过吧。<br/>——但是，当时我也是迫不得已。<br/>其实谁都没有错。<br/>不如说，我还要感谢你。<br/>感谢你终结了我的肉体。<br/>多亏了你，我才来到了我梦寐以求的世界。<br/>——你或许<br/>不会相信我说的话。<br/>但是，电脑空间确实在这里。<br/>而且……非常精彩。<br/></td><td id="TwO~" class="" style="width:229px"></td></tr></tbody></table><p id="11f72ce6-1367-801c-af48-edd914bdab62" class="">
+</p><p id="11f72ce6-1367-80c9-b9a7-e3b9a0b20a16" class="">
+</p><p id="11f72ce6-1367-8009-8fdb-ce1e534f00dd" class="">40 Power for Life<br/>41 Guardian Angel<br/>42 Zero Gravity<br/>43 The Prize<br/>44 Utopian Dreams<br/>45 Reality Distortion<br/>46 Counterrevolution<br/>47 Pursuit<br/>48 Self Awareness<br/>49 —<br/>50 Resistance<br/>51 Radio Silence<br/>52 Revenge<br/>53 Sole Survivor<br/></p><p id="12072ce6-1367-80a6-9a75-e20f3d5cdf32" class="">
+</p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>
