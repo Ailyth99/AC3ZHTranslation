@@ -145,21 +145,19 @@
 1.  **导出与编辑**:
     - 使用 `AC3TimSwallow` 将原始 `.tim` 导出为 `.bmp`。
     - 使用 `Photoshop` 等工具打开 `.bmp` 进行编辑。
-    > **清晰小字体技巧**: 对于任务内对话（黑底白字），为追求清晰度，可在 Photoshop 中使用像素字体，并关闭“字体边缘抗锯齿”功能，选择“[缝合像素（FUSION PIXEL）](https://github.com/TakWolf/fusion-pixel-font)”字体。
+    > **清晰小字体技巧**: 对于任务内对话（黑底白字/绿色的无线电对话），为追求清晰度，可在 Photoshop 中使用像素字体，并关闭“字体边缘抗锯齿”功能，选择“[缝合像素（FUSION PIXEL）](https://github.com/TakWolf/fusion-pixel-font)”字体。
 
 2.  **颜色量化 (Color Reduction)**:
     - 将编辑好的图像导入 `OPTPix iMageStudio for PS2`。
     - **必须**将新图像的颜色数减至与**原始 `.tim` 文件**一致。
         - 如果原始是 16 色 (4bpp)，就减到 16 色。
-        - 如果原始是 256 色 (8bpp)，就减到 256 色。
-        - ![](https://pic1.imgdb.cn/item/68751f8958cb8da5c8adc30e.png)
+        - 如果原始是 256 色 (8bpp)，就减到 256 色。<br>![](https://pic1.imgdb.cn/item/68751f8958cb8da5c8adc30e.png)
     - 对于双色板图像，可能需要手动将原始 `.tim` 的两个色板分别复制到你制作的两张新图上，以确保颜色完全匹配。单色版则无需这样，直接使用减色后得到的新色板数据即可。
 
-3.  **保存为新 `.tim`**:
-    - 在 `OPTPix` 中，另存为 `.tim` 格式。
-    - ![](https://pic1.imgdb.cn/item/68751fde58cb8da5c8adc32a.png)
+3.  **单色版图可以直接保存为新 `.tim`**:
+    - 在 `OPTPix` 中，另存为 `.tim` 格式。<br>![](https://pic1.imgdb.cn/item/68751fde58cb8da5c8adc32a.png)
     - **务必**在保存时手动输入正确的显存坐标 (可以用 `AC3TimSwallow` 查询原始 `.tim` 的坐标)。
-
+    - 注意，双色板任务对话图必须减色后导出BMP，再使用`AC3TimSwallow` 合并生成新TIM。		
 ---
 
 ### 步骤三：重新打包游戏
@@ -189,6 +187,9 @@
 - **方法一 (推荐)**: 直接使用 `xdelta` 等通用补丁制作工具，对比原始游戏镜像和你的修改版镜像，生成一个 `.xdelta` 补丁文件。并提供 `xdelta` 的使用说明。
 - **方法二 (高级)**: 参考 `Patcher` 目录里的说明文档，可以制作一个自定义的补丁程序，它可以自动判断镜像，并自动打补丁（需要使用go语音编译环境）。
 
+
+### 补充
+你可以可以看这个文章得到一些信息：[皇牌空战3 汉化说明 - 基本实现方式](https://www.bilibili.com/opus/997381746516295686)
 
 ## 致谢Acknowledgments
 *  [AC3-Layer-Merger](https://github.com/DashmanGC/AC3-Layer-Merger)
