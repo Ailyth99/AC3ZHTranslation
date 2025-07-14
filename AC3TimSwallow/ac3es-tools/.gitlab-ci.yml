@@ -1,0 +1,28 @@
+linux-amd64:
+  stage: build
+  image: python:3.9.5-buster
+  artifacts:
+    name: "${CI_PROJECT_NAME}-${CI_COMMIT_REF_NAME}-${CI_COMMIT_SHA:0:8}-linux-amd64"
+    paths:
+      - ac3es-tools-linux-amd64
+  script:
+    - pip3 install pyinstaller -q
+    - pyinstaller ac3es.spec
+    - cp README.md dist/
+    - cp COPYING dist/
+    - mv dist ac3es-tools-linux-amd64
+
+windows-amd64:
+  image: quay.io/loadwordteam/python3-wine-staging
+  stage: build
+  artifacts:
+    name: "${CI_PROJECT_NAME}-${CI_COMMIT_REF_NAME}-${CI_COMMIT_SHA:0:8}-windows-i386"
+    paths:
+      - ac3es-tools-win-amd64
+  variables:
+    WINEARCH: win64
+  script:
+    - wine C:/Python3/python.exe -m PyInstaller -F ac3es.spec
+    - cp README.md dist/
+    - cp COPYING dist/
+    - mv dist ac3es-tools-win-amd64

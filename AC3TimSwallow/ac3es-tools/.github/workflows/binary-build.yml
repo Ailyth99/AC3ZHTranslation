@@ -1,0 +1,37 @@
+name: build binaries
+on: [push]
+jobs:
+  windows-binary:
+    runs-on: windows-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v3
+      - run: curl https://www.python.org/ftp/python/3.10.6/python-3.10.6-amd64.exe -o python-3.10.6-amd64.exe
+      - run: ./python-3.10.6-amd64.exe /quiet InstallAllUsers=1 PrependPath=1 Include_test=0
+      - run: python3 -m pip install pyinstaller -q
+      - run: pyinstaller ac3es.spec
+      - run: cp README.md dist/
+      - run: cp COPYING dist/
+      - name: Upload artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: ac3es-tools-windows-amd64
+          path: dist
+
+  linux-binary:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v3
+      - run: sudo apt-get update && sudo apt-get upgrade -y
+      - run: sudo apt-get install python3 python3-pip
+      - run: python3 -m venv venv && source venv/bin/activate
+      - run: python3 -m pip install pyinstaller -q
+      - run: pyinstaller ac3es.spec
+      - run: cp README.md dist/
+      - run: cp COPYING dist/
+      - name: Upload artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: ac3es-tools-linux-amd64
+          path: dist
